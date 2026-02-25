@@ -33,6 +33,10 @@ YEARS = [2012, 2014, 2016, 2018]
 # Option B: path to a folder with X.npy and y.npy (overrides CUSTOM_TRAIN_YEARS if set).
 CUSTOM_TRAIN_YEARS = None  # e.g. [2012, 2014, 2016] or None to disable
 CUSTOM_DATA_DIR = None     # e.g. os.path.join(BASE_DATA_DIR, "data_custom") or None
+if CUSTOM_DATA_DIR is None:
+    _default_custom_dir = os.path.join(BASE_DATA_DIR, "data_custom")
+    if os.path.isdir(_default_custom_dir):
+        CUSTOM_DATA_DIR = _default_custom_dir
 
 FEATURES_JSON = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -49,7 +53,7 @@ RF_MAX_LEAF_NODES = 16 # maximum number of leaves in each tree
 
 # MLP (from Multi-Layer Perceptron.ipynb style)
 MLP_HIDDEN_1 = 300 # number of neurons in the first hidden layer
-MLP_HIDDEN_2 = 100 # number of neurons in the second hidden layer
+MLP_HIDDEN_2 = 200 # number of neurons in the second hidden layer
 MLP_BATCH_SIZE = 16 # batch size for training
 MLP_EPOCHS = 100  # max epochs; early stopping may stop sooner
 MLP_LEARNING_RATE = 0.00001 # learning rate for the optimizer

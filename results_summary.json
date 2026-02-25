@@ -6,8 +6,8 @@
         "macro_f1": 0.935
       },
       "mlp": {
-        "accuracy": 0.9658,
-        "macro_f1": 0.9658
+        "accuracy": 0.9667,
+        "macro_f1": 0.9667
       }
     },
     "2014": {
@@ -16,8 +16,8 @@
         "macro_f1": 0.945
       },
       "mlp": {
-        "accuracy": 0.9625,
-        "macro_f1": 0.9625
+        "accuracy": 0.9617,
+        "macro_f1": 0.9617
       }
     },
     "2016": {
@@ -26,8 +26,8 @@
         "macro_f1": 0.9692
       },
       "mlp": {
-        "accuracy": 0.9767,
-        "macro_f1": 0.9767
+        "accuracy": 0.975,
+        "macro_f1": 0.975
       }
     },
     "2018": {
@@ -36,8 +36,8 @@
         "macro_f1": 0.9616
       },
       "mlp": {
-        "accuracy": 0.98,
-        "macro_f1": 0.98
+        "accuracy": 0.9833,
+        "macro_f1": 0.9833
       }
     }
   },
@@ -48,8 +48,8 @@
         "macro_f1": 0.935
       },
       "mlp": {
-        "accuracy": 0.9658,
-        "macro_f1": 0.9658
+        "accuracy": 0.9667,
+        "macro_f1": 0.9667
       }
     },
     "2014": {
@@ -68,8 +68,8 @@
         "macro_f1": 0.8668
       },
       "mlp": {
-        "accuracy": 0.8358,
-        "macro_f1": 0.8327
+        "accuracy": 0.8625,
+        "macro_f1": 0.8609
       }
     },
     "2018": {
@@ -78,10 +78,52 @@
         "macro_f1": 0.8769
       },
       "mlp": {
-        "accuracy": 0.8458,
-        "macro_f1": 0.8429
+        "accuracy": 0.8558,
+        "macro_f1": 0.8535
       }
     }
   },
-  "cross_year_custom_model": {}
+  "cross_year_custom_model": {
+    "_label": "custom (data_custom)",
+    "2012": {
+      "rf": {
+        "accuracy": 0.8642,
+        "macro_f1": 0.8636
+      },
+      "mlp": {
+        "accuracy": 0.8883,
+        "macro_f1": 0.8882
+      }
+    },
+    "2014": {
+      "rf": {
+        "accuracy": 0.9267,
+        "macro_f1": 0.9267
+      },
+      "mlp": {
+        "accuracy": 0.97,
+        "macro_f1": 0.97
+      }
+    },
+    "2016": {
+      "rf": {
+        "accuracy": 0.9242,
+        "macro_f1": 0.9241
+      },
+      "mlp": {
+        "accuracy": 0.9483,
+        "macro_f1": 0.9483
+      }
+    },
+    "2018": {
+      "rf": {
+        "accuracy": 0.8842,
+        "macro_f1": 0.8839
+      },
+      "mlp": {
+        "accuracy": 0.9075,
+        "macro_f1": 0.9074
+      }
+    }
+  }
 }

@@ -23186,5 +23186,5802 @@
       "feature_name": "activitylist_com.biznessapps.activities.contactsmapactivity",
       "importance": 0.0
     }
+  ],
+  "custom (data_custom)": [
+    {
+      "rank": 1,
+      "feature_name": "requestedpermissionlist_android.permission.read_phone_state",
+      "importance": 0.06737
+    },
+    {
+      "rank": 2,
+      "feature_name": "requestedpermissionlist_android.permission.get_tasks",
+      "importance": 0.061553
+    },
+    {
+      "rank": 3,
+      "feature_name": "usedpermissionslist_android.permission.read_phone_state",
+      "importance": 0.061179
+    },
+    {
+      "rank": 4,
+      "feature_name": "intentfilterlist_android.intent.action.user_present",
+      "importance": 0.041709
+    },
+    {
+      "rank": 5,
+      "feature_name": "requestedpermissionlist_android.permission.access_wifi_state",
+      "importance": 0.041421
+    },
+    {
+      "rank": 6,
+      "feature_name": "requestedpermissionlist_android.permission.send_sms",
+      "importance": 0.041154
+    },
+    {
+      "rank": 7,
+      "feature_name": "requestedpermissionlist_android.permission.system_alert_window",
+      "importance": 0.037263
+    },
+    {
+      "rank": 8,
+      "feature_name": "requestedpermissionlist_com.android.launcher.permission.install_shortcut",
+      "importance": 0.036624
+    },
+    {
+      "rank": 9,
+      "feature_name": "suspiciousapilist_landroid/telephony/telephonymanager.getsubscriberid",
+      "importance": 0.034666
+    },
+    {
+      "rank": 10,
+      "feature_name": "requestedpermissionlist_android.permission.receive_boot_completed",
+      "importance": 0.030547
+    },
+    {
+      "rank": 11,
+      "feature_name": "intentfilterlist_android.intent.action.package_added",
+      "importance": 0.030356
+    },
+    {
+      "rank": 12,
+      "feature_name": "intentfilterlist_android.net.conn.connectivity_change",
+      "importance": 0.030234
+    },
+    {
+      "rank": 13,
+      "feature_name": "suspiciousapilist_landroid/telephony/telephonymanager.getdeviceid",
+      "importance": 0.026859
+    },
+    {
+      "rank": 14,
+      "feature_name": "usedpermissionslist_android.permission.access_wifi_state",
+      "importance": 0.026163
+    },
+    {
+      "rank": 15,
+      "feature_name": "requestedpermissionlist_android.permission.mount_unmount_filesystems",
+      "importance": 0.023307
+    },
+    {
+      "rank": 16,
+      "feature_name": "usedpermissionslist_android.permission.send_sms",
+      "importance": 0.022931
+    },
+    {
+      "rank": 17,
+      "feature_name": "intentfilterlist_android.provider.telephony.sms_received",
+      "importance": 0.021607
+    },
+    {
+      "rank": 18,
+      "feature_name": "usedpermissionslist_android.permission.get_tasks",
+      "importance": 0.021377
+    },
+    {
+      "rank": 19,
+      "feature_name": "intentfilterlist_android.intent.action.boot_completed",
+      "importance": 0.020272
+    },
+    {
+      "rank": 20,
+      "feature_name": "requestedpermissionlist_android.permission.receive_sms",
+      "importance": 0.017039
+    },
+    {
+      "rank": 21,
+      "feature_name": "suspiciousapilist_landroid/telephony/smsmanager.sendtextmessage",
+      "importance": 0.015235
+    },
+    {
+      "rank": 22,
+      "feature_name": "suspiciousapilist_ljava/lang/runtime;->exec",
+      "importance": 0.01391
+    },
+    {
+      "rank": 23,
+      "feature_name": "requestedpermissionlist_android.permission.read_sms",
+      "importance": 0.013582
+    },
+    {
+      "rank": 24,
+      "feature_name": "intentfilterlist_android.intent.action.package_removed",
+      "importance": 0.013384
+    },
+    {
+      "rank": 25,
+      "feature_name": "requestedpermissionlist_android.permission.change_wifi_state",
+      "importance": 0.012196
+    },
+    {
+      "rank": 26,
+      "feature_name": "requestedpermissionlist_android.permission.write_sms",
+      "importance": 0.010696
+    },
+    {
+      "rank": 27,
+      "feature_name": "suspiciousapilist_landroid/telephony/smsmessage;->getmessagebody",
+      "importance": 0.010475
+    },
+    {
+      "rank": 28,
+      "feature_name": "requestedpermissionlist_android.permission.write_settings",
+      "importance": 0.010414
+    },
+    {
+      "rank": 29,
+      "feature_name": "requestedpermissionlist_android.permission.change_network_state",
+      "importance": 0.009916
+    },
+    {
+      "rank": 30,
+      "feature_name": "requestedpermissionlist_android.permission.access_coarse_location",
+      "importance": 0.00883
+    },
+    {
+      "rank": 31,
+      "feature_name": "requestedpermissionlist_android.permission.write_external_storage",
+      "importance": 0.006496
+    },
+    {
+      "rank": 32,
+      "feature_name": "requestedpermissionlist_android.permission.restart_packages",
+      "importance": 0.006407
+    },
+    {
+      "rank": 33,
+      "feature_name": "requestedpermissionlist_com.android.browser.permission.read_history_bookmarks",
+      "importance": 0.006255
+    },
+    {
+      "rank": 34,
+      "feature_name": "intentfilterlist_com.google.android.c2dm.intent.receive",
+      "importance": 0.006166
+    },
+    {
+      "rank": 35,
+      "feature_name": "requestedpermissionlist_com.android.launcher.permission.uninstall_shortcut",
+      "importance": 0.005806
+    },
+    {
+      "rank": 36,
+      "feature_name": "requestedpermissionlist_android.permission.read_logs",
+      "importance": 0.005622
+    },
+    {
+      "rank": 37,
+      "feature_name": "requestedpermissionlist_com.google.android.c2dm.permission.receive",
+      "importance": 0.005527
+    },
+    {
+      "rank": 38,
+      "feature_name": "restrictedapilist_android.accounts.accountmanager.invalidateauthtoken",
+      "importance": 0.004834
+    },
+    {
+      "rank": 39,
+      "feature_name": "restrictedapilist_android.support.v4.view.accessibility.accessibilitynodeprovidercompatjellybean$accessibilitynodeinfobridge.performaction",
+      "importance": 0.004549
+    },
+    {
+      "rank": 40,
+      "feature_name": "restrictedapilist_android.os.powermanager$wakelock.release",
+      "importance": 0.004284
+    },
+    {
+      "rank": 41,
+      "feature_name": "restrictedapilist_android.os.powermanager$wakelock.acquire",
+      "importance": 0.004235
+    },
+    {
+      "rank": 42,
+      "feature_name": "usedpermissionslist_android.permission.internet",
+      "importance": 0.004166
+    },
+    {
+      "rank": 43,
+      "feature_name": "suspiciousapilist_landroid/support/v4/app/fragmentactivity.getsystemservice",
+      "importance": 0.004044
+    },
+    {
+      "rank": 44,
+      "feature_name": "intentfilterlist_com.google.android.c2dm.intent.registration",
+      "importance": 0.003946
+    },
+    {
+      "rank": 45,
+      "feature_name": "requestedpermissionlist_android.permission.process_outgoing_calls",
+      "importance": 0.003847
+    },
+    {
+      "rank": 46,
+      "feature_name": "restrictedapilist_android.support.v4.view.accessibility.accessibilitynodeprovidercompat.performaction",
+      "importance": 0.003617
+    },
+    {
+      "rank": 47,
+      "feature_name": "requestedpermissionlist_android.permission.access_assisted_gps",
+      "importance": 0.003389
+    },
+    {
+      "rank": 48,
+      "feature_name": "requestedpermissionlist_android.permission.access_fine_location",
+      "importance": 0.00326
+    },
+    {
+      "rank": 49,
+      "feature_name": "requestedpermissionlist_android.permission.write_apn_settings",
+      "importance": 0.003072
+    },
+    {
+      "rank": 50,
+      "feature_name": "requestedpermissionlist_com.android.launcher.permission.read_settings",
+      "importance": 0.003038
+    },
+    {
+      "rank": 51,
+      "feature_name": "requestedpermissionlist_android.permission.access_location",
+      "importance": 0.003001
+    },
+    {
+      "rank": 52,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.getdeviceid",
+      "importance": 0.002965
+    },
+    {
+      "rank": 53,
+      "feature_name": "restrictedapilist_android.widget.videoview.pause",
+      "importance": 0.002921
+    },
+    {
+      "rank": 54,
+      "feature_name": "restrictedapilist_android.widget.videoview.setvideopath",
+      "importance": 0.002585
+    },
+    {
+      "rank": 55,
+      "feature_name": "usedpermissionslist_android.permission.access_fine_location",
+      "importance": 0.002541
+    },
+    {
+      "rank": 56,
+      "feature_name": "requestedpermissionlist_android.permission.access_gps",
+      "importance": 0.002473
+    },
+    {
+      "rank": 57,
+      "feature_name": "requestedpermissionlist_android.permission.modify_phone_state",
+      "importance": 0.002401
+    },
+    {
+      "rank": 58,
+      "feature_name": "hardwarecomponentslist_android.hardware.wifi",
+      "importance": 0.002361
+    },
+    {
+      "rank": 59,
+      "feature_name": "requestedpermissionlist_android.permission.wake_lock",
+      "importance": 0.002337
+    },
+    {
+      "rank": 60,
+      "feature_name": "activitylist_.main",
+      "importance": 0.002327
+    },
+    {
+      "rank": 61,
+      "feature_name": "suspiciousapilist_ljava/io/ioexception;->printstacktrace",
+      "importance": 0.002293
+    },
+    {
+      "rank": 62,
+      "feature_name": "restrictedapilist_android.widget.videoview.start",
+      "importance": 0.002162
+    },
+    {
+      "rank": 63,
+      "feature_name": "suspiciousapilist_lorg/apache/http/client/methods/httppost",
+      "importance": 0.00216
+    },
+    {
+      "rank": 64,
+      "feature_name": "requestedpermissionlist_android.permission.disable_keyguard",
+      "importance": 0.001917
+    },
+    {
+      "rank": 65,
+      "feature_name": "requestedpermissionlist_android.permission.call_phone",
+      "importance": 0.001912
+    },
+    {
+      "rank": 66,
+      "feature_name": "intentfilterlist_android.net.wifi.wifi_state_changed",
+      "importance": 0.001907
+    },
+    {
+      "rank": 67,
+      "feature_name": "hardwarecomponentslist_android.hardware.camera",
+      "importance": 0.001648
+    },
+    {
+      "rank": 68,
+      "feature_name": "intentfilterlist_android.intent.action.create_shortcut",
+      "importance": 0.00164
+    },
+    {
+      "rank": 69,
+      "feature_name": "restrictedapilist_android.widget.videoview.stopplayback",
+      "importance": 0.001612
+    },
+    {
+      "rank": 70,
+      "feature_name": "requestedpermissionlist_android.permission.vibrate",
+      "importance": 0.001282
+    },
+    {
+      "rank": 71,
+      "feature_name": "usedpermissionslist_android.permission.write_settings",
+      "importance": 0.00118
+    },
+    {
+      "rank": 72,
+      "feature_name": "requestedpermissionlist_android.permission.change_configuration",
+      "importance": 0.001174
+    },
+    {
+      "rank": 73,
+      "feature_name": "hardwarecomponentslist_android.hardware.location",
+      "importance": 0.00108
+    },
+    {
+      "rank": 74,
+      "feature_name": "hardwarecomponentslist_android.hardware.camera.autofocus",
+      "importance": 0.001067
+    },
+    {
+      "rank": 75,
+      "feature_name": "requestedpermissionlist_android.permission.read_contacts",
+      "importance": 0.000952
+    },
+    {
+      "rank": 76,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.isactivenetworkmetered",
+      "importance": 0.000925
+    },
+    {
+      "rank": 77,
+      "feature_name": "intentfilterlist_android.net.wifi.state_change",
+      "importance": 0.00092
+    },
+    {
+      "rank": 78,
+      "feature_name": "servicelist_.gcmintentservice",
+      "importance": 0.000904
+    },
+    {
+      "rank": 79,
+      "feature_name": "hardwarecomponentslist_android.hardware.location.network",
+      "importance": 0.000862
+    },
+    {
+      "rank": 80,
+      "feature_name": "restrictedapilist_android.support.v4.net.connectivitymanagercompathoneycombmr2.isactivenetworkmetered",
+      "importance": 0.000854
+    },
+    {
+      "rank": 81,
+      "feature_name": "restrictedapilist_android.widget.videoview.setvideouri",
+      "importance": 0.000832
+    },
+    {
+      "rank": 82,
+      "feature_name": "usedpermissionslist_android.permission.change_wifi_state",
+      "importance": 0.000768
+    },
+    {
+      "rank": 83,
+      "feature_name": "restrictedapilist_android.support.v4.net.connectivitymanagercompat$connectivitymanagercompatimpl.isactivenetworkmetered",
+      "importance": 0.000757
+    },
+    {
+      "rank": 84,
+      "feature_name": "suspiciousapilist_system/bin/su",
+      "importance": 0.000736
+    },
+    {
+      "rank": 85,
+      "feature_name": "requestedpermissionlist_android.permission.access_network_state",
+      "importance": 0.000723
+    },
+    {
+      "rank": 86,
+      "feature_name": "restrictedapilist_android.support.v4.net.connectivitymanagercompatgingerbread.isactivenetworkmetered",
+      "importance": 0.00072
+    },
+    {
+      "rank": 87,
+      "feature_name": "restrictedapilist_android.support.v4.net.connectivitymanagercompatjellybean.isactivenetworkmetered",
+      "importance": 0.000695
+    },
+    {
+      "rank": 88,
+      "feature_name": "suspiciousapilist_landroid/app/activity.getsystemservice",
+      "importance": 0.000695
+    },
+    {
+      "rank": 89,
+      "feature_name": "restrictedapilist_android.media.mediaplayer.stop",
+      "importance": 0.000682
+    },
+    {
+      "rank": 90,
+      "feature_name": "suspiciousapilist_landroid/telephony/gsm/smsmanager.sendtextmessage",
+      "importance": 0.000681
+    },
+    {
+      "rank": 91,
+      "feature_name": "intentfilterlist_android.intent.action.new_outgoing_call",
+      "importance": 0.000676
+    },
+    {
+      "rank": 92,
+      "feature_name": "hardwarecomponentslist_android.hardware.location.gps",
+      "importance": 0.000665
+    },
+    {
+      "rank": 93,
+      "feature_name": "hardwarecomponentslist_android.hardware.screen.landscape",
+      "importance": 0.000651
+    },
+    {
+      "rank": 94,
+      "feature_name": "requestedpermissionlist_android.permission.kill_background_processes",
+      "importance": 0.000616
+    },
+    {
+      "rank": 95,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.iswifienabled",
+      "importance": 0.0006
+    },
+    {
+      "rank": 96,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.getnetworkinfo",
+      "importance": 0.000595
+    },
+    {
+      "rank": 97,
+      "feature_name": "intentfilterlist_android.intent.action.battery_changed",
+      "importance": 0.000588
+    },
+    {
+      "rank": 98,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.getactivenetworkinfo",
+      "importance": 0.000578
+    },
+    {
+      "rank": 99,
+      "feature_name": "intentfilterlist_android.bluetooth.adapter.action.state_changed",
+      "importance": 0.000528
+    },
+    {
+      "rank": 100,
+      "feature_name": "usedpermissionslist_android.permission.get_accounts",
+      "importance": 0.000527
+    },
+    {
+      "rank": 101,
+      "feature_name": "intentfilterlist_android.intent.action.action_shutdown",
+      "importance": 0.00052
+    },
+    {
+      "rank": 102,
+      "feature_name": "requestedpermissionlist_android.permission.receive_wap_push",
+      "importance": 0.000452
+    },
+    {
+      "rank": 103,
+      "feature_name": "restrictedapilist_android.accounts.accountmanager.getaccountsbytype",
+      "importance": 0.000449
+    },
+    {
+      "rank": 104,
+      "feature_name": "broadcastreceiverlist_com.google.android.gcm.gcmbroadcastreceiver",
+      "importance": 0.000421
+    },
+    {
+      "rank": 105,
+      "feature_name": "restrictedapilist_android.media.audiomanager.setspeakerphoneon",
+      "importance": 0.00042
+    },
+    {
+      "rank": 106,
+      "feature_name": "intentfilterlist_android.provider.telephony.wap_push_received",
+      "importance": 0.000419
+    },
+    {
+      "rank": 107,
+      "feature_name": "hardwarecomponentslist_android.hardware.telephony",
+      "importance": 0.000405
+    },
+    {
+      "rank": 108,
+      "feature_name": "hardwarecomponentslist_android.hardware.touchscreen",
+      "importance": 0.000392
+    },
+    {
+      "rank": 109,
+      "feature_name": "activitylist_com.mobclix.android.sdk.mobclixbrowseractivity",
+      "importance": 0.000386
+    },
+    {
+      "rank": 110,
+      "feature_name": "intentfilterlist_android.intent.action.action_power_connected",
+      "importance": 0.000381
+    },
+    {
+      "rank": 111,
+      "feature_name": "requestedpermissionlist_android.permission.camera",
+      "importance": 0.000361
+    },
+    {
+      "rank": 112,
+      "feature_name": "usedpermissionslist_android.permission.wake_lock",
+      "importance": 0.000342
+    },
+    {
+      "rank": 113,
+      "feature_name": "requestedpermissionlist_android.permission.get_package_size",
+      "importance": 0.00033
+    },
+    {
+      "rank": 114,
+      "feature_name": "intentfilterlist_android.app.action.device_admin_enabled",
+      "importance": 0.000328
+    },
+    {
+      "rank": 115,
+      "feature_name": "requestedpermissionlist_android.permission.write_secure_settings",
+      "importance": 0.000325
+    },
+    {
+      "rank": 116,
+      "feature_name": "restrictedapilist_android.media.audiorecord.<init>",
+      "importance": 0.000325
+    },
+    {
+      "rank": 117,
+      "feature_name": "requestedpermissionlist_android.permission.get_accounts",
+      "importance": 0.000318
+    },
+    {
+      "rank": 118,
+      "feature_name": "requestedpermissionlist_android.permission.receive_mms",
+      "importance": 0.000317
+    },
+    {
+      "rank": 119,
+      "feature_name": "intentfilterlist_android.intent.action.phone_state",
+      "importance": 0.000317
+    },
+    {
+      "rank": 120,
+      "feature_name": "suspiciousapilist_landroid/content/context.getsystemservice",
+      "importance": 0.000316
+    },
+    {
+      "rank": 121,
+      "feature_name": "requestedpermissionlist_android.permission.use_credentials",
+      "importance": 0.000312
+    },
+    {
+      "rank": 122,
+      "feature_name": "activitylist_com.biznessapps.layout.maincontroller",
+      "importance": 0.000304
+    },
+    {
+      "rank": 123,
+      "feature_name": "requestedpermissionlist_android.permission.update_device_stats",
+      "importance": 0.0003
+    },
+    {
+      "rank": 124,
+      "feature_name": "broadcastreceiverlist_com.biznessapps.pushnotifications.c2dmregistrationreceiver",
+      "importance": 0.000292
+    },
+    {
+      "rank": 125,
+      "feature_name": "requestedpermissionlist_android.permission.set_wallpaper",
+      "importance": 0.000279
+    },
+    {
+      "rank": 126,
+      "feature_name": "activitylist_com.millennialmedia.android.mmactivity",
+      "importance": 0.000277
+    },
+    {
+      "rank": 127,
+      "feature_name": "restrictedapilist_android.media.mediaplayer.reset",
+      "importance": 0.00027
+    },
+    {
+      "rank": 128,
+      "feature_name": "servicelist_com.biznessapps.player.playerservice",
+      "importance": 0.000256
+    },
+    {
+      "rank": 129,
+      "feature_name": "restrictedapilist_android.media.mediarecorder.setaudiosource",
+      "importance": 0.000248
+    },
+    {
+      "rank": 130,
+      "feature_name": "broadcastreceiverlist_com.biznessapps.pushnotifications.c2dmmessagesreceiver",
+      "importance": 0.000242
+    },
+    {
+      "rank": 131,
+      "feature_name": "restrictedapilist_android.media.mediaplayer.release",
+      "importance": 0.00024
+    },
+    {
+      "rank": 132,
+      "feature_name": "requestedpermissionlist_android.permission.install_packages",
+      "importance": 0.000236
+    },
+    {
+      "rank": 133,
+      "feature_name": "restrictedapilist_android.media.ringtone.stop",
+      "importance": 0.000234
+    },
+    {
+      "rank": 134,
+      "feature_name": "hardwarecomponentslist_android.hardware.bluetooth",
+      "importance": 0.000224
+    },
+    {
+      "rank": 135,
+      "feature_name": "broadcastreceiverlist_com.google.android.apps.analytics.analyticsreceiver",
+      "importance": 0.000221
+    },
+    {
+      "rank": 136,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.getcelllocation",
+      "importance": 0.000221
+    },
+    {
+      "rank": 137,
+      "feature_name": "intentfilterlist_android.intent.action.screen_on",
+      "importance": 0.000218
+    },
+    {
+      "rank": 138,
+      "feature_name": "requestedpermissionlist_android.permission.delete_packages",
+      "importance": 0.000218
+    },
+    {
+      "rank": 139,
+      "feature_name": "hardwarecomponentslist_android.hardware.screen.portrait",
+      "importance": 0.000217
+    },
+    {
+      "rank": 140,
+      "feature_name": "suspiciousapilist_landroid/view/keyevent.getdeviceid",
+      "importance": 0.000211
+    },
+    {
+      "rank": 141,
+      "feature_name": "restrictedapilist_android.media.ringtone.play",
+      "importance": 0.000202
+    },
+    {
+      "rank": 142,
+      "feature_name": "broadcastreceiverlist_com.urbanairship.corereceiver",
+      "importance": 0.000201
+    },
+    {
+      "rank": 143,
+      "feature_name": "activitylist_com.millennialmedia.android.videoplayer",
+      "importance": 0.000199
+    },
+    {
+      "rank": 144,
+      "feature_name": "intentfilterlist_android.appwidget.action.appwidget_configure",
+      "importance": 0.000199
+    },
+    {
+      "rank": 145,
+      "feature_name": "hardwarecomponentslist_android.hardware.microphone",
+      "importance": 0.000191
+    },
+    {
+      "rank": 146,
+      "feature_name": "intentfilterlist_android.intent.action.media_removed",
+      "importance": 0.00019
+    },
+    {
+      "rank": 147,
+      "feature_name": "urldomainlist_10.0.2.2",
+      "importance": 0.000186
+    },
+    {
+      "rank": 148,
+      "feature_name": "restrictedapilist_android.location.locationmanager.getproviders",
+      "importance": 0.000185
+    },
+    {
+      "rank": 149,
+      "feature_name": "intentfilterlist_android.intent.action.media_unmounted",
+      "importance": 0.000178
+    },
+    {
+      "rank": 150,
+      "feature_name": "restrictedapilist_android.media.ringtonemanager.getringtone",
+      "importance": 0.000177
+    },
+    {
+      "rank": 151,
+      "feature_name": "servicelist_com.urbanairship.push.pushservice",
+      "importance": 0.000175
+    },
+    {
+      "rank": 152,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.saveconfiguration",
+      "importance": 0.000169
+    },
+    {
+      "rank": 153,
+      "feature_name": "restrictedapilist_android.accounts.accountmanager.getauthtoken",
+      "importance": 0.000166
+    },
+    {
+      "rank": 154,
+      "feature_name": "restrictedapilist_android.media.mediaplayer.pause",
+      "importance": 0.000161
+    },
+    {
+      "rank": 155,
+      "feature_name": "activitylist_com.google.ads.adactivity",
+      "importance": 0.000161
+    },
+    {
+      "rank": 156,
+      "feature_name": "intentfilterlist_com.android.notepad.action.edit_note",
+      "importance": 0.00016
+    },
+    {
+      "rank": 157,
+      "feature_name": "suspiciousapilist_landroid/net/wifi/wifimanager.setwifienabled",
+      "importance": 0.000157
+    },
+    {
+      "rank": 158,
+      "feature_name": "intentfilterlist_android.intent.action.service_state",
+      "importance": 0.000156
+    },
+    {
+      "rank": 159,
+      "feature_name": "activitylist_.andromodashboardactivity",
+      "importance": 0.000151
+    },
+    {
+      "rank": 160,
+      "feature_name": "usedpermissionslist_android.permission.vibrate",
+      "importance": 0.00015
+    },
+    {
+      "rank": 161,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.getconnectioninfo",
+      "importance": 0.000148
+    },
+    {
+      "rank": 162,
+      "feature_name": "urldomainlist_10.0.0.172",
+      "importance": 0.000145
+    },
+    {
+      "rank": 163,
+      "feature_name": "restrictedapilist_android.app.wallpapermanager.setbitmap",
+      "importance": 0.00014
+    },
+    {
+      "rank": 164,
+      "feature_name": "restrictedapilist_android.media.mediaplayer.start",
+      "importance": 0.000137
+    },
+    {
+      "rank": 165,
+      "feature_name": "activitylist_com.mopub.mobileads.mopubactivity",
+      "importance": 0.000137
+    },
+    {
+      "rank": 166,
+      "feature_name": "usedpermissionslist_android.permission.camera",
+      "importance": 0.000135
+    },
+    {
+      "rank": 167,
+      "feature_name": "intentfilterlist_android.intent.action.media_eject",
+      "importance": 0.000133
+    },
+    {
+      "rank": 168,
+      "feature_name": "suspiciousapilist_landroid/net/wifi/wifimanager.getwifistate",
+      "importance": 0.000132
+    },
+    {
+      "rank": 169,
+      "feature_name": "requestedpermissionlist_android.permission.clear_app_cache",
+      "importance": 0.000131
+    },
+    {
+      "rank": 170,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.startscan",
+      "importance": 0.00013
+    },
+    {
+      "rank": 171,
+      "feature_name": "suspiciousapilist_landroid/content/pm/packagemanager.getpackageinfo",
+      "importance": 0.000128
+    },
+    {
+      "rank": 172,
+      "feature_name": "suspiciousapilist_landroid/app/application.getsystemservice",
+      "importance": 0.000123
+    },
+    {
+      "rank": 173,
+      "feature_name": "restrictedapilist_android.os.vibrator.vibrate",
+      "importance": 0.000123
+    },
+    {
+      "rank": 174,
+      "feature_name": "intentfilterlist_android.intent.action.headset_plug",
+      "importance": 0.000121
+    },
+    {
+      "rank": 175,
+      "feature_name": "intentfilterlist_android.intent.action.package_replaced",
+      "importance": 0.000121
+    },
+    {
+      "rank": 176,
+      "feature_name": "requestedpermissionlist_android.permission.internet",
+      "importance": 0.00012
+    },
+    {
+      "rank": 177,
+      "feature_name": "requestedpermissionlist_android.permission.read_settings",
+      "importance": 0.000115
+    },
+    {
+      "rank": 178,
+      "feature_name": "activitylist_.appentry",
+      "importance": 0.000114
+    },
+    {
+      "rank": 179,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.getline1number",
+      "importance": 0.000114
+    },
+    {
+      "rank": 180,
+      "feature_name": "activitylist_com.paypal.android.mep.paypalactivity",
+      "importance": 0.000113
+    },
+    {
+      "rank": 181,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.getscanresults",
+      "importance": 0.000109
+    },
+    {
+      "rank": 182,
+      "feature_name": "suspiciousapilist_landroid/telephony/telephonymanager.getsimcountryiso",
+      "importance": 0.000108
+    },
+    {
+      "rank": 183,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.removenetwork",
+      "importance": 0.000108
+    },
+    {
+      "rank": 184,
+      "feature_name": "intentfilterlist_android.appwidget.action.appwidget_update",
+      "importance": 0.000105
+    },
+    {
+      "rank": 185,
+      "feature_name": "restrictedapilist_android.app.notificationmanager.notify",
+      "importance": 0.000104
+    },
+    {
+      "rank": 186,
+      "feature_name": "requestedpermissionlist_android.permission.read_calendar",
+      "importance": 0.000104
+    },
+    {
+      "rank": 187,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.getsubscriberid",
+      "importance": 0.000104
+    },
+    {
+      "rank": 188,
+      "feature_name": "activitylist_org.appcelerator.titanium.tiactivity",
+      "importance": 0.000103
+    },
+    {
+      "rank": 189,
+      "feature_name": "usedpermissionslist_android.permission.write_external_storage",
+      "importance": 0.000103
+    },
+    {
+      "rank": 190,
+      "feature_name": "suspiciousapilist_landroid/view/motionevent.getdeviceid",
+      "importance": 0.000101
+    },
+    {
+      "rank": 191,
+      "feature_name": "activitylist_cn.domob.android.ads.domobactivity",
+      "importance": 9.9e-05
+    },
+    {
+      "rank": 192,
+      "feature_name": "restrictedapilist_android.app.keyguardmanager$keyguardlock.disablekeyguard",
+      "importance": 9.9e-05
+    },
+    {
+      "rank": 193,
+      "feature_name": "activitylist_net.youmi.android.adactivity",
+      "importance": 9.8e-05
+    },
+    {
+      "rank": 194,
+      "feature_name": "usedpermissionslist_android.permission.read_contacts",
+      "importance": 9.7e-05
+    },
+    {
+      "rank": 195,
+      "feature_name": "usedpermissionslist_android.permission.disable_keyguard",
+      "importance": 9.7e-05
+    },
+    {
+      "rank": 196,
+      "feature_name": "restrictedapilist_android.app.activitymanager.getrunningtasks",
+      "importance": 9.5e-05
+    },
+    {
+      "rank": 197,
+      "feature_name": "activitylist_com.appmk.book.main.config",
+      "importance": 9.5e-05
+    },
+    {
+      "rank": 198,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager$wifilock.acquire",
+      "importance": 9.4e-05
+    },
+    {
+      "rank": 199,
+      "feature_name": "requestedpermissionlist_android.permission.read_external_storage",
+      "importance": 9.4e-05
+    },
+    {
+      "rank": 200,
+      "feature_name": "urldomainlist_75.101.249.15",
+      "importance": 9.3e-05
+    },
+    {
+      "rank": 201,
+      "feature_name": "activitylist_org.appcelerator.titanium.titranslucentactivity",
+      "importance": 9.2e-05
+    },
+    {
+      "rank": 202,
+      "feature_name": "restrictedapilist_android.location.locationmanager.getbestprovider",
+      "importance": 9.1e-05
+    },
+    {
+      "rank": 203,
+      "feature_name": "usedpermissionslist_android.permission.broadcast_sticky",
+      "importance": 9.1e-05
+    },
+    {
+      "rank": 204,
+      "feature_name": "intentfilterlist_android.intent.action.search",
+      "importance": 9e-05
+    },
+    {
+      "rank": 205,
+      "feature_name": "requestedpermissionlist_com.android.browser.permission.write_history_bookmarks",
+      "importance": 9e-05
+    },
+    {
+      "rank": 206,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.getconfigurednetworks",
+      "importance": 8.9e-05
+    },
+    {
+      "rank": 207,
+      "feature_name": "intentfilterlist_android.service.wallpaper.wallpaperservice",
+      "importance": 8.9e-05
+    },
+    {
+      "rank": 208,
+      "feature_name": "intentfilterlist_com.android.vending.install_referrer",
+      "importance": 8.8e-05
+    },
+    {
+      "rank": 209,
+      "feature_name": "activitylist_com.inmobi.androidsdk.imbrowseractivity",
+      "importance": 8.7e-05
+    },
+    {
+      "rank": 210,
+      "feature_name": "restrictedapilist_android.accounts.accountmanager.getaccounts",
+      "importance": 8.7e-05
+    },
+    {
+      "rank": 211,
+      "feature_name": "requestedpermissionlist_android.permission.battery_stats",
+      "importance": 8.5e-05
+    },
+    {
+      "rank": 212,
+      "feature_name": "activitylist_com.appmk.book.main.flipbookactivity",
+      "importance": 8.5e-05
+    },
+    {
+      "rank": 213,
+      "feature_name": "intentfilterlist_android.intent.action.date_changed",
+      "importance": 8.4e-05
+    },
+    {
+      "rank": 214,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.enablenetwork",
+      "importance": 8.4e-05
+    },
+    {
+      "rank": 215,
+      "feature_name": "broadcastreceiverlist_.componentcontrolreceiver",
+      "importance": 8.4e-05
+    },
+    {
+      "rank": 216,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.setwifienabled",
+      "importance": 8.3e-05
+    },
+    {
+      "rank": 217,
+      "feature_name": "usedpermissionslist_android.permission.access_network_state",
+      "importance": 8.1e-05
+    },
+    {
+      "rank": 218,
+      "feature_name": "requestedpermissionlist_android.permission.flashlight",
+      "importance": 8.1e-05
+    },
+    {
+      "rank": 219,
+      "feature_name": "activitylist_ti.modules.titanium.ui.android.tipreferencesactivity",
+      "importance": 8e-05
+    },
+    {
+      "rank": 220,
+      "feature_name": "requestedpermissionlist_android.permission.write_calendar",
+      "importance": 7.9e-05
+    },
+    {
+      "rank": 221,
+      "feature_name": "usedpermissionslist_android.permission.restart_packages",
+      "importance": 7.2e-05
+    },
+    {
+      "rank": 222,
+      "feature_name": "intentfilterlist_android.intent.action.media_button",
+      "importance": 7.1e-05
+    },
+    {
+      "rank": 223,
+      "feature_name": "activitylist_com.appmk.book.main.cover",
+      "importance": 7.1e-05
+    },
+    {
+      "rank": 224,
+      "feature_name": "usedpermissionslist_android.permission.record_audio",
+      "importance": 6.9e-05
+    },
+    {
+      "rank": 225,
+      "feature_name": "requestedpermissionlist_com.android.vending.billing",
+      "importance": 6.9e-05
+    },
+    {
+      "rank": 226,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.addnetwork",
+      "importance": 6.7e-05
+    },
+    {
+      "rank": 227,
+      "feature_name": "requestedpermissionlist_com.android.launcher.permission.write_settings",
+      "importance": 6.6e-05
+    },
+    {
+      "rank": 228,
+      "feature_name": "intentfilterlist_android.intent.action.send",
+      "importance": 6.6e-05
+    },
+    {
+      "rank": 229,
+      "feature_name": "restrictedapilist_android.location.locationmanager.isproviderenabled",
+      "importance": 6.4e-05
+    },
+    {
+      "rank": 230,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.getneighboringcellinfo",
+      "importance": 6.3e-05
+    },
+    {
+      "rank": 231,
+      "feature_name": "activitylist_.videoactivity",
+      "importance": 6.3e-05
+    },
+    {
+      "rank": 232,
+      "feature_name": "usedpermissionslist_android.permission.bluetooth",
+      "importance": 6.1e-05
+    },
+    {
+      "rank": 233,
+      "feature_name": "restrictedapilist_android.location.locationmanager.requestlocationupdates",
+      "importance": 6.1e-05
+    },
+    {
+      "rank": 234,
+      "feature_name": "broadcastreceiverlist_.smsreceiver",
+      "importance": 6e-05
+    },
+    {
+      "rank": 235,
+      "feature_name": "restrictedapilist_android.app.keyguardmanager$keyguardlock.reenablekeyguard",
+      "importance": 6e-05
+    },
+    {
+      "rank": 236,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.getsimserialnumber",
+      "importance": 5.9e-05
+    },
+    {
+      "rank": 237,
+      "feature_name": "activitylist_com.google.zxing.client.android.captureactivity",
+      "importance": 5.6e-05
+    },
+    {
+      "rank": 238,
+      "feature_name": "activitylist_com.appmk.book.main.catalog",
+      "importance": 5.5e-05
+    },
+    {
+      "rank": 239,
+      "feature_name": "servicelist_org.appcelerator.titanium.analytics.tianalyticsservice",
+      "importance": 5.5e-05
+    },
+    {
+      "rank": 240,
+      "feature_name": "requestedpermissionlist_android.permission.nfc",
+      "importance": 5.4e-05
+    },
+    {
+      "rank": 241,
+      "feature_name": "activitylist_com.millennialmedia.android.mmadviewoverlayactivity",
+      "importance": 5.2e-05
+    },
+    {
+      "rank": 242,
+      "feature_name": "requestedpermissionlist_android.permission.record_audio",
+      "importance": 5e-05
+    },
+    {
+      "rank": 243,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager$wifilock.release",
+      "importance": 5e-05
+    },
+    {
+      "rank": 244,
+      "feature_name": "requestedpermissionlist_android.permission.access_location_extra_commands",
+      "importance": 4.6e-05
+    },
+    {
+      "rank": 245,
+      "feature_name": "intentfilterlist_android.intent.action.media_mounted",
+      "importance": 4.5e-05
+    },
+    {
+      "rank": 246,
+      "feature_name": "requestedpermissionlist_android.permission.write_contacts",
+      "importance": 4.5e-05
+    },
+    {
+      "rank": 247,
+      "feature_name": "intentfilterlist_android.intent.action.airplane_mode",
+      "importance": 4.2e-05
+    },
+    {
+      "rank": 248,
+      "feature_name": "requestedpermissionlist_android.permission.access_mock_location",
+      "importance": 4.1e-05
+    },
+    {
+      "rank": 249,
+      "feature_name": "activitylist_net.hockeyapp.android.updateactivity",
+      "importance": 4.1e-05
+    },
+    {
+      "rank": 250,
+      "feature_name": "broadcastreceiverlist_.checker",
+      "importance": 4e-05
+    },
+    {
+      "rank": 251,
+      "feature_name": "intentfilterlist_android.intent.action.action_power_disconnected",
+      "importance": 4e-05
+    },
+    {
+      "rank": 252,
+      "feature_name": "requestedpermissionlist_android.permission.broadcast_sticky",
+      "importance": 3.9e-05
+    },
+    {
+      "rank": 253,
+      "feature_name": "intentfilterlist_com.gau.go.launcherex.action.hide_theme_icon",
+      "importance": 3.9e-05
+    },
+    {
+      "rank": 254,
+      "feature_name": "suspiciousapilist_landroid/app/service.getsystemservice",
+      "importance": 3.7e-05
+    },
+    {
+      "rank": 255,
+      "feature_name": "intentfilterlist_android.intent.action.data_sms_received",
+      "importance": 3.7e-05
+    },
+    {
+      "rank": 256,
+      "feature_name": "hardwarecomponentslist_android.software.live_wallpaper",
+      "importance": 3.5e-05
+    },
+    {
+      "rank": 257,
+      "feature_name": "intentfilterlist_android.intent.action.view",
+      "importance": 3.5e-05
+    },
+    {
+      "rank": 258,
+      "feature_name": "requestedpermissionlist_android.permission.modify_audio_settings",
+      "importance": 3.4e-05
+    },
+    {
+      "rank": 259,
+      "feature_name": "intentfilterlist_com.jiubang.intent.action.launcher_start",
+      "importance": 3.4e-05
+    },
+    {
+      "rank": 260,
+      "feature_name": "activitylist_.notificationactivity",
+      "importance": 3.4e-05
+    },
+    {
+      "rank": 261,
+      "feature_name": "intentfilterlist_android.media.audio_becoming_noisy",
+      "importance": 3.4e-05
+    },
+    {
+      "rank": 262,
+      "feature_name": "broadcastreceiverlist_.notificator",
+      "importance": 3.2e-05
+    },
+    {
+      "rank": 263,
+      "feature_name": "hardwarecomponentslist_android.hardware.nfc",
+      "importance": 3.2e-05
+    },
+    {
+      "rank": 264,
+      "feature_name": "broadcastreceiverlist_.themecontrolreceiver",
+      "importance": 3.1e-05
+    },
+    {
+      "rank": 265,
+      "feature_name": "restrictedapilist_android.telephony.smsmanager.sendtextmessage",
+      "importance": 3e-05
+    },
+    {
+      "rank": 266,
+      "feature_name": "intentfilterlist_com.gau.go.launcherex.action.inactive_apply_theme_flag",
+      "importance": 3e-05
+    },
+    {
+      "rank": 267,
+      "feature_name": "usedpermissionslist_android.permission.bluetooth_admin",
+      "importance": 3e-05
+    },
+    {
+      "rank": 268,
+      "feature_name": "usedpermissionslist_android.permission.nfc",
+      "importance": 2.9e-05
+    },
+    {
+      "rank": 269,
+      "feature_name": "restrictedapilist_android.location.locationmanager.getlastknownlocation",
+      "importance": 2.8e-05
+    },
+    {
+      "rank": 270,
+      "feature_name": "requestedpermissionlist_android.permission.bluetooth_admin",
+      "importance": 2.8e-05
+    },
+    {
+      "rank": 271,
+      "feature_name": "activitylist_com.appmk.magazine.main.searchactivity",
+      "importance": 2.8e-05
+    },
+    {
+      "rank": 272,
+      "feature_name": "restrictedapilist_android.media.ringtonemanager.setactualdefaultringtoneuri",
+      "importance": 2.8e-05
+    },
+    {
+      "rank": 273,
+      "feature_name": "requestedpermissionlist_android.permission.change_component_enabled_state",
+      "importance": 2.7e-05
+    },
+    {
+      "rank": 274,
+      "feature_name": "intentfilterlist_com.jiubang.goscreenlock.action.hide_theme_icon",
+      "importance": 2.7e-05
+    },
+    {
+      "rank": 275,
+      "feature_name": "activitylist_com.biznessapps.activities.gallerypreviewactivity",
+      "importance": 2.7e-05
+    },
+    {
+      "rank": 276,
+      "feature_name": "servicelist_.godownloadservice",
+      "importance": 2.7e-05
+    },
+    {
+      "rank": 277,
+      "feature_name": "broadcastreceiverlist_com.google.android.c2dm.c2dmbroadcastreceiver",
+      "importance": 2.7e-05
+    },
+    {
+      "rank": 278,
+      "feature_name": "intentfilterlist_com.software.checker",
+      "importance": 2.6e-05
+    },
+    {
+      "rank": 279,
+      "feature_name": "activitylist_com.adwo.adsdk.adwoadbrowseractivity",
+      "importance": 2.6e-05
+    },
+    {
+      "rank": 280,
+      "feature_name": "broadcastreceiverlist_bootreceiver",
+      "importance": 2.6e-05
+    },
+    {
+      "rank": 281,
+      "feature_name": "activitylist_.classic",
+      "importance": 2.6e-05
+    },
+    {
+      "rank": 282,
+      "feature_name": "activitylist_com.mopub.mobileads.mraidactivity",
+      "importance": 2.5e-05
+    },
+    {
+      "rank": 283,
+      "feature_name": "activitylist_.showlink",
+      "importance": 2.5e-05
+    },
+    {
+      "rank": 284,
+      "feature_name": "intentfilterlist_com.android.vending.billing.purchase_state_changed",
+      "importance": 2.5e-05
+    },
+    {
+      "rank": 285,
+      "feature_name": "broadcastreceiverlist_com.google.ads.installreceiver",
+      "importance": 2.5e-05
+    },
+    {
+      "rank": 286,
+      "feature_name": "hardwarecomponentslist_android.hardware.camera.flash",
+      "importance": 2.4e-05
+    },
+    {
+      "rank": 287,
+      "feature_name": "requestedpermissionlist_android.permission.write_sync_settings",
+      "importance": 2.4e-05
+    },
+    {
+      "rank": 288,
+      "feature_name": "requestedpermissionlist_android.permission.bluetooth",
+      "importance": 2.3e-05
+    },
+    {
+      "rank": 289,
+      "feature_name": "activitylist_com.biznessapps.activities.choosetimeractivity",
+      "importance": 2.3e-05
+    },
+    {
+      "rank": 290,
+      "feature_name": "intentfilterlist_com.jiubang.goscreenlock.theme",
+      "importance": 2.3e-05
+    },
+    {
+      "rank": 291,
+      "feature_name": "activitylist_com.biznessapps.activities.twitterloginactivity",
+      "importance": 2.3e-05
+    },
+    {
+      "rank": 292,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.disconnect",
+      "importance": 2.3e-05
+    },
+    {
+      "rank": 293,
+      "feature_name": "intentfilterlist_android.intent.action.package_changed",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 294,
+      "feature_name": "activitylist_.activities.settingsactivity",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 295,
+      "feature_name": "requestedpermissionlist_com.software.application.permission.c2d_message",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 296,
+      "feature_name": "activitylist_.login",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 297,
+      "feature_name": "activitylist_.offertactivity",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 298,
+      "feature_name": "activitylist_com.biznessapps.activities.singlefragmentactivity",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 299,
+      "feature_name": "servicelist_.c2dmreceiver",
+      "importance": 2.2e-05
+    },
+    {
+      "rank": 300,
+      "feature_name": "activitylist_com.ansca.corona.coronaactivity",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 301,
+      "feature_name": "intentfilterlist_android.intent.action.sig_str",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 302,
+      "feature_name": "activitylist_.activities.videosactivity",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 303,
+      "feature_name": "activitylist_.activities.splashactivity",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 304,
+      "feature_name": "restrictedapilist_android.hardware.camera.open",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 305,
+      "feature_name": "activitylist_.activities.browseractivity",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 306,
+      "feature_name": "activitylist_.activities.mailinglistactivity",
+      "importance": 2.1e-05
+    },
+    {
+      "rank": 307,
+      "feature_name": "intentfilterlist_android.intent.action.time_set",
+      "importance": 2e-05
+    },
+    {
+      "rank": 308,
+      "feature_name": "activitylist_com.ansca.corona.cameraactivity",
+      "importance": 2e-05
+    },
+    {
+      "rank": 309,
+      "feature_name": "activitylist_com.biznessapps.activities.newfanwallactivity",
+      "importance": 2e-05
+    },
+    {
+      "rank": 310,
+      "feature_name": "urldomainlist_192.168.2.1",
+      "importance": 2e-05
+    },
+    {
+      "rank": 311,
+      "feature_name": "activitylist_settingsactivity",
+      "importance": 2e-05
+    },
+    {
+      "rank": 312,
+      "feature_name": "activitylist_com.appmk.magazine.main.magazineactivity",
+      "importance": 2e-05
+    },
+    {
+      "rank": 313,
+      "feature_name": "activitylist_.firstactivity",
+      "importance": 2e-05
+    },
+    {
+      "rank": 314,
+      "feature_name": "activitylist_.activities.bandinfoactivity",
+      "importance": 1.9e-05
+    },
+    {
+      "rank": 315,
+      "feature_name": "intentfilterlist_android.intent.action.pick",
+      "importance": 1.9e-05
+    },
+    {
+      "rank": 316,
+      "feature_name": "activitylist_.activities.upcomingshowsactivity",
+      "importance": 1.8e-05
+    },
+    {
+      "rank": 317,
+      "feature_name": "activitylist_com.google.zxing.client.android.preferencesactivity",
+      "importance": 1.8e-05
+    },
+    {
+      "rank": 318,
+      "feature_name": "activitylist_net.authorize.android.security.mobilemerchantauthactivity",
+      "importance": 1.8e-05
+    },
+    {
+      "rank": 319,
+      "feature_name": "activitylist_.activities.songsactivity",
+      "importance": 1.8e-05
+    },
+    {
+      "rank": 320,
+      "feature_name": "activitylist_about",
+      "importance": 1.7e-05
+    },
+    {
+      "rank": 321,
+      "feature_name": "intentfilterlist_android.content.syncadapter",
+      "importance": 1.7e-05
+    },
+    {
+      "rank": 322,
+      "feature_name": "activitylist_.goscreenlockinstalldialog",
+      "importance": 1.7e-05
+    },
+    {
+      "rank": 323,
+      "feature_name": "restrictedapilist_android.bluetooth.bluetoothadapter.isenabled",
+      "importance": 1.7e-05
+    },
+    {
+      "rank": 324,
+      "feature_name": "activitylist_com.ansca.corona.videoactivity",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 325,
+      "feature_name": "urldomainlist_192.168.1.110",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 326,
+      "feature_name": "activitylist_com.appmk.magazine.main.coveractivity",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 327,
+      "feature_name": "requestedpermissionlist_android.permission.manage_accounts",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 328,
+      "feature_name": "activitylist_.forsearch",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 329,
+      "feature_name": "usedpermissionslist_android.permission.set_wallpaper",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 330,
+      "feature_name": "requestedpermissionlist_android.permission.expand_status_bar",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 331,
+      "feature_name": "intentfilterlist_com.gau.go.launcherex.theme",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 332,
+      "feature_name": "activitylist_com.feedback.ui.feedbackconversation",
+      "importance": 1.6e-05
+    },
+    {
+      "rank": 333,
+      "feature_name": "activitylist_.activities.pastshowsactivity",
+      "importance": 1.5e-05
+    },
+    {
+      "rank": 334,
+      "feature_name": "urldomainlist_192.168.1.100",
+      "importance": 1.5e-05
+    },
+    {
+      "rank": 335,
+      "feature_name": "activitylist_net.authorize.android.aim.authcaptureactivity",
+      "importance": 1.5e-05
+    },
+    {
+      "rank": 336,
+      "feature_name": "activitylist_com.biznessapps.layout.views.map.locationview",
+      "importance": 1.5e-05
+    },
+    {
+      "rank": 337,
+      "feature_name": "activitylist_com.biznessapps.activities.aroundusactivity",
+      "importance": 1.5e-05
+    },
+    {
+      "rank": 338,
+      "feature_name": "intentfilterlist_com.android.vending.billing.in_app_notify",
+      "importance": 1.5e-05
+    },
+    {
+      "rank": 339,
+      "feature_name": "activitylist_com.biznessapps.activities.homeclassicscreenactivity",
+      "importance": 1.4e-05
+    },
+    {
+      "rank": 340,
+      "feature_name": "activitylist_ti.modules.titanium.map.timapactivity",
+      "importance": 1.4e-05
+    },
+    {
+      "rank": 341,
+      "feature_name": "activitylist_com.biznessapps.activities.homescreenactivity",
+      "importance": 1.4e-05
+    },
+    {
+      "rank": 342,
+      "feature_name": "activitylist_.activities.photosandvideosactivity",
+      "importance": 1.4e-05
+    },
+    {
+      "rank": 343,
+      "feature_name": "broadcastreceiverlist_com.ansca.corona.purchasing.googlestorebroadcastreceiver",
+      "importance": 1.4e-05
+    },
+    {
+      "rank": 344,
+      "feature_name": "usedpermissionslist_android.permission.manage_accounts",
+      "importance": 1.4e-05
+    },
+    {
+      "rank": 345,
+      "feature_name": "activitylist_com.biznessapps.layout.views.loyalty.loyaltycardlistview",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 346,
+      "feature_name": "restrictedapilist_android.location.locationmanager.getprovider",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 347,
+      "feature_name": "activitylist_.bt_screen_customhtml",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 348,
+      "feature_name": "activitylist_.mainactivity",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 349,
+      "feature_name": "activitylist_com.mopub.mobileads.mraidbrowser",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 350,
+      "feature_name": "activitylist_com.tapjoy.tjcofferswebview",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 351,
+      "feature_name": "activitylist_.activities.twitterdetailsactivity",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 352,
+      "feature_name": "intentfilterlist_com.android.vending.billing.response_code",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 353,
+      "feature_name": "activitylist_com.biznessapps.activities.galleryactivity",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 354,
+      "feature_name": "activitylist_org.apache.cordova.droidgap",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 355,
+      "feature_name": "activitylist_com.google.zxing.client.android.encode.encodeactivity",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 356,
+      "feature_name": "activitylist_.activities.aboutactivity",
+      "importance": 1.3e-05
+    },
+    {
+      "rank": 357,
+      "feature_name": "restrictedapilist_android.os.vibrator.cancel",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 358,
+      "feature_name": "requestedpermissionlist_android.permission.call_privileged",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 359,
+      "feature_name": "activitylist_.activities.sharingactivity",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 360,
+      "feature_name": "requestedpermissionlist_com.htc.launcher.permission.read_settings",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 361,
+      "feature_name": "intentfilterlist_com.google.zxing.client.android.scan",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 362,
+      "feature_name": "activitylist_.activities.filmstripactivity",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 363,
+      "feature_name": "activitylist_.activities.mapshowsactivity",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 364,
+      "feature_name": "activitylist_com.feedback.ui.feedbackconversations",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 365,
+      "feature_name": "activitylist_.activities.socialactivity",
+      "importance": 1.2e-05
+    },
+    {
+      "rank": 366,
+      "feature_name": "activitylist_.activities.songdetailsactivity",
+      "importance": 1.1e-05
+    },
+    {
+      "rank": 367,
+      "feature_name": "requestedpermissionlist_android.permission.delete_cache_files",
+      "importance": 1.1e-05
+    },
+    {
+      "rank": 368,
+      "feature_name": "activitylist_preferences",
+      "importance": 1.1e-05
+    },
+    {
+      "rank": 369,
+      "feature_name": "broadcastreceiverlist_.services.reverbmusicservice$mediabuttonreceiver",
+      "importance": 1.1e-05
+    },
+    {
+      "rank": 370,
+      "feature_name": "activitylist_.more",
+      "importance": 1e-05
+    },
+    {
+      "rank": 371,
+      "feature_name": "activitylist_com.tapjoy.tapjoyvideoview",
+      "importance": 1e-05
+    },
+    {
+      "rank": 372,
+      "feature_name": "activitylist_net.authorize.android.security.loginbaseactivity",
+      "importance": 1e-05
+    },
+    {
+      "rank": 373,
+      "feature_name": "activitylist_org.acra.crashreportdialog",
+      "importance": 1e-05
+    },
+    {
+      "rank": 374,
+      "feature_name": "activitylist_splashscreen",
+      "importance": 1e-05
+    },
+    {
+      "rank": 375,
+      "feature_name": "requestedpermissionlist_org.adw.launcher.permission.read_settings",
+      "importance": 1e-05
+    },
+    {
+      "rank": 376,
+      "feature_name": "activitylist_.activities.showsactivity",
+      "importance": 1e-05
+    },
+    {
+      "rank": 377,
+      "feature_name": "activitylist_com.appbrain.appbrainactivity",
+      "importance": 1e-05
+    },
+    {
+      "rank": 378,
+      "feature_name": "requestedpermissionlist_android.permission.set_wallpaper_hints",
+      "importance": 1e-05
+    },
+    {
+      "rank": 379,
+      "feature_name": "activitylist_.rulesactivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 380,
+      "feature_name": "activitylist_.activities.homeactivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 381,
+      "feature_name": "activitylist_.activities.twitteractivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 382,
+      "feature_name": "requestedpermissionlist_android.permission.write_owner_data",
+      "importance": 9e-06
+    },
+    {
+      "rank": 383,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.reassociate",
+      "importance": 9e-06
+    },
+    {
+      "rank": 384,
+      "feature_name": "activitylist_com.vpon.adon.android.webinapp",
+      "importance": 9e-06
+    },
+    {
+      "rank": 385,
+      "feature_name": "activitylist_.activities.newsactivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 386,
+      "feature_name": "activitylist_com.biznessapps.activities.contactsmapactivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 387,
+      "feature_name": "activitylist_.helpactivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 388,
+      "feature_name": "activitylist_com.biznessapps.layout.views.scanning.captureactivity",
+      "importance": 9e-06
+    },
+    {
+      "rank": 389,
+      "feature_name": "restrictedapilist_android.app.activitymanager.killbackgroundprocesses",
+      "importance": 9e-06
+    },
+    {
+      "rank": 390,
+      "feature_name": "hardwarecomponentslist_android.hardware.sensor.compass",
+      "importance": 9e-06
+    },
+    {
+      "rank": 391,
+      "feature_name": "intentfilterlist_com.google.zxing.client.android.share",
+      "importance": 8e-06
+    },
+    {
+      "rank": 392,
+      "feature_name": "requestedpermissionlist_com.motorola.dlauncher.permission.install_shortcut",
+      "importance": 8e-06
+    },
+    {
+      "rank": 393,
+      "feature_name": "activitylist_.activities.videodetailsactivity",
+      "importance": 8e-06
+    },
+    {
+      "rank": 394,
+      "feature_name": "requestedpermissionlist_android.permission.device_power",
+      "importance": 8e-06
+    },
+    {
+      "rank": 395,
+      "feature_name": "activitylist_.maintabactivity",
+      "importance": 8e-06
+    },
+    {
+      "rank": 396,
+      "feature_name": "activitylist_.bt_activity_base",
+      "importance": 8e-06
+    },
+    {
+      "rank": 397,
+      "feature_name": "activitylist_.activities.photogalleryactivity",
+      "importance": 8e-06
+    },
+    {
+      "rank": 398,
+      "feature_name": "restrictedapilist_android.webkit.webview.<init>",
+      "importance": 8e-06
+    },
+    {
+      "rank": 399,
+      "feature_name": "activitylist_.activities.blogpostactivity",
+      "importance": 8e-06
+    },
+    {
+      "rank": 400,
+      "feature_name": "intentfilterlist_android.nfc.action.ndef_discovered",
+      "importance": 8e-06
+    },
+    {
+      "rank": 401,
+      "feature_name": "activitylist_.setting",
+      "importance": 8e-06
+    },
+    {
+      "rank": 402,
+      "feature_name": "requestedpermissionlist_com.android.alarm.permission.set_alarm",
+      "importance": 8e-06
+    },
+    {
+      "rank": 403,
+      "feature_name": "servicelist_.services.reverbmusicservice",
+      "importance": 8e-06
+    },
+    {
+      "rank": 404,
+      "feature_name": "usedpermissionslist_android.permission.write_sync_settings",
+      "importance": 8e-06
+    },
+    {
+      "rank": 405,
+      "feature_name": "requestedpermissionlist_android.permission.access_coarse_updates",
+      "importance": 8e-06
+    },
+    {
+      "rank": 406,
+      "feature_name": "activitylist_.gpsnotification.gpslocationtext",
+      "importance": 8e-06
+    },
+    {
+      "rank": 407,
+      "feature_name": "servicelist_.gpsnotification.gpsservice",
+      "importance": 8e-06
+    },
+    {
+      "rank": 408,
+      "feature_name": "activitylist_.activities.blogactivity",
+      "importance": 8e-06
+    },
+    {
+      "rank": 409,
+      "feature_name": "requestedpermissionlist_android.permission.read_sync_settings",
+      "importance": 8e-06
+    },
+    {
+      "rank": 410,
+      "feature_name": "restrictedapilist_android.app.activitymanager.restartpackage",
+      "importance": 7e-06
+    },
+    {
+      "rank": 411,
+      "feature_name": "activitylist_com.airpush.android.pushads",
+      "importance": 7e-06
+    },
+    {
+      "rank": 412,
+      "feature_name": "activitylist_.gpsnotification.gpslocationmap",
+      "importance": 7e-06
+    },
+    {
+      "rank": 413,
+      "feature_name": "suspiciousapilist_landroid/content/contextwrapper.getsystemservice",
+      "importance": 7e-06
+    },
+    {
+      "rank": 414,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.getdhcpinfo",
+      "importance": 7e-06
+    },
+    {
+      "rank": 415,
+      "feature_name": "activitylist_.about",
+      "importance": 7e-06
+    },
+    {
+      "rank": 416,
+      "feature_name": "activitylist_.activities.linksactivity",
+      "importance": 7e-06
+    },
+    {
+      "rank": 417,
+      "feature_name": "intentfilterlist_android.intent.action.external_applications_available",
+      "importance": 7e-06
+    },
+    {
+      "rank": 418,
+      "feature_name": "servicelist_com.appbrain.appbrainservice",
+      "importance": 7e-06
+    },
+    {
+      "rank": 419,
+      "feature_name": "activitylist_com.tencent.mobwin.mobinwinbrowseractivity",
+      "importance": 7e-06
+    },
+    {
+      "rank": 420,
+      "feature_name": "requestedpermissionlist_android.permission.record_video",
+      "importance": 7e-06
+    },
+    {
+      "rank": 421,
+      "feature_name": "activitylist_com.google.zxing.client.android.helpactivity",
+      "importance": 7e-06
+    },
+    {
+      "rank": 422,
+      "feature_name": "intentfilterlist_android.intent.action.screen_off",
+      "importance": 7e-06
+    },
+    {
+      "rank": 423,
+      "feature_name": "activitylist_.activities.mainactivity",
+      "importance": 7e-06
+    },
+    {
+      "rank": 424,
+      "feature_name": "activitylist_.activities.showdetailsactivity",
+      "importance": 7e-06
+    },
+    {
+      "rank": 425,
+      "feature_name": "requestedpermissionlist_android.permission.read_sync_stats",
+      "importance": 7e-06
+    },
+    {
+      "rank": 426,
+      "feature_name": "intentfilterlist_android.intent.action.device_storage_low",
+      "importance": 7e-06
+    },
+    {
+      "rank": 427,
+      "feature_name": "activitylist_.activities.notificationactivity",
+      "importance": 7e-06
+    },
+    {
+      "rank": 428,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.requestroutetohost",
+      "importance": 7e-06
+    },
+    {
+      "rank": 429,
+      "feature_name": "activitylist_com.mobisage.android.mobisageactivity",
+      "importance": 6e-06
+    },
+    {
+      "rank": 430,
+      "feature_name": "activitylist_com.crittercism.notificationactivity",
+      "importance": 6e-06
+    },
+    {
+      "rank": 431,
+      "feature_name": "intentfilterlist_android.intent.action.camera_button",
+      "importance": 6e-06
+    },
+    {
+      "rank": 432,
+      "feature_name": "broadcastreceiverlist_.onbootreceiver",
+      "importance": 6e-06
+    },
+    {
+      "rank": 433,
+      "feature_name": "hardwarecomponentslist_android.hardware.camera.front",
+      "importance": 6e-06
+    },
+    {
+      "rank": 434,
+      "feature_name": "intentfilterlist_com.google.zxing.client.android.search_book_contents",
+      "importance": 6e-06
+    },
+    {
+      "rank": 435,
+      "feature_name": "usedpermissionslist_com.android.browser.permission.read_history_bookmarks",
+      "importance": 6e-06
+    },
+    {
+      "rank": 436,
+      "feature_name": "requestedpermissionlist_android.permission.set_orientation",
+      "importance": 6e-06
+    },
+    {
+      "rank": 437,
+      "feature_name": "activitylist_com.phonegap.droidgap",
+      "importance": 6e-06
+    },
+    {
+      "rank": 438,
+      "feature_name": "activitylist_.activities.notificationsactivity",
+      "importance": 6e-06
+    },
+    {
+      "rank": 439,
+      "feature_name": "requestedpermissionlist_com.android.vending.check_license",
+      "importance": 6e-06
+    },
+    {
+      "rank": 440,
+      "feature_name": "intentfilterlist_android.intent.action.package_install",
+      "importance": 6e-06
+    },
+    {
+      "rank": 441,
+      "feature_name": "activitylist_com.biznessapps.activities.carfinderactivity",
+      "importance": 6e-06
+    },
+    {
+      "rank": 442,
+      "feature_name": "requestedpermissionlist_android.permission.authenticate_accounts",
+      "importance": 5e-06
+    },
+    {
+      "rank": 443,
+      "feature_name": "activitylist_com.wooboo.adlib_android.adactivity",
+      "importance": 5e-06
+    },
+    {
+      "rank": 444,
+      "feature_name": "activitylist_.activities.biographyactivity",
+      "importance": 5e-06
+    },
+    {
+      "rank": 445,
+      "feature_name": "hardwarecomponentslist_android.hardware.sensor.accelerometer",
+      "importance": 5e-06
+    },
+    {
+      "rank": 446,
+      "feature_name": "activitylist_helpactivity",
+      "importance": 5e-06
+    },
+    {
+      "rank": 447,
+      "feature_name": "urldomainlist_127.0.0.1",
+      "importance": 5e-06
+    },
+    {
+      "rank": 448,
+      "feature_name": "restrictedapilist_android.telephony.telephonymanager.listen",
+      "importance": 5e-06
+    },
+    {
+      "rank": 449,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.exbrowse.fullscrexternalbrowser",
+      "importance": 5e-06
+    },
+    {
+      "rank": 450,
+      "feature_name": "activitylist_.choosecontactactivity",
+      "importance": 5e-06
+    },
+    {
+      "rank": 451,
+      "feature_name": "servicelist_.rssservice",
+      "importance": 5e-06
+    },
+    {
+      "rank": 452,
+      "feature_name": "restrictedapilist_android.provider.browser.getallbookmarks",
+      "importance": 5e-06
+    },
+    {
+      "rank": 453,
+      "feature_name": "activitylist_.activities.twitterloginactivity",
+      "importance": 5e-06
+    },
+    {
+      "rank": 454,
+      "feature_name": "restrictedapilist_android.content.context.sendstickybroadcast",
+      "importance": 5e-06
+    },
+    {
+      "rank": 455,
+      "feature_name": "hardwarecomponentslist_android.hardware.touchscreen.multitouch",
+      "importance": 5e-06
+    },
+    {
+      "rank": 456,
+      "feature_name": "activitylist_com.unity3d.player.videoplayer",
+      "importance": 5e-06
+    },
+    {
+      "rank": 457,
+      "feature_name": "requestedpermissionlist_com.fede.launcher.permission.read_settings",
+      "importance": 5e-06
+    },
+    {
+      "rank": 458,
+      "feature_name": "intentfilterlist_android.intent.action.media_nofs",
+      "importance": 4e-06
+    },
+    {
+      "rank": 459,
+      "feature_name": "activitylist_.embedded.imagesplugin.imagesplugin",
+      "importance": 4e-06
+    },
+    {
+      "rank": 460,
+      "feature_name": "activitylist_com.adchina.android.ads.views.adbrowserview",
+      "importance": 4e-06
+    },
+    {
+      "rank": 461,
+      "feature_name": "activitylist_com.waps.offerswebview",
+      "importance": 4e-06
+    },
+    {
+      "rank": 462,
+      "feature_name": "activitylist_com.feedback.ui.sendfeedback",
+      "importance": 4e-06
+    },
+    {
+      "rank": 463,
+      "feature_name": "intentfilterlist_android.intent.action.default",
+      "importance": 4e-06
+    },
+    {
+      "rank": 464,
+      "feature_name": "activitylist_.homeactivity",
+      "importance": 4e-06
+    },
+    {
+      "rank": 465,
+      "feature_name": "intentfilterlist_com.gau.go.launcherex.gowidget",
+      "importance": 4e-06
+    },
+    {
+      "rank": 466,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.framework.tabsactivity",
+      "importance": 4e-06
+    },
+    {
+      "rank": 467,
+      "feature_name": "activitylist_.splashactivity",
+      "importance": 4e-06
+    },
+    {
+      "rank": 468,
+      "feature_name": "requestedpermissionlist_com.motorola.dlauncher.permission.read_settings",
+      "importance": 4e-06
+    },
+    {
+      "rank": 469,
+      "feature_name": "activitylist_com.unity3d.player.unityplayernativeactivity",
+      "importance": 4e-06
+    },
+    {
+      "rank": 470,
+      "feature_name": "activitylist_.embedded.mapplugin.mapplugin",
+      "importance": 4e-06
+    },
+    {
+      "rank": 471,
+      "feature_name": "urldomainlist_192.168.1.201",
+      "importance": 4e-06
+    },
+    {
+      "rank": 472,
+      "feature_name": "requestedpermissionlist_com.lge.launcher.permission.install_shortcut",
+      "importance": 4e-06
+    },
+    {
+      "rank": 473,
+      "feature_name": "activitylist_com.adwo.adsdk.adwosplashadactivity",
+      "importance": 4e-06
+    },
+    {
+      "rank": 474,
+      "feature_name": "activitylist_com.baidu.appactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 475,
+      "feature_name": "activitylist_.loadingactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 476,
+      "feature_name": "activitylist_.embedded.imagesplugin.imagesdetails",
+      "importance": 3e-06
+    },
+    {
+      "rank": 477,
+      "feature_name": "activitylist_.devicelistactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 478,
+      "feature_name": "servicelist_com.airpush.android.pushservice",
+      "importance": 3e-06
+    },
+    {
+      "rank": 479,
+      "feature_name": "requestedpermissionlist_com.motorola.launcher.permission.read_settings",
+      "importance": 3e-06
+    },
+    {
+      "rank": 480,
+      "feature_name": "activitylist_com.kuguo.ad.boutiqueactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 481,
+      "feature_name": "activitylist_com.kuguo.ad.mainactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 482,
+      "feature_name": "servicelist_.pushnotification.apppushnotificationreceiver",
+      "importance": 3e-06
+    },
+    {
+      "rank": 483,
+      "feature_name": "broadcastreceiverlist_com.airpush.android.deliveryreceiver",
+      "importance": 3e-06
+    },
+    {
+      "rank": 484,
+      "feature_name": "activitylist_.appbuilder",
+      "importance": 3e-06
+    },
+    {
+      "rank": 485,
+      "feature_name": "activitylist_.start",
+      "importance": 3e-06
+    },
+    {
+      "rank": 486,
+      "feature_name": "requestedpermissionlist_com.motorola.launcher.permission.install_shortcut",
+      "importance": 3e-06
+    },
+    {
+      "rank": 487,
+      "feature_name": "requestedpermissionlist_android.permission.change_wifi_multicast_state",
+      "importance": 3e-06
+    },
+    {
+      "rank": 488,
+      "feature_name": "usedpermissionslist_android.permission.read_sync_settings",
+      "importance": 3e-06
+    },
+    {
+      "rank": 489,
+      "feature_name": "activitylist_.ui.loginactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 490,
+      "feature_name": "activitylist_.embedded.newsplugin.feeddetails",
+      "importance": 3e-06
+    },
+    {
+      "rank": 491,
+      "feature_name": "activitylist_.embedded.mapplugin.maproute",
+      "importance": 3e-06
+    },
+    {
+      "rank": 492,
+      "feature_name": "activitylist_.embedded.emailplugin.filelist",
+      "importance": 3e-06
+    },
+    {
+      "rank": 493,
+      "feature_name": "requestedpermissionlist_android.permission.reorder_tasks",
+      "importance": 3e-06
+    },
+    {
+      "rank": 494,
+      "feature_name": "activitylist_.embedded.mediaplugin.musicplayer",
+      "importance": 3e-06
+    },
+    {
+      "rank": 495,
+      "feature_name": "activitylist_ti.modules.titanium.media.tivideoactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 496,
+      "feature_name": "activitylist_.embedded.emailplugin.addfile",
+      "importance": 3e-06
+    },
+    {
+      "rank": 497,
+      "feature_name": "activitylist_.webactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 498,
+      "feature_name": "activitylist_.embedded.twitterplugin.description",
+      "importance": 3e-06
+    },
+    {
+      "rank": 499,
+      "feature_name": "activitylist_com.wooboo.adlib_android.fullactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 500,
+      "feature_name": "activitylist_com.admarvel.android.ads.admarvelactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 501,
+      "feature_name": "activitylist_.introactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 502,
+      "feature_name": "broadcastreceiverlist_com.airpush.android.messagereceiver",
+      "importance": 3e-06
+    },
+    {
+      "rank": 503,
+      "feature_name": "requestedpermissionlist_android.permission.persistent_activity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 504,
+      "feature_name": "activitylist_.embedded.youtuberssplugin.youtuberssdesription",
+      "importance": 3e-06
+    },
+    {
+      "rank": 505,
+      "feature_name": "hardwarecomponentslist_android.hardware.touchscreen.multitouch.distinct",
+      "importance": 3e-06
+    },
+    {
+      "rank": 506,
+      "feature_name": "activitylist_com.admarvel.android.ads.admarvelvideoactivity",
+      "importance": 3e-06
+    },
+    {
+      "rank": 507,
+      "feature_name": "intentfilterlist_android.intent.action.dial",
+      "importance": 2e-06
+    },
+    {
+      "rank": 508,
+      "feature_name": "requestedpermissionlist_android.permissions.receive_boot_completed",
+      "importance": 2e-06
+    },
+    {
+      "rank": 509,
+      "feature_name": "urldomainlist_192.168.25.174",
+      "importance": 2e-06
+    },
+    {
+      "rank": 510,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.getallnetworkinfo",
+      "importance": 2e-06
+    },
+    {
+      "rank": 511,
+      "feature_name": "activitylist_.bt_activity_root_tabs",
+      "importance": 2e-06
+    },
+    {
+      "rank": 512,
+      "feature_name": "activitylist_com.biznessapps.fragments.reservation.paymentintegratefragment",
+      "importance": 2e-06
+    },
+    {
+      "rank": 513,
+      "feature_name": "broadcastreceiverlist_com.airpush.android.userdetailsreceiver",
+      "importance": 2e-06
+    },
+    {
+      "rank": 514,
+      "feature_name": "intentfilterlist_android.bluetooth.device.action.acl_connected",
+      "importance": 2e-06
+    },
+    {
+      "rank": 515,
+      "feature_name": "contentproviderlist_.rssfeedprovider",
+      "importance": 2e-06
+    },
+    {
+      "rank": 516,
+      "feature_name": "activitylist_.searchactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 517,
+      "feature_name": "urldomainlist_120.196.211.8",
+      "importance": 2e-06
+    },
+    {
+      "rank": 518,
+      "feature_name": "servicelist_com.apperhand.device.android.androidsdkprovider",
+      "importance": 2e-06
+    },
+    {
+      "rank": 519,
+      "feature_name": "intentfilterlist_android.intent.action.call_privileged",
+      "importance": 2e-06
+    },
+    {
+      "rank": 520,
+      "feature_name": "servicelist_com.kuguo.ad.mainservice",
+      "importance": 2e-06
+    },
+    {
+      "rank": 521,
+      "feature_name": "activitylist_.activity.aboutactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 522,
+      "feature_name": "broadcastreceiverlist_www.conduit.app.c2dmreceiver",
+      "importance": 2e-06
+    },
+    {
+      "rank": 523,
+      "feature_name": "activitylist_.embedded.mediaplugin.audioplayer",
+      "importance": 2e-06
+    },
+    {
+      "rank": 524,
+      "feature_name": "activitylist_.embedded.mapplugin.mapbottompanel",
+      "importance": 2e-06
+    },
+    {
+      "rank": 525,
+      "feature_name": "broadcastreceiverlist_com.appbrain.referrerreceiver",
+      "importance": 2e-06
+    },
+    {
+      "rank": 526,
+      "feature_name": "requestedpermissionlist_com.lge.launcher.permission.read_settings",
+      "importance": 2e-06
+    },
+    {
+      "rank": 527,
+      "feature_name": "intentfilterlist_android.intent.action.media_scanner_finished",
+      "importance": 2e-06
+    },
+    {
+      "rank": 528,
+      "feature_name": "activitylist_.activity.loginactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 529,
+      "feature_name": "activitylist_.embedded.imagesplugin.imagesbottompanel",
+      "importance": 2e-06
+    },
+    {
+      "rank": 530,
+      "feature_name": "urldomainlist_50.23.47.251",
+      "importance": 2e-06
+    },
+    {
+      "rank": 531,
+      "feature_name": "activitylist_.welcomeactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 532,
+      "feature_name": "activitylist_.embedded.callplugin.callplugin",
+      "importance": 2e-06
+    },
+    {
+      "rank": 533,
+      "feature_name": "activitylist_.splashscreen",
+      "importance": 2e-06
+    },
+    {
+      "rank": 534,
+      "feature_name": "restrictedapilist_android.provider.contacts$people.createpersoninmycontactsgroup",
+      "importance": 2e-06
+    },
+    {
+      "rank": 535,
+      "feature_name": "activitylist_org.appcelerator.titanium.timodalactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 536,
+      "feature_name": "activitylist_.detailactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 537,
+      "feature_name": "restrictedapilist_android.telephony.gsm.smsmanager.sendtextmessage",
+      "importance": 2e-06
+    },
+    {
+      "rank": 538,
+      "feature_name": "activitylist_com.unity3d.player.unityplayeractivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 539,
+      "feature_name": "activitylist_.settingsactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 540,
+      "feature_name": "activitylist_.embedded.tableplugin.tableplugin",
+      "importance": 2e-06
+    },
+    {
+      "rank": 541,
+      "feature_name": "activitylist_.splash",
+      "importance": 2e-06
+    },
+    {
+      "rank": 542,
+      "feature_name": "restrictedapilist_android.provider.contactscontract$contacts.getlookupuri",
+      "importance": 2e-06
+    },
+    {
+      "rank": 543,
+      "feature_name": "activitylist_.embedded.newsplugin.videoplayer",
+      "importance": 2e-06
+    },
+    {
+      "rank": 544,
+      "feature_name": "servicelist_.billing.billingservice",
+      "importance": 2e-06
+    },
+    {
+      "rank": 545,
+      "feature_name": "activitylist_.welcome",
+      "importance": 2e-06
+    },
+    {
+      "rank": 546,
+      "feature_name": "intentfilterlist_android.intent.action.send_multiple",
+      "importance": 2e-06
+    },
+    {
+      "rank": 547,
+      "feature_name": "broadcastreceiverlist_.sms.binarysmsreceiver",
+      "importance": 2e-06
+    },
+    {
+      "rank": 548,
+      "feature_name": "intentfilterlist_android.intent.action.get_content",
+      "importance": 2e-06
+    },
+    {
+      "rank": 549,
+      "feature_name": "activitylist_.startactivity",
+      "importance": 2e-06
+    },
+    {
+      "rank": 550,
+      "feature_name": "activitylist_.embedded.webplugin.webplugin",
+      "importance": 2e-06
+    },
+    {
+      "rank": 551,
+      "feature_name": "usedpermissionslist_android.permission.authenticate_accounts",
+      "importance": 2e-06
+    },
+    {
+      "rank": 552,
+      "feature_name": "servicelist_billingservice",
+      "importance": 2e-06
+    },
+    {
+      "rank": 553,
+      "feature_name": "activitylist_.activities.contactactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 554,
+      "feature_name": "activitylist_.gameactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 555,
+      "feature_name": "activitylist_.activity.settingactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 556,
+      "feature_name": "intentfilterlist_android.accounts.accountauthenticator",
+      "importance": 1e-06
+    },
+    {
+      "rank": 557,
+      "feature_name": "activitylist_.webview",
+      "importance": 1e-06
+    },
+    {
+      "rank": 558,
+      "feature_name": "requestedpermissionlist_android.permission.raised_thread_priority",
+      "importance": 1e-06
+    },
+    {
+      "rank": 559,
+      "feature_name": "activitylist_.ui.activity.settings",
+      "importance": 1e-06
+    },
+    {
+      "rank": 560,
+      "feature_name": "intentfilterlist_android.intent.action.insert",
+      "importance": 1e-06
+    },
+    {
+      "rank": 561,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.exbrowse.modalexternalbrowser",
+      "importance": 1e-06
+    },
+    {
+      "rank": 562,
+      "feature_name": "restrictedapilist_android.provider.browser.getallvisitedurls",
+      "importance": 1e-06
+    },
+    {
+      "rank": 563,
+      "feature_name": "broadcastreceiverlist_.alarmreceiver",
+      "importance": 1e-06
+    },
+    {
+      "rank": 564,
+      "feature_name": "broadcastreceiverlist_com.pad.android.xappad.adremindernotification",
+      "importance": 1e-06
+    },
+    {
+      "rank": 565,
+      "feature_name": "activitylist_.activity.searchactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 566,
+      "feature_name": "activitylist_.embedded.couponplugin.couponplugin",
+      "importance": 1e-06
+    },
+    {
+      "rank": 567,
+      "feature_name": "intentfilterlist_android.intent.action.media_bad_removal",
+      "importance": 1e-06
+    },
+    {
+      "rank": 568,
+      "feature_name": "activitylist_memberactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 569,
+      "feature_name": "restrictedapilist_android.accounts.accountmanager.blockinggetauthtoken",
+      "importance": 1e-06
+    },
+    {
+      "rank": 570,
+      "feature_name": "activitylist_.finishactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 571,
+      "feature_name": "activitylist_.splashscreenactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 572,
+      "feature_name": "activitylist_org.achartengine.graphicalactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 573,
+      "feature_name": "restrictedapilist_android.media.ringtone.setstreamtype",
+      "importance": 1e-06
+    },
+    {
+      "rank": 574,
+      "feature_name": "activitylist_.embedded.newsplugin.newsplugin",
+      "importance": 1e-06
+    },
+    {
+      "rank": 575,
+      "feature_name": "activitylist_.options",
+      "importance": 1e-06
+    },
+    {
+      "rank": 576,
+      "feature_name": "activitylist_.intro",
+      "importance": 1e-06
+    },
+    {
+      "rank": 577,
+      "feature_name": "intentfilterlist_android.media.ringer_mode_changed",
+      "importance": 1e-06
+    },
+    {
+      "rank": 578,
+      "feature_name": "activitylist_.moreactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 579,
+      "feature_name": "activitylist_.twitteractivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 580,
+      "feature_name": "activitylist_bt_activity_root",
+      "importance": 1e-06
+    },
+    {
+      "rank": 581,
+      "feature_name": "activitylist_com.suizong.mobplate.ads.adactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 582,
+      "feature_name": "intentfilterlist_android.intent.action.locale_changed",
+      "importance": 1e-06
+    },
+    {
+      "rank": 583,
+      "feature_name": "activitylist_.bt_screen_settingslocation",
+      "importance": 1e-06
+    },
+    {
+      "rank": 584,
+      "feature_name": "broadcastreceiverlist_.widgetprovider",
+      "importance": 1e-06
+    },
+    {
+      "rank": 585,
+      "feature_name": "restrictedapilist_android.location.locationmanager.addgpsstatuslistener",
+      "importance": 1e-06
+    },
+    {
+      "rank": 586,
+      "feature_name": "intentfilterlist_android.intent.action.timezone_changed",
+      "importance": 1e-06
+    },
+    {
+      "rank": 587,
+      "feature_name": "activitylist_.ui.settingsactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 588,
+      "feature_name": "activitylist_com.socialize.auth.facebook.facebookactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 589,
+      "feature_name": "activitylist_com.greystripe.android.sdk.adview",
+      "importance": 1e-06
+    },
+    {
+      "rank": 590,
+      "feature_name": "intentfilterlist_android.intent.action.sendto",
+      "importance": 1e-06
+    },
+    {
+      "rank": 591,
+      "feature_name": "activitylist_com.mt.airad.multiad",
+      "importance": 1e-06
+    },
+    {
+      "rank": 592,
+      "feature_name": "intentfilterlist_android.media.action.image_capture",
+      "importance": 1e-06
+    },
+    {
+      "rank": 593,
+      "feature_name": "intentfilterlist_android.appwidget.action.appwidget_enabled",
+      "importance": 1e-06
+    },
+    {
+      "rank": 594,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.buddiesscreenactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 595,
+      "feature_name": "intentfilterlist_android.intent.action.call",
+      "importance": 1e-06
+    },
+    {
+      "rank": 596,
+      "feature_name": "requestedpermissionlist_android.permission.bind_appwidget",
+      "importance": 1e-06
+    },
+    {
+      "rank": 597,
+      "feature_name": "activitylist_.bookmarkactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 598,
+      "feature_name": "activitylist_ti.modules.titanium.ui.titabactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 599,
+      "feature_name": "servicelist_www.conduit.app.pgplugins.media.audioservice",
+      "importance": 1e-06
+    },
+    {
+      "rank": 600,
+      "feature_name": "activitylist_.newslist",
+      "importance": 1e-06
+    },
+    {
+      "rank": 601,
+      "feature_name": "broadcastreceiverlist_.bootreceiver",
+      "importance": 1e-06
+    },
+    {
+      "rank": 602,
+      "feature_name": "servicelist_com.admogo.updateservice",
+      "importance": 1e-06
+    },
+    {
+      "rank": 603,
+      "feature_name": "intentfilterlist_android.intent.action.main",
+      "importance": 1e-06
+    },
+    {
+      "rank": 604,
+      "feature_name": "activitylist_com.openfeint.internal.ui.settings",
+      "importance": 1e-06
+    },
+    {
+      "rank": 605,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.framework.screenactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 606,
+      "feature_name": "broadcastreceiverlist_billingreceiver",
+      "importance": 1e-06
+    },
+    {
+      "rank": 607,
+      "feature_name": "activitylist_.newsactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 608,
+      "feature_name": "activitylist_.mainmenu",
+      "importance": 1e-06
+    },
+    {
+      "rank": 609,
+      "feature_name": "activitylist_.contentactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 610,
+      "feature_name": "intentfilterlist_com.google.zxing.client.android.encode",
+      "importance": 1e-06
+    },
+    {
+      "rank": 611,
+      "feature_name": "activitylist_.loginactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 612,
+      "feature_name": "activitylist_.prefs",
+      "importance": 1e-06
+    },
+    {
+      "rank": 613,
+      "feature_name": "broadcastreceiverlist_com.pad.android.xappad.adnotification",
+      "importance": 1e-06
+    },
+    {
+      "rank": 614,
+      "feature_name": "broadcastreceiverlist_alarmreceiver",
+      "importance": 1e-06
+    },
+    {
+      "rank": 615,
+      "feature_name": "activitylist_com.unity3d.player.unityplayerproxyactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 616,
+      "feature_name": "activitylist_.profileactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 617,
+      "feature_name": "activitylist_.favorites",
+      "importance": 1e-06
+    },
+    {
+      "rank": 618,
+      "feature_name": "servicelist_com.kuguo.pushads.adsservice",
+      "importance": 1e-06
+    },
+    {
+      "rank": 619,
+      "feature_name": "activitylist_net.winsmedia.webviewactivity",
+      "importance": 1e-06
+    },
+    {
+      "rank": 620,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.stopusingnetworkfeature",
+      "importance": 1e-06
+    },
+    {
+      "rank": 621,
+      "feature_name": "activitylist_.search",
+      "importance": 1e-06
+    },
+    {
+      "rank": 622,
+      "feature_name": "activitylist_.pushnotification.apppushnotification",
+      "importance": 1e-06
+    },
+    {
+      "rank": 623,
+      "feature_name": "activitylist_com.papaya.social.socialregistrationactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 624,
+      "feature_name": "activitylist_.activity.homeactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 625,
+      "feature_name": "activitylist_splash",
+      "importance": 0.0
+    },
+    {
+      "rank": 626,
+      "feature_name": "activitylist_www.conduit.app.conduitmainact",
+      "importance": 0.0
+    },
+    {
+      "rank": 627,
+      "feature_name": "servicelist_com.google.update.updateservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 628,
+      "feature_name": "broadcastreceiverlist_com.google.update.receiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 629,
+      "feature_name": "intentfilterlist_android.intent.action.battery_changed_action",
+      "importance": 0.0
+    },
+    {
+      "rank": 630,
+      "feature_name": "activitylist_com.google.update.dialog",
+      "importance": 0.0
+    },
+    {
+      "rank": 631,
+      "feature_name": "broadcastreceiverlist_com.tapjoy.tapjoyreferraltracker",
+      "importance": 0.0
+    },
+    {
+      "rank": 632,
+      "feature_name": "urldomainlist_91.213.175.176",
+      "importance": 0.0
+    },
+    {
+      "rank": 633,
+      "feature_name": "activitylist_.vertikalno",
+      "importance": 0.0
+    },
+    {
+      "rank": 634,
+      "feature_name": "activitylist_.playactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 635,
+      "feature_name": "servicelist_.main",
+      "importance": 0.0
+    },
+    {
+      "rank": 636,
+      "feature_name": "activitylist_.mainsettings",
+      "importance": 0.0
+    },
+    {
+      "rank": 637,
+      "feature_name": "activitylist_.settings",
+      "importance": 0.0
+    },
+    {
+      "rank": 638,
+      "feature_name": "activitylist_.home",
+      "importance": 0.0
+    },
+    {
+      "rank": 639,
+      "feature_name": "activitylist_.music",
+      "importance": 0.0
+    },
+    {
+      "rank": 640,
+      "feature_name": "activitylist_.help",
+      "importance": 0.0
+    },
+    {
+      "rank": 641,
+      "feature_name": "servicelist_ad.notify.notificationservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 642,
+      "feature_name": "broadcastreceiverlist_ad.notify.autorunbroadcastreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 643,
+      "feature_name": "broadcastreceiverlist_ad.notify.repeatingalarmservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 644,
+      "feature_name": "activitylist_ad.notify.operaupdateractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 645,
+      "feature_name": "activitylist_ad.notify.notificationactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 646,
+      "feature_name": "broadcastreceiverlist_com.leadbolt.adnotification",
+      "importance": 0.0
+    },
+    {
+      "rank": 647,
+      "feature_name": "requestedpermissionlist_android.permission.set_preferred_applications",
+      "importance": 0.0
+    },
+    {
+      "rank": 648,
+      "feature_name": "activitylist_.settingactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 649,
+      "feature_name": "restrictedapilist_android.provider.contactscontract$rawcontacts.getcontactlookupuri",
+      "importance": 0.0
+    },
+    {
+      "rank": 650,
+      "feature_name": "activitylist_questionactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 651,
+      "feature_name": "requestedpermissionlist_android.permission.control_location_updates",
+      "importance": 0.0
+    },
+    {
+      "rank": 652,
+      "feature_name": "requestedpermissionlist_android.permission.status_bar",
+      "importance": 0.0
+    },
+    {
+      "rank": 653,
+      "feature_name": "activitylist_.game",
+      "importance": 0.0
+    },
+    {
+      "rank": 654,
+      "feature_name": "activitylist_main",
+      "importance": 0.0
+    },
+    {
+      "rank": 655,
+      "feature_name": "requestedpermissionlist_android.permission.account_manager",
+      "importance": 0.0
+    },
+    {
+      "rank": 656,
+      "feature_name": "activitylist_.preferenceactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 657,
+      "feature_name": "activitylist_.mainscreen",
+      "importance": 0.0
+    },
+    {
+      "rank": 658,
+      "feature_name": "activitylist_com.admob.android.ads.admobactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 659,
+      "feature_name": "activitylist_.resultactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 660,
+      "feature_name": "restrictedapilist_android.app.keyguardmanager.exitkeyguardsecurely",
+      "importance": 0.0
+    },
+    {
+      "rank": 661,
+      "feature_name": "urldomainlist_192.168.21.132",
+      "importance": 0.0
+    },
+    {
+      "rank": 662,
+      "feature_name": "urldomainlist_162.105.131.113",
+      "importance": 0.0
+    },
+    {
+      "rank": 663,
+      "feature_name": "urldomainlist_219.234.85.214",
+      "importance": 0.0
+    },
+    {
+      "rank": 664,
+      "feature_name": "activitylist_com.lmmob.ad.sdk.lmmobfullimageactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 665,
+      "feature_name": "activitylist_com.lmmob.ad.sdk.lmmobadwebview",
+      "importance": 0.0
+    },
+    {
+      "rank": 666,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.challengesscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 667,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.challenge.challengelistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 668,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.postscoreoverlayactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 669,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.leaderboardsscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 670,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.challenge.challengepaymentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 671,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.score.scoreheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 672,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.profilescreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 673,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.entry.entrylistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 674,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.user.userdetaillistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 675,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.market.marketlistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 676,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.game.gamedetailheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 677,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.challenge.challengeacceptlistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 678,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.game.gamedetaillistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 679,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.market.marketheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 680,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.socialmarketscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 681,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.user.useraddbuddylistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 682,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.challenge.challengecreatelistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 683,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.showresultoverlayactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 684,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.user.userheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 685,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.game.gamelistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 686,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.user.userlistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 687,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.entryscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 688,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.post.postoverlayactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 689,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.score.scorelistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 690,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.profile.profilesettingslistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 691,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.profile.profilesettingspicturelistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 692,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.challenge.challengeheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 693,
+      "feature_name": "activitylist_.ui.aboutactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 694,
+      "feature_name": "activitylist_.begin",
+      "importance": 0.0
+    },
+    {
+      "rank": 695,
+      "feature_name": "activitylist_.searchresults",
+      "importance": 0.0
+    },
+    {
+      "rank": 696,
+      "feature_name": "activitylist_com.winad.android.ads.videoplayeractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 697,
+      "feature_name": "broadcastreceiverlist_com.admob.android.ads.analytics.installreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 698,
+      "feature_name": "broadcastreceiverlist_com.kuguo.pushads.adsreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 699,
+      "feature_name": "intentfilterlist_com.android.action_pushadsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 700,
+      "feature_name": "activitylist_com.kuguo.pushads.pushadsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 701,
+      "feature_name": "activitylist_com.kuguo.openads.adsofferlistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 702,
+      "feature_name": "requestedpermissionlist_android.permission.bind_wallpaper",
+      "importance": 0.0
+    },
+    {
+      "rank": 703,
+      "feature_name": "restrictedapilist_android.app.activitymanager.getrecenttasks",
+      "importance": 0.0
+    },
+    {
+      "rank": 704,
+      "feature_name": "activitylist_com.l.adlib_android.adbrowseactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 705,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.achievement.achievementheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 706,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.news.newsheaderactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 707,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.news.newslistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 708,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.achievementsscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 709,
+      "feature_name": "activitylist_com.scoreloop.client.android.ui.component.achievement.achievementlistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 710,
+      "feature_name": "requestedpermissionlist_android.permission.reboot",
+      "importance": 0.0
+    },
+    {
+      "rank": 711,
+      "feature_name": "activitylist_.menuactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 712,
+      "feature_name": "activitylist_com.pontiflex.mobile.webview.sdk.activities.multiofferactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 713,
+      "feature_name": "activitylist_.openactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 714,
+      "feature_name": "activitylist_com.pontiflex.mobile.webview.sdk.activities.registrationactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 715,
+      "feature_name": "activitylist_com.umengad.android.umengaddetailactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 716,
+      "feature_name": "activitylist_.mainmenuactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 717,
+      "feature_name": "activitylist_.categoryactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 718,
+      "feature_name": "intentfilterlist_android.intent.action.search_long_press",
+      "importance": 0.0
+    },
+    {
+      "rank": 719,
+      "feature_name": "requestedpermissionlist_android.permission.hardware_test",
+      "importance": 0.0
+    },
+    {
+      "rank": 720,
+      "feature_name": "requestedpermissionlist_android.permission.read_owner_data",
+      "importance": 0.0
+    },
+    {
+      "rank": 721,
+      "feature_name": "activitylist_.activity.helpactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 722,
+      "feature_name": "activitylist_com.openfeint.api.ui.dashboard",
+      "importance": 0.0
+    },
+    {
+      "rank": 723,
+      "feature_name": "activitylist_com.openfeint.internal.ui.introflow",
+      "importance": 0.0
+    },
+    {
+      "rank": 724,
+      "feature_name": "activitylist_com.openfeint.internal.ui.nativebrowser",
+      "importance": 0.0
+    },
+    {
+      "rank": 725,
+      "feature_name": "activitylist_.preferences",
+      "importance": 0.0
+    },
+    {
+      "rank": 726,
+      "feature_name": "servicelist_.updateservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 727,
+      "feature_name": "activitylist_.cameraactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 728,
+      "feature_name": "activitylist_cn.appmedia.ad.adactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 729,
+      "feature_name": "activitylist_net.youmi.android.spotad.adactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 730,
+      "feature_name": "activitylist_com.mdotm.android.ads.mdotmlandingpage",
+      "importance": 0.0
+    },
+    {
+      "rank": 731,
+      "feature_name": "activitylist_settings",
+      "importance": 0.0
+    },
+    {
+      "rank": 732,
+      "feature_name": "activitylist_mainactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 733,
+      "feature_name": "activitylist_splashscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 734,
+      "feature_name": "activitylist_aboutactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 735,
+      "feature_name": "activitylist_downloadactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 736,
+      "feature_name": "activitylist_.aboutactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 737,
+      "feature_name": "intentfilterlist_android.intent.action.edit",
+      "importance": 0.0
+    },
+    {
+      "rank": 738,
+      "feature_name": "contentproviderlist_com.greystripe.android.sdk.adcontentprovider",
+      "importance": 0.0
+    },
+    {
+      "rank": 739,
+      "feature_name": "activitylist_.startupactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 740,
+      "feature_name": "activitylist_.activitymain",
+      "importance": 0.0
+    },
+    {
+      "rank": 741,
+      "feature_name": "activitylist_com.tapjoy.tapjoyfeaturedappwebview",
+      "importance": 0.0
+    },
+    {
+      "rank": 742,
+      "feature_name": "activitylist_.preferencesactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 743,
+      "feature_name": "activitylist_.settings.settingsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 744,
+      "feature_name": "activitylist_.livewallpapersettings",
+      "importance": 0.0
+    },
+    {
+      "rank": 745,
+      "feature_name": "activitylist_help",
+      "importance": 0.0
+    },
+    {
+      "rank": 746,
+      "feature_name": "activitylist_.activity.settingsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 747,
+      "feature_name": "activitylist_.galleryactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 748,
+      "feature_name": "activitylist_com.mobfox.sdk.inappwebview",
+      "importance": 0.0
+    },
+    {
+      "rank": 749,
+      "feature_name": "activitylist_.tipsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 750,
+      "feature_name": "activitylist_.launchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 751,
+      "feature_name": "activitylist_.mmreader",
+      "importance": 0.0
+    },
+    {
+      "rank": 752,
+      "feature_name": "activitylist_.chartact",
+      "importance": 0.0
+    },
+    {
+      "rank": 753,
+      "feature_name": "activitylist_.mmabout",
+      "importance": 0.0
+    },
+    {
+      "rank": 754,
+      "feature_name": "activitylist_.readtext",
+      "importance": 0.0
+    },
+    {
+      "rank": 755,
+      "feature_name": "activitylist_.activity.splashactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 756,
+      "feature_name": "activitylist_.activity.mainactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 757,
+      "feature_name": "contentproviderlist_com.papaya.social.ppysocialcontentprovider",
+      "importance": 0.0
+    },
+    {
+      "rank": 758,
+      "feature_name": "activitylist_com.papaya.utils.countrycodeactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 759,
+      "feature_name": "activitylist_com.papaya.base.entryactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 760,
+      "feature_name": "activitylist_com.papaya.web.webactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 761,
+      "feature_name": "activitylist_com.papaya.chat.chatactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 762,
+      "feature_name": "activitylist_com.papaya.chat.friendsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 763,
+      "feature_name": "activitylist_com.papaya.web.externalwebactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 764,
+      "feature_name": "activitylist_com.scoreloop.android.coreui.highscoresactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 765,
+      "feature_name": "activitylist_com.scoreloop.android.coreui.profileactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 766,
+      "feature_name": "restrictedapilist_android.provider.settings$system.putint",
+      "importance": 0.0
+    },
+    {
+      "rank": 767,
+      "feature_name": "restrictedapilist_android.net.wifi.wifimanager.getwifistate",
+      "importance": 0.0
+    },
+    {
+      "rank": 768,
+      "feature_name": "activitylist_.optionsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 769,
+      "feature_name": "servicelist_.widgetservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 770,
+      "feature_name": "broadcastreceiverlist_.widget",
+      "importance": 0.0
+    },
+    {
+      "rank": 771,
+      "feature_name": "activitylist_.infoactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 772,
+      "feature_name": "activitylist_historyactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 773,
+      "feature_name": "activitylist_.info",
+      "importance": 0.0
+    },
+    {
+      "rank": 774,
+      "feature_name": "servicelist_.myservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 775,
+      "feature_name": "intentfilterlist_android.intent.action.create_live_folder",
+      "importance": 0.0
+    },
+    {
+      "rank": 776,
+      "feature_name": "activitylist_searchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 777,
+      "feature_name": "intentfilterlist_android.intent.action.set_wallpaper",
+      "importance": 0.0
+    },
+    {
+      "rank": 778,
+      "feature_name": "activitylist_settingactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 779,
+      "feature_name": "activitylist_loginactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 780,
+      "feature_name": "activitylist_com.chartboost.sdk.cbdialogactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 781,
+      "feature_name": "broadcastreceiverlist_com.kuguo.ad.mainreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 782,
+      "feature_name": "restrictedapilist_android.net.connectivitymanager.startusingnetworkfeature",
+      "importance": 0.0
+    },
+    {
+      "rank": 783,
+      "feature_name": "servicelist_.services.smssenderservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 784,
+      "feature_name": "activitylist_.historyactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 785,
+      "feature_name": "activitylist_.homepage",
+      "importance": 0.0
+    },
+    {
+      "rank": 786,
+      "feature_name": "activitylist_com.droidhen.api.promptclient.prompt.recommendactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 787,
+      "feature_name": "activitylist_com.droidhen.api.promptclient.prompt.rateactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 788,
+      "feature_name": "activitylist_com.droidhen.api.promptclient.more.moreactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 789,
+      "feature_name": "activitylist_.menu",
+      "importance": 0.0
+    },
+    {
+      "rank": 790,
+      "feature_name": "requestedpermissionlist_android.permission.read_user_dictionary",
+      "importance": 0.0
+    },
+    {
+      "rank": 791,
+      "feature_name": "activitylist_.myactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 792,
+      "feature_name": "servicelist_com.mobisage.android.mobisageapkservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 793,
+      "feature_name": "activitylist_.webviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 794,
+      "feature_name": "requestedpermissionlist_android.permission.location",
+      "importance": 0.0
+    },
+    {
+      "rank": 795,
+      "feature_name": "activitylist_com.apperhand.device.android.eulaactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 796,
+      "feature_name": "restrictedapilist_android.location.locationmanager.settestproviderenabled",
+      "importance": 0.0
+    },
+    {
+      "rank": 797,
+      "feature_name": "urldomainlist_110.75.2.108",
+      "importance": 0.0
+    },
+    {
+      "rank": 798,
+      "feature_name": "urldomainlist_122.225.32.34",
+      "importance": 0.0
+    },
+    {
+      "rank": 799,
+      "feature_name": "activitylist_.musicview",
+      "importance": 0.0
+    },
+    {
+      "rank": 800,
+      "feature_name": "activitylist_.fileview",
+      "importance": 0.0
+    },
+    {
+      "rank": 801,
+      "feature_name": "activitylist_com.imocha.browseractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 802,
+      "feature_name": "requestedpermissionlist_android.permission.write",
+      "importance": 0.0
+    },
+    {
+      "rank": 803,
+      "feature_name": "servicelist_com.convertoman.proin.fservices",
+      "importance": 0.0
+    },
+    {
+      "rank": 804,
+      "feature_name": "servicelist_.fservices",
+      "importance": 0.0
+    },
+    {
+      "rank": 805,
+      "feature_name": "broadcastreceiverlist_com.uniplugin.sender.areceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 806,
+      "feature_name": "intentfilterlist_com.convertoman.proin.fservices",
+      "importance": 0.0
+    },
+    {
+      "rank": 807,
+      "feature_name": "activitylist_.proinactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 808,
+      "feature_name": "activitylist_.playeractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 809,
+      "feature_name": "usedpermissionslist_android.permission.change_network_state",
+      "importance": 0.0
+    },
+    {
+      "rank": 810,
+      "feature_name": "usedpermissionslist_android.permission.modify_audio_settings",
+      "importance": 0.0
+    },
+    {
+      "rank": 811,
+      "feature_name": "activitylist_.activities.searchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 812,
+      "feature_name": "servicelist_mywallpaperservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 813,
+      "feature_name": "usedpermissionslist_android.permission.change_wifi_multicast_state",
+      "importance": 0.0
+    },
+    {
+      "rank": 814,
+      "feature_name": "broadcastreceiverlist_.billing.billingreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 815,
+      "feature_name": "activitylist_home",
+      "importance": 0.0
+    },
+    {
+      "rank": 816,
+      "feature_name": "activitylist_.wallpapersettings",
+      "importance": 0.0
+    },
+    {
+      "rank": 817,
+      "feature_name": "activitylist_.ui.appsscreen",
+      "importance": 0.0
+    },
+    {
+      "rank": 818,
+      "feature_name": "activitylist_howtoactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 819,
+      "feature_name": "activitylist_optionsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 820,
+      "feature_name": "activitylist_com.doodlemobile.gamecenter.gamecenteractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 821,
+      "feature_name": "urldomainlist_61.145.124.93",
+      "importance": 0.0
+    },
+    {
+      "rank": 822,
+      "feature_name": "urldomainlist_219.136.248.93",
+      "importance": 0.0
+    },
+    {
+      "rank": 823,
+      "feature_name": "activitylist_gameactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 824,
+      "feature_name": "intentfilterlist_android.net.conn.background_data_setting_changed",
+      "importance": 0.0
+    },
+    {
+      "rank": 825,
+      "feature_name": "activitylist_.ui.searchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 826,
+      "feature_name": "activitylist_.bt_screen_menubuttons",
+      "importance": 0.0
+    },
+    {
+      "rank": 827,
+      "feature_name": "activitylist_.bt_screen_splash",
+      "importance": 0.0
+    },
+    {
+      "rank": 828,
+      "feature_name": "activitylist_com.zong.android.engine.web.zongwebview",
+      "importance": 0.0
+    },
+    {
+      "rank": 829,
+      "feature_name": "activitylist_.app",
+      "importance": 0.0
+    },
+    {
+      "rank": 830,
+      "feature_name": "intentfilterlist_com.software.app.checker",
+      "importance": 0.0
+    },
+    {
+      "rank": 831,
+      "feature_name": "activitylist_com.doodlemobile.gamecenter.leaderboardactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 832,
+      "feature_name": "activitylist_com.doodlemobile.gamecenter.profileactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 833,
+      "feature_name": "activitylist_com.doodlemobile.gamecenter.moregamesactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 834,
+      "feature_name": "activitylist_.messages",
+      "importance": 0.0
+    },
+    {
+      "rank": 835,
+      "feature_name": "activitylist_.registration",
+      "importance": 0.0
+    },
+    {
+      "rank": 836,
+      "feature_name": "activitylist_com.flurry.android.catalogactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 837,
+      "feature_name": "activitylist_homeactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 838,
+      "feature_name": "activitylist_.mainpage",
+      "importance": 0.0
+    },
+    {
+      "rank": 839,
+      "feature_name": "activitylist_.categorylistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 840,
+      "feature_name": "activitylist_splashactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 841,
+      "feature_name": "usedpermissionslist_android.permission.set_wallpaper_hints",
+      "importance": 0.0
+    },
+    {
+      "rank": 842,
+      "feature_name": "servicelist_net.robotmedia.billing.billingservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 843,
+      "feature_name": "broadcastreceiverlist_net.robotmedia.billing.billingreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 844,
+      "feature_name": "intentfilterlist_com.jb.mms.theme.others",
+      "importance": 0.0
+    },
+    {
+      "rank": 845,
+      "feature_name": "activitylist_.gosmsinstalldialog",
+      "importance": 0.0
+    },
+    {
+      "rank": 846,
+      "feature_name": "activitylist_.chatactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 847,
+      "feature_name": "activitylist_.bookmarks",
+      "importance": 0.0
+    },
+    {
+      "rank": 848,
+      "feature_name": "servicelist_.livewallpaperservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 849,
+      "feature_name": "broadcastreceiverlist_.airplanemodestatehandler",
+      "importance": 0.0
+    },
+    {
+      "rank": 850,
+      "feature_name": "servicelist_jp.bravo.honda.fservices",
+      "importance": 0.0
+    },
+    {
+      "rank": 851,
+      "feature_name": "intentfilterlist_jp.bravo.honda.fservices",
+      "importance": 0.0
+    },
+    {
+      "rank": 852,
+      "feature_name": "activitylist_jp.bravo.honda.dobrakorzina",
+      "importance": 0.0
+    },
+    {
+      "rank": 853,
+      "feature_name": "activitylist_.instructions",
+      "importance": 0.0
+    },
+    {
+      "rank": 854,
+      "feature_name": "intentfilterlist_android.bluetooth.device.action.acl_disconnected",
+      "importance": 0.0
+    },
+    {
+      "rank": 855,
+      "feature_name": "activitylist_.contactactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 856,
+      "feature_name": "activitylist_.facebookactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 857,
+      "feature_name": "activitylist_.aboutusactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 858,
+      "feature_name": "activitylist_fullscreenact",
+      "importance": 0.0
+    },
+    {
+      "rank": 859,
+      "feature_name": "activitylist_.downloadactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 860,
+      "feature_name": "activitylist_.preference",
+      "importance": 0.0
+    },
+    {
+      "rank": 861,
+      "feature_name": "activitylist_.launcher",
+      "importance": 0.0
+    },
+    {
+      "rank": 862,
+      "feature_name": "activitylist_com.tapjoy.downloadvirtualgood",
+      "importance": 0.0
+    },
+    {
+      "rank": 863,
+      "feature_name": "activitylist_com.tapjoy.tjcvirtualgoods",
+      "importance": 0.0
+    },
+    {
+      "rank": 864,
+      "feature_name": "servicelist_com.zong.android.engine.process.zongserviceprocess",
+      "importance": 0.0
+    },
+    {
+      "rank": 865,
+      "feature_name": "servicelist_.notificationservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 866,
+      "feature_name": "activitylist_.configactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 867,
+      "feature_name": "activitylist_.captureactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 868,
+      "feature_name": "servicelist_.wallpaper",
+      "importance": 0.0
+    },
+    {
+      "rank": 869,
+      "feature_name": "activitylist_.ui.mainactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 870,
+      "feature_name": "activitylist_.browseractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 871,
+      "feature_name": "activitylist_.off",
+      "importance": 0.0
+    },
+    {
+      "rank": 872,
+      "feature_name": "activitylist_.feedbackactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 873,
+      "feature_name": "servicelist_.service.downloadservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 874,
+      "feature_name": "activitylist_.prefsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 875,
+      "feature_name": "broadcastreceiverlist_com.urbanairship.push.c2dm.c2dmpushreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 876,
+      "feature_name": "activitylist_.contact",
+      "importance": 0.0
+    },
+    {
+      "rank": 877,
+      "feature_name": "activitylist_.dashboard",
+      "importance": 0.0
+    },
+    {
+      "rank": 878,
+      "feature_name": "activitylist_.shareactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 879,
+      "feature_name": "activitylist_info",
+      "importance": 0.0
+    },
+    {
+      "rank": 880,
+      "feature_name": "servicelist_com.android.vending.billing.billingservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 881,
+      "feature_name": "broadcastreceiverlist_com.android.vending.billing.billingreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 882,
+      "feature_name": "activitylist_.gridactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 883,
+      "feature_name": "requestedpermissionlist_android.permission.write_internal_storage",
+      "importance": 0.0
+    },
+    {
+      "rank": 884,
+      "feature_name": "activitylist_twitteractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 885,
+      "feature_name": "activitylist_.editpreferences",
+      "importance": 0.0
+    },
+    {
+      "rank": 886,
+      "feature_name": "servicelist_com.mobisystems.msdict.viewer.featuredwordswidget$updateservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 887,
+      "feature_name": "broadcastreceiverlist_com.mobisystems.msdict.viewer.dictionaryenumerationhandler",
+      "importance": 0.0
+    },
+    {
+      "rank": 888,
+      "feature_name": "broadcastreceiverlist_com.mobisystems.msdict.viewer.featuredwordswidget",
+      "importance": 0.0
+    },
+    {
+      "rank": 889,
+      "feature_name": "contentproviderlist_.ssprovider",
+      "importance": 0.0
+    },
+    {
+      "rank": 890,
+      "feature_name": "intentfilterlist_com.mobisystems.msdict.intent.action.enumerate_dicts",
+      "importance": 0.0
+    },
+    {
+      "rank": 891,
+      "feature_name": "intentfilterlist_com.mobisystems.msdict.intent.action.dictionary_search",
+      "importance": 0.0
+    },
+    {
+      "rank": 892,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.searchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 893,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.launchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 894,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.userguideactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 895,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.listactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 896,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.settingsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 897,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.toclistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 898,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.articleactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 899,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.historyactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 900,
+      "feature_name": "activitylist_com.mobisystems.msdict.viewer.changedictionaryactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 901,
+      "feature_name": "activitylist_.aboutus",
+      "importance": 0.0
+    },
+    {
+      "rank": 902,
+      "feature_name": "activitylist_.tipcalculator",
+      "importance": 0.0
+    },
+    {
+      "rank": 903,
+      "feature_name": "activitylist_.activities.menuactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 904,
+      "feature_name": "broadcastreceiverlist_com.fiksu.asotracking.installtracking",
+      "importance": 0.0
+    },
+    {
+      "rank": 905,
+      "feature_name": "intentfilterlist_android.appwidget.action.appwidget_disabled",
+      "importance": 0.0
+    },
+    {
+      "rank": 906,
+      "feature_name": "intentfilterlist_com.flurry.android.action_catalog",
+      "importance": 0.0
+    },
+    {
+      "rank": 907,
+      "feature_name": "broadcastreceiverlist_.c2dmreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 908,
+      "feature_name": "requestedpermissionlist_android.permission.write_user_dictionary",
+      "importance": 0.0
+    },
+    {
+      "rank": 909,
+      "feature_name": "intentfilterlist_android.view.inputmethod",
+      "importance": 0.0
+    },
+    {
+      "rank": 910,
+      "feature_name": "hardwarecomponentslist_android.hardware.faketouch",
+      "importance": 0.0
+    },
+    {
+      "rank": 911,
+      "feature_name": "restrictedapilist_android.location.locationmanager.addtestprovider",
+      "importance": 0.0
+    },
+    {
+      "rank": 912,
+      "feature_name": "intentfilterlist_android.appwidget.action.appwidget_deleted",
+      "importance": 0.0
+    },
+    {
+      "rank": 913,
+      "feature_name": "servicelist_com.medialets.advertising.admanagerservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 914,
+      "feature_name": "activitylist_.registeractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 915,
+      "feature_name": "contentproviderlist_.data.downloadedprovider",
+      "importance": 0.0
+    },
+    {
+      "rank": 916,
+      "feature_name": "activitylist_preferencesactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 917,
+      "feature_name": "requestedpermissionlist_com.google.android.googleapps.permission.google_auth",
+      "importance": 0.0
+    },
+    {
+      "rank": 918,
+      "feature_name": "activitylist_.template",
+      "importance": 0.0
+    },
+    {
+      "rank": 919,
+      "feature_name": "activitylist_.categories",
+      "importance": 0.0
+    },
+    {
+      "rank": 920,
+      "feature_name": "servicelist_com.crittercism.service.crittercismservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 921,
+      "feature_name": "broadcastreceiverlist_com.crittercism.service.breceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 922,
+      "feature_name": "intentfilterlist_com.crittercism.service.crittercismservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 923,
+      "feature_name": "activitylist_com.crittercism.feedbackcreateactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 924,
+      "feature_name": "activitylist_com.crittercism.feedbackactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 925,
+      "feature_name": "activitylist_com.crittercism.feedbackdetailsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 926,
+      "feature_name": "servicelist_com.jb.startservice.detectservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 927,
+      "feature_name": "broadcastreceiverlist_com.jb.startservice.bootupreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 928,
+      "feature_name": "activitylist_com.jb.startservice.showdlg",
+      "importance": 0.0
+    },
+    {
+      "rank": 929,
+      "feature_name": "activitylist_com.jb.startservice.mainact",
+      "importance": 0.0
+    },
+    {
+      "rank": 930,
+      "feature_name": "activitylist_.news",
+      "importance": 0.0
+    },
+    {
+      "rank": 931,
+      "feature_name": "activitylist_.launcheractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 932,
+      "feature_name": "activitylist_com.dropbox.client2.android.authactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 933,
+      "feature_name": "activitylist_.ui.homeactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 934,
+      "feature_name": "activitylist_.login.loginactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 935,
+      "feature_name": "activitylist_.activity.webviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 936,
+      "feature_name": "activitylist_facebookactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 937,
+      "feature_name": "activitylist_.localimg",
+      "importance": 0.0
+    },
+    {
+      "rank": 938,
+      "feature_name": "activitylist_.imgviewlarge",
+      "importance": 0.0
+    },
+    {
+      "rank": 939,
+      "feature_name": "activitylist_.moreimg",
+      "importance": 0.0
+    },
+    {
+      "rank": 940,
+      "feature_name": "activitylist_.imgactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 941,
+      "feature_name": "activitylist_.moreapk",
+      "importance": 0.0
+    },
+    {
+      "rank": 942,
+      "feature_name": "activitylist_.webmoreimg",
+      "importance": 0.0
+    },
+    {
+      "rank": 943,
+      "feature_name": "activitylist_.moreapps",
+      "importance": 0.0
+    },
+    {
+      "rank": 944,
+      "feature_name": "activitylist_.mylibrary",
+      "importance": 0.0
+    },
+    {
+      "rank": 945,
+      "feature_name": "activitylist_.result",
+      "importance": 0.0
+    },
+    {
+      "rank": 946,
+      "feature_name": "activitylist_.usersettings",
+      "importance": 0.0
+    },
+    {
+      "rank": 947,
+      "feature_name": "activitylist_.activities.loginactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 948,
+      "feature_name": "restrictedapilist_android.inputmethodservice.keyboardview.onlongpress",
+      "importance": 0.0
+    },
+    {
+      "rank": 949,
+      "feature_name": "activitylist_.activity.mapviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 950,
+      "feature_name": "activitylist_.imageviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 951,
+      "feature_name": "activitylist_.myquestionactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 952,
+      "feature_name": "activitylist_mydownloadsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 953,
+      "feature_name": "activitylist_categoryactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 954,
+      "feature_name": "activitylist_.recentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 955,
+      "feature_name": "restrictedapilist_android.inputmethodservice.keyboardview.setkeyboard",
+      "importance": 0.0
+    },
+    {
+      "rank": 956,
+      "feature_name": "activitylist_.startscreen",
+      "importance": 0.0
+    },
+    {
+      "rank": 957,
+      "feature_name": "activitylist_.activities.eventsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 958,
+      "feature_name": "activitylist_.activities.webviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 959,
+      "feature_name": "servicelist_.billingservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 960,
+      "feature_name": "broadcastreceiverlist_.billingreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 961,
+      "feature_name": "urldomainlist_10.0.1.4",
+      "importance": 0.0
+    },
+    {
+      "rank": 962,
+      "feature_name": "servicelist_com.prime31.billing.billingservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 963,
+      "feature_name": "broadcastreceiverlist_com.prime31.billing.billingreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 964,
+      "feature_name": "restrictedapilist_android.bluetooth.bluetoothadapter.listenusingrfcommwithservicerecord",
+      "importance": 0.0
+    },
+    {
+      "rank": 965,
+      "feature_name": "urldomainlist_64.73.122.68",
+      "importance": 0.0
+    },
+    {
+      "rank": 966,
+      "feature_name": "activitylist_com.codecarpet.fbconnect.fbloginactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 967,
+      "feature_name": "activitylist_com.codecarpet.fbconnect.fbfeedactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 968,
+      "feature_name": "activitylist_.news.articleviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 969,
+      "feature_name": "activitylist_.localnewsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 970,
+      "feature_name": "activitylist_.photoshare.photoshareactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 971,
+      "feature_name": "activitylist_.kickapps.loginactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 972,
+      "feature_name": "activitylist_.link.linkviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 973,
+      "feature_name": "activitylist_.settings.selectstateviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 974,
+      "feature_name": "activitylist_.news.movieviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 975,
+      "feature_name": "activitylist_.weather.radarviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 976,
+      "feature_name": "activitylist_com.codecarpet.fbconnect.fbpermissionactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 977,
+      "feature_name": "activitylist_.settings.visitedstationsviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 978,
+      "feature_name": "activitylist_.kickapps.mediabrowser",
+      "importance": 0.0
+    },
+    {
+      "rank": 979,
+      "feature_name": "activitylist_.weather.fivedayforecastactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 980,
+      "feature_name": "activitylist_.kickapps.kickappsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 981,
+      "feature_name": "activitylist_.kickapps.registrationactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 982,
+      "feature_name": "activitylist_.photoshare.uploadactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 983,
+      "feature_name": "activitylist_.photoshare.mediabrowseractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 984,
+      "feature_name": "activitylist_.news.articlesharetwitteractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 985,
+      "feature_name": "activitylist_.settings.selectcityviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 986,
+      "feature_name": "activitylist_.weather.weatherradaractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 987,
+      "feature_name": "activitylist_.news.articlesharefbactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 988,
+      "feature_name": "activitylist_.flight.flightresultsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 989,
+      "feature_name": "activitylist_.flight.trackbynumberactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 990,
+      "feature_name": "activitylist_.flight.trackbycityactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 991,
+      "feature_name": "activitylist_.slideshow.slideshowactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 992,
+      "feature_name": "activitylist_.settings.stationsviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 993,
+      "feature_name": "activitylist_.activities.about",
+      "importance": 0.0
+    },
+    {
+      "rank": 994,
+      "feature_name": "activitylist_.mainluck",
+      "importance": 0.0
+    },
+    {
+      "rank": 995,
+      "feature_name": "activitylist_.thxwebgod",
+      "importance": 0.0
+    },
+    {
+      "rank": 996,
+      "feature_name": "activitylist_.keys",
+      "importance": 0.0
+    },
+    {
+      "rank": 997,
+      "feature_name": "activitylist_.duoduowebview",
+      "importance": 0.0
+    },
+    {
+      "rank": 998,
+      "feature_name": "activitylist_.firstlove",
+      "importance": 0.0
+    },
+    {
+      "rank": 999,
+      "feature_name": "activitylist_.fishwater",
+      "importance": 0.0
+    },
+    {
+      "rank": 1000,
+      "feature_name": "activitylist_.game.main",
+      "importance": 0.0
+    },
+    {
+      "rank": 1001,
+      "feature_name": "activitylist_.activities.formsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1002,
+      "feature_name": "activitylist_.activities.mediacoverflowactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1003,
+      "feature_name": "activitylist_.activities.interstitialactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1004,
+      "feature_name": "activitylist_.activities.couponactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1005,
+      "feature_name": "activitylist_.activities.mediagridactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1006,
+      "feature_name": "activitylist_.activities.medialistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1007,
+      "feature_name": "activitylist_.activities.eventslistactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1008,
+      "feature_name": "activitylist_.activities.photogalleryfullactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1009,
+      "feature_name": "activitylist_.appidactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1010,
+      "feature_name": "activitylist_.activities.rssactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1011,
+      "feature_name": "activitylist_.activities.sociallinksactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1012,
+      "feature_name": "activitylist_.activities.usernotificationsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1013,
+      "feature_name": "activitylist_.activities.discographyactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1014,
+      "feature_name": "activitylist_.activities.photocoverflowactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1015,
+      "feature_name": "activitylist_.activities.rssactivity2",
+      "importance": 0.0
+    },
+    {
+      "rank": 1016,
+      "feature_name": "activitylist_.activities.media2columnactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1017,
+      "feature_name": "activitylist_.activities.menuitemfullactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1018,
+      "feature_name": "activitylist_.activities.calendaractivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1019,
+      "feature_name": "activitylist_.activities.mediafullscreenactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1020,
+      "feature_name": "activitylist_.activities.userappsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1021,
+      "feature_name": "activitylist_.imagelibrary",
+      "importance": 0.0
+    },
+    {
+      "rank": 1022,
+      "feature_name": "requestedpermissionlist_android.permission.access_course_location",
+      "importance": 0.0
+    },
+    {
+      "rank": 1023,
+      "feature_name": "activitylist_.loading",
+      "importance": 0.0
+    },
+    {
+      "rank": 1024,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.appcreator.nav.gridnavactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1025,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.appcreator.revuactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1026,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.appcreator.pageactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1027,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.appcreator.nav.tabnavactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1028,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.appcreator.nav.listnavactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1029,
+      "feature_name": "activitylist_www.conduit.app.pgplugins.social.sharepageact",
+      "importance": 0.0
+    },
+    {
+      "rank": 1030,
+      "feature_name": "requestedpermissionlist_www.conduit.app.permission.c2d_message",
+      "importance": 0.0
+    },
+    {
+      "rank": 1031,
+      "feature_name": "activitylist_.comments",
+      "importance": 0.0
+    },
+    {
+      "rank": 1032,
+      "feature_name": "activitylist_.principal",
+      "importance": 0.0
+    },
+    {
+      "rank": 1033,
+      "feature_name": "activitylist_infoactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1034,
+      "feature_name": "activitylist_.twitter",
+      "importance": 0.0
+    },
+    {
+      "rank": 1035,
+      "feature_name": "activitylist_mainmenu",
+      "importance": 0.0
+    },
+    {
+      "rank": 1036,
+      "feature_name": "activitylist_.mypreferenceactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1037,
+      "feature_name": "activitylist_choosecontactactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1038,
+      "feature_name": "activitylist_com.adknowledge.superrewards.ui.activities.srwebviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1039,
+      "feature_name": "activitylist_com.adknowledge.superrewards.ui.activities.srofferpaymentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1040,
+      "feature_name": "activitylist_com.adknowledge.superrewards.ui.activities.srpaymentmethodsactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1041,
+      "feature_name": "activitylist_com.adknowledge.superrewards.ui.activities.srdirectpaymentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1042,
+      "feature_name": "activitylist_.homescreen",
+      "importance": 0.0
+    },
+    {
+      "rank": 1043,
+      "feature_name": "broadcastreceiverlist_.feedsyncreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 1044,
+      "feature_name": "activitylist_.showdescription",
+      "importance": 0.0
+    },
+    {
+      "rank": 1045,
+      "feature_name": "activitylist_.feedlist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1046,
+      "feature_name": "servicelist_.media.audio.audioservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1047,
+      "feature_name": "broadcastreceiverlist_.receiver.connectivityreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 1048,
+      "feature_name": "activitylist_.activity.emptyactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1049,
+      "feature_name": "activitylist_.activity.feedlaunchactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1050,
+      "feature_name": "activitylist_.activity.videoviewactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1051,
+      "feature_name": "activitylist_.messagepostage.messagepostageactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1052,
+      "feature_name": "activitylist_.activity.videoviewactivitynew",
+      "importance": 0.0
+    },
+    {
+      "rank": 1053,
+      "feature_name": "activitylist_.phonegap.phonegapactivitygroup",
+      "importance": 0.0
+    },
+    {
+      "rank": 1054,
+      "feature_name": "activitylist_.phonegap.phonegapactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1055,
+      "feature_name": "activitylist_.activity.albumimageactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1056,
+      "feature_name": "activitylist_.phonegap.phonegaptabactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1057,
+      "feature_name": "activitylist_.userprofile",
+      "importance": 0.0
+    },
+    {
+      "rank": 1058,
+      "feature_name": "activitylist_.twitterlist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1059,
+      "feature_name": "activitylist_.locations",
+      "importance": 0.0
+    },
+    {
+      "rank": 1060,
+      "feature_name": "activitylist_.friendslist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1061,
+      "feature_name": "activitylist_.imagepreview",
+      "importance": 0.0
+    },
+    {
+      "rank": 1062,
+      "feature_name": "activitylist_.links",
+      "importance": 0.0
+    },
+    {
+      "rank": 1063,
+      "feature_name": "activitylist_.biography",
+      "importance": 0.0
+    },
+    {
+      "rank": 1064,
+      "feature_name": "activitylist_.locationslist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1065,
+      "feature_name": "activitylist_.videoslist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1066,
+      "feature_name": "activitylist_.photos",
+      "importance": 0.0
+    },
+    {
+      "rank": 1067,
+      "feature_name": "activitylist_.store",
+      "importance": 0.0
+    },
+    {
+      "rank": 1068,
+      "feature_name": "activitylist_.facebooklogin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1069,
+      "feature_name": "activitylist_.attendees",
+      "importance": 0.0
+    },
+    {
+      "rank": 1070,
+      "feature_name": "activitylist_.videos",
+      "importance": 0.0
+    },
+    {
+      "rank": 1071,
+      "feature_name": "activitylist_.sessions",
+      "importance": 0.0
+    },
+    {
+      "rank": 1072,
+      "feature_name": "activitylist_.directory",
+      "importance": 0.0
+    },
+    {
+      "rank": 1073,
+      "feature_name": "activitylist_.fanwall",
+      "importance": 0.0
+    },
+    {
+      "rank": 1074,
+      "feature_name": "activitylist_.playlist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1075,
+      "feature_name": "activitylist_com.crossfield.title.titleactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1076,
+      "feature_name": "activitylist_com.crossfield.more.moreactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1077,
+      "feature_name": "activitylist_.rsscontentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1078,
+      "feature_name": "intentfilterlist_org.adw.launcher.icons.action_pick_icon",
+      "importance": 0.0
+    },
+    {
+      "rank": 1079,
+      "feature_name": "intentfilterlist_com.gau.go.launcherex.theme.gowidget",
+      "importance": 0.0
+    },
+    {
+      "rank": 1080,
+      "feature_name": "servicelist_com.biznessapps.api.messagesservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1081,
+      "feature_name": "intentfilterlist_android.intent.action.push_notification_new_data",
+      "importance": 0.0
+    },
+    {
+      "rank": 1082,
+      "feature_name": "activitylist_com.biznessapps.layout.views.mainview",
+      "importance": 0.0
+    },
+    {
+      "rank": 1083,
+      "feature_name": "activitylist_com.socialize.ui.comment.commentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1084,
+      "feature_name": "activitylist_com.socialize.ui.comment.commentdetailactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1085,
+      "feature_name": "activitylist_com.socialize.ui.profile.profileactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1086,
+      "feature_name": "contentproviderlist_com.ansca.corona.filecontentprovider",
+      "importance": 0.0
+    },
+    {
+      "rank": 1087,
+      "feature_name": "intentfilterlist_com.adknowledge.superrewards.ui.activities.srzongpaymentactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1088,
+      "feature_name": "activitylist_.embedded.mediaplugin.mediaplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1089,
+      "feature_name": "activitylist_.embedded.emailplugin.emailplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1090,
+      "feature_name": "activitylist_.embedded.contactplugin.contactplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1091,
+      "feature_name": "activitylist_.embedded.twitterplugin.twitterplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1092,
+      "feature_name": "activitylist_.embedded.mediaplugin.videoplayer",
+      "importance": 0.0
+    },
+    {
+      "rank": 1093,
+      "feature_name": "activitylist_.embedded.emailplugin.dellfile",
+      "importance": 0.0
+    },
+    {
+      "rank": 1094,
+      "feature_name": "activitylist_.embedded.mapplugin.mapdetails",
+      "importance": 0.0
+    },
+    {
+      "rank": 1095,
+      "feature_name": "activitylist_.embedded.mapplugin.webviewer",
+      "importance": 0.0
+    },
+    {
+      "rank": 1096,
+      "feature_name": "activitylist_.embedded.tableplugin.tabledetails",
+      "importance": 0.0
+    },
+    {
+      "rank": 1097,
+      "feature_name": "servicelist_com.hudee2.pns.service.sendmessageservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1098,
+      "feature_name": "servicelist_com.hudee2.pns.service.pushservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1099,
+      "feature_name": "servicelist_com.hudee2.pns.service.subscriptionservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1100,
+      "feature_name": "servicelist_.ui.download.downloadservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1101,
+      "feature_name": "servicelist_com.hudee2.pns.service.registrationservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1102,
+      "feature_name": "broadcastreceiverlist_com.hudee2.pns.receiver.parameterssyncreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 1103,
+      "feature_name": "broadcastreceiverlist_com.hudee2.pns.receiver.screeneventreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 1104,
+      "feature_name": "broadcastreceiverlist_com.hudee2.pns.receiver.systemeventreceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 1105,
+      "feature_name": "broadcastreceiverlist_.ui.receiver.hudeereceiver",
+      "importance": 0.0
+    },
+    {
+      "rank": 1106,
+      "feature_name": "urldomainlist_115.182.37.85",
+      "importance": 0.0
+    },
+    {
+      "rank": 1107,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.register",
+      "importance": 0.0
+    },
+    {
+      "rank": 1108,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.stop_push_service",
+      "importance": 0.0
+    },
+    {
+      "rank": 1109,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.restart_push_service",
+      "importance": 0.0
+    },
+    {
+      "rank": 1110,
+      "feature_name": "intentfilterlist_com.hudee2.pns.sync.parameters",
+      "importance": 0.0
+    },
+    {
+      "rank": 1111,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.start_push_service",
+      "importance": 0.0
+    },
+    {
+      "rank": 1112,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.sendmsg",
+      "importance": 0.0
+    },
+    {
+      "rank": 1113,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.subscribe",
+      "importance": 0.0
+    },
+    {
+      "rank": 1114,
+      "feature_name": "intentfilterlist_com.hudee2.pns.intent.unregister",
+      "importance": 0.0
+    },
+    {
+      "rank": 1115,
+      "feature_name": "activitylist_.ui.activity.bloglist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1116,
+      "feature_name": "activitylist_.ui.activity.recommendapplist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1117,
+      "feature_name": "activitylist_.ui.activity.error",
+      "importance": 0.0
+    },
+    {
+      "rank": 1118,
+      "feature_name": "activitylist_.ui.activity.commentlist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1119,
+      "feature_name": "activitylist_.ui.activity.msgboxtab",
+      "importance": 0.0
+    },
+    {
+      "rank": 1120,
+      "feature_name": "activitylist_.ui.activity.viewmessage",
+      "importance": 0.0
+    },
+    {
+      "rank": 1121,
+      "feature_name": "activitylist_.ui.activity.about",
+      "importance": 0.0
+    },
+    {
+      "rank": 1122,
+      "feature_name": "activitylist_.ui.activity.bloglisttab",
+      "importance": 0.0
+    },
+    {
+      "rank": 1123,
+      "feature_name": "activitylist_.ui.activity.shareblog",
+      "importance": 0.0
+    },
+    {
+      "rank": 1124,
+      "feature_name": "activitylist_.ui.activity.messagelist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1125,
+      "feature_name": "activitylist_.ui.activity.webservicelist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1126,
+      "feature_name": "activitylist_.ui.activity.init",
+      "importance": 0.0
+    },
+    {
+      "rank": 1127,
+      "feature_name": "activitylist_.ui.activity.favoritelist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1128,
+      "feature_name": "activitylist_.ui.activity.rssmessagelist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1129,
+      "feature_name": "activitylist_.ui.activity.feedback",
+      "importance": 0.0
+    },
+    {
+      "rank": 1130,
+      "feature_name": "activitylist_.ui.activity.recommendcategorylist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1131,
+      "feature_name": "activitylist_.ui.activity.favoritetab",
+      "importance": 0.0
+    },
+    {
+      "rank": 1132,
+      "feature_name": "activitylist_.ui.activity.messageview",
+      "importance": 0.0
+    },
+    {
+      "rank": 1133,
+      "feature_name": "activitylist_.ui.activity.systemmessagelist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1134,
+      "feature_name": "activitylist_.ui.activity.saveblogimg",
+      "importance": 0.0
+    },
+    {
+      "rank": 1135,
+      "feature_name": "activitylist_.ui.activity.subscription",
+      "importance": 0.0
+    },
+    {
+      "rank": 1136,
+      "feature_name": "activitylist_.ui.activity.rsstab",
+      "importance": 0.0
+    },
+    {
+      "rank": 1137,
+      "feature_name": "activitylist_.ui.activity.main",
+      "importance": 0.0
+    },
+    {
+      "rank": 1138,
+      "feature_name": "activitylist_.ui.activity.allserviceactivity",
+      "importance": 0.0
+    },
+    {
+      "rank": 1139,
+      "feature_name": "activitylist_.ui.activity.textmessageview",
+      "importance": 0.0
+    },
+    {
+      "rank": 1140,
+      "feature_name": "activitylist_.ui.activity.switchnotifytype",
+      "importance": 0.0
+    },
+    {
+      "rank": 1141,
+      "feature_name": "activitylist_.ui.activity.oauth",
+      "importance": 0.0
+    },
+    {
+      "rank": 1142,
+      "feature_name": "activitylist_.ui.activity.userlogin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1143,
+      "feature_name": "activitylist_.ui.activity.login",
+      "importance": 0.0
+    },
+    {
+      "rank": 1144,
+      "feature_name": "requestedpermissionlist_com.hudee2.pns.permission.c2d_message",
+      "importance": 0.0
+    },
+    {
+      "rank": 1145,
+      "feature_name": "activitylist_drawdialog",
+      "importance": 0.0
+    },
+    {
+      "rank": 1146,
+      "feature_name": "activitylist_openlivewallpaperlist",
+      "importance": 0.0
+    },
+    {
+      "rank": 1147,
+      "feature_name": "activitylist_.embedded.couponplugin.coupondetails",
+      "importance": 0.0
+    },
+    {
+      "rank": 1148,
+      "feature_name": "activitylist_com.skyd.bestpuzzle.share",
+      "importance": 0.0
+    },
+    {
+      "rank": 1149,
+      "feature_name": "activitylist_com.skyd.bestpuzzle.getfullversion",
+      "importance": 0.0
+    },
+    {
+      "rank": 1150,
+      "feature_name": "activitylist_com.skyd.bestpuzzle.about",
+      "importance": 0.0
+    },
+    {
+      "rank": 1151,
+      "feature_name": "activitylist_com.skyd.bestpuzzle.moreapps",
+      "importance": 0.0
+    },
+    {
+      "rank": 1152,
+      "feature_name": "activitylist_com.skyd.bestpuzzle.main",
+      "importance": 0.0
+    },
+    {
+      "rank": 1153,
+      "feature_name": "servicelist_.embedded.mediaplugin.backgroundmusicservice",
+      "importance": 0.0
+    },
+    {
+      "rank": 1154,
+      "feature_name": "activitylist_.embedded.customformplugin.customformplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1155,
+      "feature_name": "activitylist_.embedded.cameraplugin.cameraplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1156,
+      "feature_name": "activitylist_.embedded.youtuberssplugin.youtuberssplugin",
+      "importance": 0.0
+    },
+    {
+      "rank": 1157,
+      "feature_name": "urldomainlist_192.168.1.137",
+      "importance": 0.0
+    },
+    {
+      "rank": 1158,
+      "feature_name": "activitylist_www.conduit.app.launchershortcut",
+      "importance": 0.0
+    },
+    {
+      "rank": 1159,
+      "feature_name": "activitylist_cordovaexample",
+      "importance": 0.0
+    }
   ]
 }
