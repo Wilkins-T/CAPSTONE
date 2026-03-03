@@ -2,7 +2,7 @@
 Generate "future" stories from existing stories, with updated feature lists.
 
 Modes:
-- Default: append/resume generation into OUT_JSONL.
+- Default: full fresh generation into OUT_JSONL.
 - Repair-only: rewrite only bad rows in an existing OUT_JSONL.
 
 Inputs:
@@ -11,6 +11,9 @@ Inputs:
 
 Outputs:
   - drive-download-20260219T230708Z-1-001/data_stories_future/future_stories.jsonl
+  - drive-download-20260219T230708Z-1-001/data_stories_future/future_stories_quarantine.jsonl
+  - drive-download-20260219T230708Z-1-001/data_stories_future/future_stories_quality_report.json
+  - drive-download-20260219T230708Z-1-001/data_stories_future/future_stories_research_report.json
   - drive-download-20260219T230708Z-1-001/data_stories_future/README_future.md
 """
 
@@ -18,6 +21,7 @@ import argparse
 import ast
 import json
 import os
+import statistics
 import sys
 import time
 import urllib.request
@@ -32,12 +36,27 @@ FEATURES_JSON = os.path.join(BASE_DIR, "selected_features.json")
 OUT_DIR = os.path.join(BASE_DIR, "data_stories_future")
 OUT_JSONL = os.path.join(OUT_DIR, "future_stories.jsonl")
 OUT_README = os.path.join(OUT_DIR, "README_future.md")
+OUT_QUARANTINE = os.path.join(OUT_DIR, "future_stories_quarantine.jsonl")
+OUT_QUALITY = os.path.join(OUT_DIR, "future_stories_quality_report.json")
+OUT_RESEARCH = os.path.join(OUT_DIR, "future_stories_research_report.json")
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/generate")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.1:8b")
 
 TARGET_YEARS = [2016, 2018]
 SLEEP_BETWEEN_REQUESTS = 0.0
+
+# Harmonized threshold profile
+QUALITY_PROFILE = "research_v1"
+MIN_STORY_CHARS = 80
+MIN_FEATURES_IF_ORIGINAL_NON_EMPTY = 2
+MAX_REPAIR_RETRIES = 5
+MAX_EMPTY_STORY_RATE = 0.01
+MAX_SHORT_STORY_RATE = 0.02
+MAX_FALLBACK_TO_ORIGINAL_RATE = 0.0
+MAX_UNCHANGED_FEATURE_RATE = 0.10
+MAX_ERROR_RATE = 0.01
+MAX_QUARANTINE_RATE = 0.10
 
 
 def parse_args():
@@ -197,17 +216,20 @@ Original active features (index | name):
 {feature_block}
 
 Task:
-1) Write a revised story describing how this sample would likely appear in {years_str}.
-2) Provide the updated list of active features that best match the revised story.
+1) Write ONE revised future story (single combined forecast) describing how this sample
+   would likely appear across the later period ({years_str}).
+2) Provide ONE updated list of active features that best match that single future story.
 
 Rules:
 - Use neutral, forensic language with uncertainty when appropriate.
 - Avoid step-by-step instructions, code, or operational guidance.
 - The revised story should be whatever length is needed to explain the behavior.
 - Feature list must use exact feature names from the provided list.
-- If you remove or add features, keep it realistic and minimal.
+- The future feature list should not be an unchanged copy of the original unless clearly justified in changes_summary.
+- If you remove or add features, keep changes realistic and minimal.
 - Do not invent features outside the provided list.
-- Output ONLY valid JSON, no extra text.
+- Output ONLY valid JSON, no extra text, no markdown/code fences.
+- Do NOT output year-specific keys like future_story_2016 or future_active_features_2018.
 
 JSON schema:
 {{
@@ -354,7 +376,20 @@ def build_output_record(source_rec, raw, parsed, error, idx_to_name, name_to_idx
     }
 
 
-def needs_repair(rec):
+def _feature_signature(lst, idx_to_name, name_to_idx):
+    clean = validate_features(lst, idx_to_name, name_to_idx)
+    return tuple(sorted(int(item["index"]) for item in clean))
+
+
+def _same_features_as_original(source_rec, rec, idx_to_name, name_to_idx):
+    src_sig = _feature_signature(source_rec.get("active_features", []), idx_to_name, name_to_idx)
+    if not src_sig:
+        return False
+    rec_sig = _feature_signature(rec.get("future_active_features", []), idx_to_name, name_to_idx)
+    return rec_sig == src_sig
+
+
+def needs_repair(source_rec, rec, idx_to_name, name_to_idx):
     if not rec:
         return True
     if rec.get("error"):
@@ -365,7 +400,16 @@ def needs_repair(rec):
         "empty_future_features_no_valid_fallback",
     }:
         return True
-    if not str(rec.get("future_story", "")).strip():
+    story = str(rec.get("future_story", "")).strip()
+    if not story:
+        return True
+    if len(story) < MIN_STORY_CHARS:
+        return True
+    src_non_empty = bool(_feature_signature(source_rec.get("active_features", []), idx_to_name, name_to_idx))
+    n_future = len(validate_features(rec.get("future_active_features", []), idx_to_name, name_to_idx))
+    if src_non_empty and n_future < MIN_FEATURES_IF_ORIGINAL_NON_EMPTY:
+        return True
+    if _same_features_as_original(source_rec, rec, idx_to_name, name_to_idx):
         return True
     return False
 
@@ -378,7 +422,7 @@ def _write_jsonl(path, records):
     os.replace(tmp, path)
 
 
-def _write_readme(input_path, output_path, mode, repaired_count=None):
+def _write_readme(input_path, output_path, mode, repaired_count=None, efficiency=None):
     with open(OUT_README, "w", encoding="utf-8") as f:
         f.write("# Future Story Dataset\n\n")
         f.write(f"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
@@ -389,52 +433,414 @@ def _write_readme(input_path, output_path, mode, repaired_count=None):
         f.write(f"- Mode: {mode}\n")
         if repaired_count is not None:
             f.write(f"- Rows repaired: {repaired_count}\n")
+        if efficiency is not None:
+            f.write(f"- Elapsed seconds: {efficiency.get('elapsed_seconds', 0.0):.2f}\n")
+            f.write(f"- Estimated total tokens: {efficiency.get('estimated_total_tokens', 0.0):.1f}\n")
+            f.write(f"- Estimated tokens/second: {efficiency.get('estimated_tokens_per_second', 0.0):.2f}\n")
+        f.write(f"- Quarantine output: {OUT_QUARANTINE}\n")
+        f.write(f"- Quality report: {OUT_QUALITY}\n")
+        f.write(f"- Research report: {OUT_RESEARCH}\n")
+
+
+def _write_quarantine(path, rows):
+    with open(path, "w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=True) + "\n")
+
+
+def _make_quarantine_row(source_rec, candidate, reason, attempts):
+    return {
+        "year": source_rec.get("year"),
+        "row_index": source_rec.get("row_index"),
+        "label": source_rec.get("label"),
+        "reason": reason,
+        "attempts": attempts,
+        "candidate": candidate,
+    }
+
+
+def _generate_with_retries(source_rec, idx_to_name, name_to_idx, max_retries):
+    total_chars = 0
+    total_prompt_chars = 0
+    total_raw_chars = 0
+    parse_success_attempts = 0
+    exception_attempts = 0
+    last = None
+    attempts = 0
+    for attempt in range(1, max_retries + 1):
+        attempts = attempt
+        prompt = build_prompt(source_rec, TARGET_YEARS)
+        total_prompt_chars += len(prompt)
+        raw = ""
+        parsed = None
+        error = None
+        try:
+            raw = ollama_generate(prompt)
+            parsed = parse_json_relaxed(raw)
+            if parsed is not None:
+                parse_success_attempts += 1
+        except Exception as exc:
+            error = str(exc)
+            exception_attempts += 1
+        total_raw_chars += len(raw)
+        total_chars += len(prompt) + len(raw)
+        candidate = build_output_record(source_rec, raw, parsed, error, idx_to_name, name_to_idx)
+        last = candidate
+        if not needs_repair(source_rec, candidate, idx_to_name, name_to_idx):
+            meta = {
+                "attempts": attempts,
+                "prompt_chars": total_prompt_chars,
+                "raw_chars": total_raw_chars,
+                "parse_success_attempts": parse_success_attempts,
+                "exception_attempts": exception_attempts,
+            }
+            return candidate, attempts, total_chars, meta
+
+    if last is None:
+        last = build_output_record(source_rec, "", None, "empty_generation_attempt", idx_to_name, name_to_idx)
+    if not last.get("error"):
+        last["error"] = "quarantined_unrepaired_after_retries"
+    last["validation_note"] = "quarantined_unrepaired"
+    meta = {
+        "attempts": attempts,
+        "prompt_chars": total_prompt_chars,
+        "raw_chars": total_raw_chars,
+        "parse_success_attempts": parse_success_attempts,
+        "exception_attempts": exception_attempts,
+    }
+    return last, attempts, total_chars, meta
+
+
+def _summarize_generation_events(events):
+    if not events:
+        return {
+            "events": 0,
+            "avg_attempts": 0.0,
+            "max_attempts": 0,
+            "parse_success_event_rate": 0.0,
+            "avg_prompt_chars": 0.0,
+            "avg_raw_chars": 0.0,
+            "total_prompt_chars": 0,
+            "total_raw_chars": 0,
+            "attempts_histogram": {},
+        }
+    attempts = [int(e.get("attempts", 0)) for e in events]
+    prompt_chars = [int(e.get("prompt_chars", 0)) for e in events]
+    raw_chars = [int(e.get("raw_chars", 0)) for e in events]
+    parse_success_events = sum(1 for e in events if int(e.get("parse_success_attempts", 0)) > 0)
+    hist = {}
+    for a in attempts:
+        k = str(a)
+        hist[k] = hist.get(k, 0) + 1
+    return {
+        "events": len(events),
+        "avg_attempts": float(sum(attempts) / len(attempts)),
+        "max_attempts": max(attempts),
+        "parse_success_event_rate": float(parse_success_events / len(events)),
+        "avg_prompt_chars": float(sum(prompt_chars) / len(events)),
+        "avg_raw_chars": float(sum(raw_chars) / len(events)),
+        "total_prompt_chars": int(sum(prompt_chars)),
+        "total_raw_chars": int(sum(raw_chars)),
+        "attempts_histogram": hist,
+    }
+
+
+def _percentile(vals, p):
+    if not vals:
+        return 0.0
+    arr = sorted(vals)
+    if len(arr) == 1:
+        return float(arr[0])
+    idx = int(round((len(arr) - 1) * p))
+    idx = max(0, min(idx, len(arr) - 1))
+    return float(arr[idx])
+
+
+def _group_counts(rows, key):
+    out = {}
+    for r in rows:
+        k = str(r.get(key))
+        out[k] = out.get(k, 0) + 1
+    return out
+
+
+def _compute_research_report(mode, source_recs, out_recs, quarantine_rows, generation_events, idx_to_name, name_to_idx):
+    checked = min(len(source_recs), len(out_recs))
+    drift_jaccard = []
+    add_counts = []
+    remove_counts = []
+    changed = 0
+    unchanged = 0
+    for i in range(checked):
+        src = source_recs[i]
+        rec = out_recs[i]
+        src_set = set(_feature_signature(src.get("active_features", []), idx_to_name, name_to_idx))
+        rec_set = set(_feature_signature(rec.get("future_active_features", []), idx_to_name, name_to_idx))
+        inter = len(src_set & rec_set)
+        union = len(src_set | rec_set)
+        j = float(inter / union) if union > 0 else 1.0
+        drift_jaccard.append(j)
+        adds = len(rec_set - src_set)
+        rems = len(src_set - rec_set)
+        add_counts.append(adds)
+        remove_counts.append(rems)
+        if rec_set == src_set:
+            unchanged += 1
+        else:
+            changed += 1
+
+    report = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "quality_profile": QUALITY_PROFILE,
+        "mode": mode,
+        "model": OLLAMA_MODEL,
+        "target_years": TARGET_YEARS,
+        "source_rows": len(source_recs),
+        "output_rows": len(out_recs),
+        "quarantine_rows": len(quarantine_rows),
+        "source_by_year": _group_counts(source_recs, "year"),
+        "source_by_label": _group_counts(source_recs, "label_name"),
+        "quarantine_by_year": _group_counts(quarantine_rows, "year"),
+        "quarantine_by_label": _group_counts(quarantine_rows, "label"),
+        "generation_stats": _summarize_generation_events(generation_events),
+        "drift_stats": {
+            "changed_feature_rows": changed,
+            "unchanged_feature_rows": unchanged,
+            "changed_rate": float(changed / checked) if checked > 0 else 0.0,
+            "avg_jaccard_similarity": float(sum(drift_jaccard) / checked) if checked > 0 else 0.0,
+            "median_jaccard_similarity": float(statistics.median(drift_jaccard)) if drift_jaccard else 0.0,
+            "p25_jaccard_similarity": _percentile(drift_jaccard, 0.25),
+            "p75_jaccard_similarity": _percentile(drift_jaccard, 0.75),
+            "avg_added_features": float(sum(add_counts) / checked) if checked > 0 else 0.0,
+            "avg_removed_features": float(sum(remove_counts) / checked) if checked > 0 else 0.0,
+        },
+    }
+    return report
+
+
+def _write_research_report(path, report):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2)
+
+
+def _compute_quality_report(source_recs, out_recs, quarantine_rows, idx_to_name, name_to_idx):
+    total_source = len(source_recs)
+    total_output = len(out_recs)
+    checked = min(total_source, total_output)
+    empty_story = 0
+    short_story = 0
+    fallback_to_original = 0
+    unchanged_features = 0
+    error_rows = 0
+
+    for i in range(checked):
+        src = source_recs[i]
+        rec = out_recs[i]
+        story = str(rec.get("future_story", "")).strip()
+        if not story:
+            empty_story += 1
+        if story and len(story) < MIN_STORY_CHARS:
+            short_story += 1
+        note = rec.get("validation_note")
+        if note == "empty_future_features_fallback_to_original":
+            fallback_to_original += 1
+        if _same_features_as_original(src, rec, idx_to_name, name_to_idx):
+            unchanged_features += 1
+        if rec.get("error"):
+            error_rows += 1
+
+    # Missing rows are always a hard failure.
+    missing_rows = max(0, total_source - total_output)
+    error_rows += missing_rows
+
+    def _rate(n, d):
+        return float(n) / float(d) if d > 0 else 0.0
+
+    denom = checked if checked > 0 else 1
+    report = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "quality_profile": QUALITY_PROFILE,
+        "thresholds": {
+            "max_empty_story_rate": MAX_EMPTY_STORY_RATE,
+            "max_short_story_rate": MAX_SHORT_STORY_RATE,
+            "max_fallback_to_original_rate": MAX_FALLBACK_TO_ORIGINAL_RATE,
+            "max_unchanged_feature_rate": MAX_UNCHANGED_FEATURE_RATE,
+            "max_error_rate": MAX_ERROR_RATE,
+            "max_quarantine_rate": MAX_QUARANTINE_RATE,
+        },
+        "counts": {
+            "total_source_rows": total_source,
+            "total_output_rows": total_output,
+            "checked_rows": checked,
+            "missing_rows": missing_rows,
+            "empty_story_rows": empty_story,
+            "short_story_rows": short_story,
+            "fallback_to_original_rows": fallback_to_original,
+            "unchanged_feature_rows": unchanged_features,
+            "error_rows": error_rows,
+            "quarantine_rows": len(quarantine_rows),
+        },
+        "rates": {
+            "empty_story_rate": _rate(empty_story, denom),
+            "short_story_rate": _rate(short_story, denom),
+            "fallback_to_original_rate": _rate(fallback_to_original, denom),
+            "unchanged_feature_rate": _rate(unchanged_features, denom),
+            "error_rate": _rate(error_rows, max(1, total_source)),
+            "quarantine_rate": _rate(len(quarantine_rows), max(1, total_source)),
+        },
+    }
+    violations = []
+    rates = report["rates"]
+    if rates["empty_story_rate"] > MAX_EMPTY_STORY_RATE:
+        violations.append("empty_story_rate_above_threshold")
+    if rates["short_story_rate"] > MAX_SHORT_STORY_RATE:
+        violations.append("short_story_rate_above_threshold")
+    if rates["fallback_to_original_rate"] > MAX_FALLBACK_TO_ORIGINAL_RATE:
+        violations.append("fallback_to_original_rate_above_threshold")
+    if rates["unchanged_feature_rate"] > MAX_UNCHANGED_FEATURE_RATE:
+        violations.append("unchanged_feature_rate_above_threshold")
+    if rates["error_rate"] > MAX_ERROR_RATE:
+        violations.append("error_rate_above_threshold")
+    if rates["quarantine_rate"] > MAX_QUARANTINE_RATE:
+        violations.append("quarantine_rate_above_threshold")
+    if missing_rows > 0:
+        violations.append("missing_rows_detected")
+    report["violations"] = violations
+    report["passed"] = len(violations) == 0
+    return report
+
+
+def _write_quality_report(path, report):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2)
+
+
+def _compute_efficiency_stats(generation_events, elapsed_seconds):
+    gen = _summarize_generation_events(generation_events)
+    prompt_chars = int(gen.get("total_prompt_chars", 0))
+    raw_chars = int(gen.get("total_raw_chars", 0))
+    estimated_prompt_tokens = prompt_chars / 4.0
+    estimated_response_tokens = raw_chars / 4.0
+    estimated_total_tokens = estimated_prompt_tokens + estimated_response_tokens
+    rows = int(gen.get("events", 0))
+    elapsed = float(elapsed_seconds) if elapsed_seconds and elapsed_seconds > 0 else 0.0
+    return {
+        "elapsed_seconds": elapsed,
+        "elapsed_minutes": elapsed / 60.0 if elapsed > 0 else 0.0,
+        "estimated_prompt_tokens": estimated_prompt_tokens,
+        "estimated_response_tokens": estimated_response_tokens,
+        "estimated_total_tokens": estimated_total_tokens,
+        "estimated_tokens_per_second": (estimated_total_tokens / elapsed) if elapsed > 0 else 0.0,
+        "estimated_tokens_per_minute": (estimated_total_tokens * 60.0 / elapsed) if elapsed > 0 else 0.0,
+        "rows_generated": rows,
+        "rows_per_second": (rows / elapsed) if elapsed > 0 else 0.0,
+        "rows_per_minute": (rows * 60.0 / elapsed) if elapsed > 0 else 0.0,
+        "token_estimation_method": "chars_div_4_approximation",
+    }
+
+
+def _finalize_and_gate(
+    source_recs,
+    out_recs,
+    quarantine_rows,
+    generation_events,
+    idx_to_name,
+    name_to_idx,
+    mode,
+    elapsed_seconds,
+):
+    _write_jsonl(OUT_JSONL, out_recs)
+    _write_quarantine(OUT_QUARANTINE, quarantine_rows)
+    report = _compute_quality_report(
+        source_recs=source_recs,
+        out_recs=out_recs,
+        quarantine_rows=quarantine_rows,
+        idx_to_name=idx_to_name,
+        name_to_idx=name_to_idx,
+    )
+    _write_quality_report(OUT_QUALITY, report)
+    research = _compute_research_report(
+        mode=mode,
+        source_recs=source_recs,
+        out_recs=out_recs,
+        quarantine_rows=quarantine_rows,
+        generation_events=generation_events,
+        idx_to_name=idx_to_name,
+        name_to_idx=name_to_idx,
+    )
+    research["efficiency"] = _compute_efficiency_stats(generation_events, elapsed_seconds)
+    _write_research_report(OUT_RESEARCH, research)
+    if not report["passed"]:
+        raise RuntimeError(
+            f"Quality gate failed. See {OUT_QUALITY}. Violations: {', '.join(report['violations'])}"
+        )
 
 
 def run_default(idx_to_name, name_to_idx):
-    start_at = count_existing_lines(OUT_JSONL)
+    run_started = time.time()
     all_recs = list(read_jsonl(IN_JSONL))
     total = len(all_recs)
-    if start_at >= total:
-        print(f"Nothing to do. {OUT_JSONL} already has {start_at} lines.")
-        return
+    quarantine_rows = []
+    out_recs = []
+    generation_events = []
 
     t0 = time.time()
     total_chars = 0
-    with open(OUT_JSONL, "a", encoding="utf-8") as f:
-        for n, source_rec in enumerate(all_recs[start_at:], start=start_at + 1):
-            prompt = build_prompt(source_rec, TARGET_YEARS)
-            raw = ""
-            error = None
-            parsed = None
-            try:
-                raw = ollama_generate(prompt)
-                parsed = parse_json_relaxed(raw)
-            except Exception as exc:
-                error = str(exc)
-            total_chars += len(prompt) + len(raw)
+    for n, source_rec in enumerate(all_recs, start=1):
+        candidate, attempts, chars_used, meta = _generate_with_retries(
+            source_rec, idx_to_name, name_to_idx, max_retries=MAX_REPAIR_RETRIES
+        )
+        generation_events.append(
+            {
+                "year": source_rec.get("year"),
+                "label": source_rec.get("label"),
+                "row_index": source_rec.get("row_index"),
+                **meta,
+            }
+        )
+        total_chars += chars_used
+        if needs_repair(source_rec, candidate, idx_to_name, name_to_idx):
+            quarantine_rows.append(
+                _make_quarantine_row(
+                    source_rec,
+                    candidate,
+                    reason="default_generation_failed_quality",
+                    attempts=attempts,
+                )
+            )
+        out_recs.append(candidate)
 
-            out = build_output_record(source_rec, raw, parsed, error, idx_to_name, name_to_idx)
-            if out.get("error") == "no_valid_features_after_validation":
-                raise RuntimeError(f"No valid features for row_index={source_rec.get('row_index')}")
-
-            f.write(json.dumps(out, ensure_ascii=True) + "\n")
-
-            if n % 5 == 0 or n == total:
-                elapsed = time.time() - t0
-                avg_tps = (total_chars / 4) / elapsed if elapsed > 0 else None
-                _progress(n, total, elapsed, avg_tps)
-            if SLEEP_BETWEEN_REQUESTS:
-                time.sleep(SLEEP_BETWEEN_REQUESTS)
+        if n % 5 == 0 or n == total:
+            elapsed = time.time() - t0
+            avg_tps = (total_chars / 4) / elapsed if elapsed > 0 else None
+            _progress(n, total, elapsed, avg_tps)
+        if SLEEP_BETWEEN_REQUESTS:
+            time.sleep(SLEEP_BETWEEN_REQUESTS)
     if total > 0:
         sys.stdout.write("\n")
 
-    _write_readme(IN_JSONL, OUT_JSONL, mode="default")
+    elapsed_seconds = time.time() - run_started
+    efficiency = _compute_efficiency_stats(generation_events, elapsed_seconds)
+    _finalize_and_gate(
+        all_recs,
+        out_recs,
+        quarantine_rows,
+        generation_events,
+        idx_to_name,
+        name_to_idx,
+        mode="default",
+        elapsed_seconds=elapsed_seconds,
+    )
+    _write_readme(IN_JSONL, OUT_JSONL, mode="default", efficiency=efficiency)
     print(f"Wrote: {OUT_JSONL}")
+    print(f"Wrote: {OUT_QUARANTINE}")
+    print(f"Wrote: {OUT_QUALITY}")
+    print(f"Wrote: {OUT_RESEARCH}")
     print(f"Wrote: {OUT_README}")
 
 
 def run_repair_only(idx_to_name, name_to_idx, dry_run=False):
+    run_started = time.time()
     if not os.path.isfile(OUT_JSONL):
         raise FileNotFoundError(f"Missing output to repair: {OUT_JSONL}")
 
@@ -443,11 +849,13 @@ def run_repair_only(idx_to_name, name_to_idx, dry_run=False):
 
     if len(out_recs) > len(source_recs):
         raise RuntimeError("Output has more rows than input; refusing repair.")
+    if len(out_recs) < len(source_recs):
+        out_recs.extend({} for _ in range(len(source_recs) - len(out_recs)))
 
     repair_idx = []
     for i in range(len(source_recs)):
-        current = out_recs[i] if i < len(out_recs) else None
-        if needs_repair(current):
+        current = out_recs[i]
+        if needs_repair(source_recs[i], current, idx_to_name, name_to_idx):
             repair_idx.append(i)
 
     print(f"Repair candidates: {len(repair_idx)} / {len(source_recs)}")
@@ -458,12 +866,11 @@ def run_repair_only(idx_to_name, name_to_idx, dry_run=False):
         print("Nothing to repair.")
         return
 
-    if len(out_recs) < len(source_recs):
-        out_recs.extend({} for _ in range(len(source_recs) - len(out_recs)))
-
     t0 = time.time()
     total_chars = 0
     repaired = 0
+    quarantine_rows = []
+    generation_events = []
 
     for n, i in enumerate(repair_idx, start=1):
         source_rec = source_recs[i]
@@ -481,18 +888,29 @@ def run_repair_only(idx_to_name, name_to_idx, dry_run=False):
         )
 
         # If still bad after salvage, regenerate this row.
-        if needs_repair(candidate):
-            prompt = build_prompt(source_rec, TARGET_YEARS)
-            raw = ""
-            parsed = None
-            error = None
-            try:
-                raw = ollama_generate(prompt)
-                parsed = parse_json_relaxed(raw)
-            except Exception as exc:
-                error = str(exc)
-            total_chars += len(prompt) + len(raw)
-            candidate = build_output_record(source_rec, raw, parsed, error, idx_to_name, name_to_idx)
+        attempts = 0
+        if needs_repair(source_rec, candidate, idx_to_name, name_to_idx):
+            candidate, attempts, chars_used, meta = _generate_with_retries(
+                source_rec, idx_to_name, name_to_idx, max_retries=MAX_REPAIR_RETRIES
+            )
+            generation_events.append(
+                {
+                    "year": source_rec.get("year"),
+                    "label": source_rec.get("label"),
+                    "row_index": source_rec.get("row_index"),
+                    **meta,
+                }
+            )
+            total_chars += chars_used
+            if needs_repair(source_rec, candidate, idx_to_name, name_to_idx):
+                quarantine_rows.append(
+                    _make_quarantine_row(
+                        source_rec,
+                        candidate,
+                        reason="repair_generation_failed_quality",
+                        attempts=attempts,
+                    )
+                )
 
         out_recs[i] = candidate
         repaired += 1
@@ -507,9 +925,29 @@ def run_repair_only(idx_to_name, name_to_idx, dry_run=False):
     if repair_idx:
         sys.stdout.write("\n")
 
-    _write_jsonl(OUT_JSONL, out_recs)
-    _write_readme(IN_JSONL, OUT_JSONL, mode="repair-only", repaired_count=repaired)
+    elapsed_seconds = time.time() - run_started
+    efficiency = _compute_efficiency_stats(generation_events, elapsed_seconds)
+    _finalize_and_gate(
+        source_recs,
+        out_recs,
+        quarantine_rows,
+        generation_events,
+        idx_to_name,
+        name_to_idx,
+        mode="repair-only",
+        elapsed_seconds=elapsed_seconds,
+    )
+    _write_readme(
+        IN_JSONL,
+        OUT_JSONL,
+        mode="repair-only",
+        repaired_count=repaired,
+        efficiency=efficiency,
+    )
     print(f"Wrote repaired output: {OUT_JSONL}")
+    print(f"Wrote: {OUT_QUARANTINE}")
+    print(f"Wrote: {OUT_QUALITY}")
+    print(f"Wrote: {OUT_RESEARCH}")
     print(f"Wrote: {OUT_README}")
 
 

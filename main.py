@@ -32,11 +32,7 @@ YEARS = [2012, 2014, 2016, 2018]
 # Option A: list of years to combine (e.g. [2012, 2014] = train on 2012+2014 train data).
 # Option B: path to a folder with X.npy and y.npy (overrides CUSTOM_TRAIN_YEARS if set).
 CUSTOM_TRAIN_YEARS = None  # e.g. [2012, 2014, 2016] or None to disable
-CUSTOM_DATA_DIR = None     # e.g. os.path.join(BASE_DATA_DIR, "data_custom") or None
-if CUSTOM_DATA_DIR is None:
-    _default_custom_dir = os.path.join(BASE_DATA_DIR, "data_custom")
-    if os.path.isdir(_default_custom_dir):
-        CUSTOM_DATA_DIR = _default_custom_dir
+CUSTOM_DATA_DIR = os.path.join(BASE_DATA_DIR, "data_future_arrays")     # e.g. os.path.join(BASE_DATA_DIR, "data_custom") or None
 
 FEATURES_JSON = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
