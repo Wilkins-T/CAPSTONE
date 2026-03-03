@@ -6,3 +6,5 @@ drive-download-*/
 data_*/
 saved_old_tests/
 results_summary.json
+__pycache__/
+*.pyc
