@@ -19,9 +19,11 @@ Outputs:
 
 import argparse
 import ast
+import hashlib
 import json
 import os
 import statistics
+import subprocess
 import sys
 import time
 import urllib.request
@@ -39,6 +41,7 @@ OUT_README = os.path.join(OUT_DIR, "README_future.md")
 OUT_QUARANTINE = os.path.join(OUT_DIR, "future_stories_quarantine.jsonl")
 OUT_QUALITY = os.path.join(OUT_DIR, "future_stories_quality_report.json")
 OUT_RESEARCH = os.path.join(OUT_DIR, "future_stories_research_report.json")
+OUT_MANIFEST = os.path.join(OUT_DIR, "future_stories_run_manifest.json")
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/generate")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.1:8b")
@@ -70,6 +73,11 @@ def parse_args():
         "--dry-run",
         action="store_true",
         help="Show how many rows would be repaired; do not write changes.",
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume default generation from existing future_stories.jsonl.",
     )
     return parser.parse_args()
 
@@ -440,12 +448,38 @@ def _write_readme(input_path, output_path, mode, repaired_count=None, efficiency
         f.write(f"- Quarantine output: {OUT_QUARANTINE}\n")
         f.write(f"- Quality report: {OUT_QUALITY}\n")
         f.write(f"- Research report: {OUT_RESEARCH}\n")
+        f.write(f"- Run manifest: {OUT_MANIFEST}\n")
 
 
 def _write_quarantine(path, rows):
     with open(path, "w", encoding="utf-8") as f:
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=True) + "\n")
+
+
+def _sha256_of_file(path: str):
+    if not os.path.isfile(path):
+        return None
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        while True:
+            chunk = f.read(1024 * 1024)
+            if not chunk:
+                break
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _git_info(repo_dir: str):
+    try:
+        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo_dir, text=True).strip()
+    except Exception:
+        commit = None
+    try:
+        dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=repo_dir, text=True).strip())
+    except Exception:
+        dirty = None
+    return {"commit": commit, "dirty": dirty}
 
 
 def _make_quarantine_row(source_rec, candidate, reason, attempts):
@@ -715,6 +749,50 @@ def _write_quality_report(path, report):
         json.dump(report, f, indent=2)
 
 
+def _write_manifest(mode, resume, source_rows, output_rows, rows_generated_this_run):
+    repo_root = os.path.dirname(os.path.abspath(__file__))
+    manifest = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "quality_profile": QUALITY_PROFILE,
+        "git": _git_info(repo_root),
+        "mode": mode,
+        "resume": bool(resume),
+        "model": {
+            "ollama_url": OLLAMA_URL,
+            "ollama_model": OLLAMA_MODEL,
+        },
+        "runtime_config": {
+            "target_years": TARGET_YEARS,
+            "min_story_chars": MIN_STORY_CHARS,
+            "max_repair_retries": MAX_REPAIR_RETRIES,
+            "max_empty_story_rate": MAX_EMPTY_STORY_RATE,
+            "max_short_story_rate": MAX_SHORT_STORY_RATE,
+            "max_fallback_to_original_rate": MAX_FALLBACK_TO_ORIGINAL_RATE,
+            "max_unchanged_feature_rate": MAX_UNCHANGED_FEATURE_RATE,
+            "max_error_rate": MAX_ERROR_RATE,
+            "max_quarantine_rate": MAX_QUARANTINE_RATE,
+        },
+        "rows": {
+            "source_rows": int(source_rows),
+            "output_rows": int(output_rows),
+            "rows_generated_this_run": int(rows_generated_this_run),
+        },
+        "inputs": {
+            "stories_jsonl": {"path": IN_JSONL, "sha256": _sha256_of_file(IN_JSONL)},
+            "selected_features": {"path": FEATURES_JSON, "sha256": _sha256_of_file(FEATURES_JSON)},
+        },
+        "outputs": {
+            "future_stories_jsonl": {"path": OUT_JSONL, "sha256": _sha256_of_file(OUT_JSONL)},
+            "quarantine_jsonl": {"path": OUT_QUARANTINE, "sha256": _sha256_of_file(OUT_QUARANTINE)},
+            "quality_report": {"path": OUT_QUALITY, "sha256": _sha256_of_file(OUT_QUALITY)},
+            "research_report": {"path": OUT_RESEARCH, "sha256": _sha256_of_file(OUT_RESEARCH)},
+            "readme": {"path": OUT_README, "sha256": _sha256_of_file(OUT_README)},
+        },
+    }
+    with open(OUT_MANIFEST, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+
 def _compute_efficiency_stats(generation_events, elapsed_seconds):
     gen = _summarize_generation_events(generation_events)
     prompt_chars = int(gen.get("total_prompt_chars", 0))
@@ -776,17 +854,32 @@ def _finalize_and_gate(
         )
 
 
-def run_default(idx_to_name, name_to_idx):
+def run_default(idx_to_name, name_to_idx, resume=False):
     run_started = time.time()
     all_recs = list(read_jsonl(IN_JSONL))
     total = len(all_recs)
     quarantine_rows = []
     out_recs = []
     generation_events = []
+    start_idx = 0
+
+    if resume:
+        if os.path.isfile(OUT_JSONL):
+            out_recs = list(read_jsonl(OUT_JSONL))
+            if len(out_recs) > total:
+                raise RuntimeError("Existing output has more rows than input; refusing resume.")
+            start_idx = len(out_recs)
+            print(f"Resume enabled. Existing rows: {start_idx}/{total}")
+        else:
+            print("Resume enabled but no existing output found. Starting fresh.")
+    else:
+        for p in [OUT_JSONL, OUT_QUARANTINE, OUT_QUALITY, OUT_RESEARCH, OUT_README, OUT_MANIFEST]:
+            if os.path.isfile(p):
+                os.remove(p)
 
     t0 = time.time()
     total_chars = 0
-    for n, source_rec in enumerate(all_recs, start=1):
+    for n, source_rec in enumerate(all_recs[start_idx:], start=start_idx + 1):
         candidate, attempts, chars_used, meta = _generate_with_retries(
             source_rec, idx_to_name, name_to_idx, max_retries=MAX_REPAIR_RETRIES
         )
@@ -832,10 +925,18 @@ def run_default(idx_to_name, name_to_idx):
         elapsed_seconds=elapsed_seconds,
     )
     _write_readme(IN_JSONL, OUT_JSONL, mode="default", efficiency=efficiency)
+    _write_manifest(
+        mode="default",
+        resume=resume,
+        source_rows=len(all_recs),
+        output_rows=len(out_recs),
+        rows_generated_this_run=max(0, len(all_recs) - start_idx),
+    )
     print(f"Wrote: {OUT_JSONL}")
     print(f"Wrote: {OUT_QUARANTINE}")
     print(f"Wrote: {OUT_QUALITY}")
     print(f"Wrote: {OUT_RESEARCH}")
+    print(f"Wrote: {OUT_MANIFEST}")
     print(f"Wrote: {OUT_README}")
 
 
@@ -944,10 +1045,18 @@ def run_repair_only(idx_to_name, name_to_idx, dry_run=False):
         repaired_count=repaired,
         efficiency=efficiency,
     )
+    _write_manifest(
+        mode="repair-only",
+        resume=True,
+        source_rows=len(source_recs),
+        output_rows=len(out_recs),
+        rows_generated_this_run=len(repair_idx),
+    )
     print(f"Wrote repaired output: {OUT_JSONL}")
     print(f"Wrote: {OUT_QUARANTINE}")
     print(f"Wrote: {OUT_QUALITY}")
     print(f"Wrote: {OUT_RESEARCH}")
+    print(f"Wrote: {OUT_MANIFEST}")
     print(f"Wrote: {OUT_README}")
 
 
@@ -961,12 +1070,14 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
 
     if args.repair_only:
+        if args.resume:
+            print("--resume is ignored with --repair-only.")
         run_repair_only(idx_to_name, name_to_idx, dry_run=args.dry_run)
     else:
         if args.dry_run:
             print("--dry-run is only used with --repair-only.")
             return
-        run_default(idx_to_name, name_to_idx)
+        run_default(idx_to_name, name_to_idx, resume=args.resume)
 
 
 if __name__ == "__main__":
