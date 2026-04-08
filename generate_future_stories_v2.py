@@ -16,6 +16,7 @@ Outputs:
 
 import argparse
 import ast
+import concurrent.futures
 import hashlib
 import json
 import os
@@ -53,10 +54,11 @@ def parse_args():
     p.add_argument("--temperature", type=float, default=0.35)
     p.add_argument("--num-ctx", type=int, default=4096)
     p.add_argument("--timeout-seconds", type=int, default=120)
-    p.add_argument("--max-retries", type=int, default=3)
+    p.add_argument("--max-retries", type=int, default=1)
     p.add_argument("--retry-backoff-base", type=float, default=0.7)
     p.add_argument("--retry-backoff-factor", type=float, default=1.7)
     p.add_argument("--sleep-between-requests", type=float, default=0.0)
+    p.add_argument("--concurrency", type=int, default=2)
     p.add_argument("--min-story-chars", type=int, default=80)
     p.add_argument("--max-empty-story-rate", type=float, default=0.01)
     p.add_argument("--max-short-story-rate", type=float, default=0.02)
@@ -129,15 +131,40 @@ def parse_json_relaxed(text: str):
         return None
     raw = text.strip()
     candidates = [raw]
-    if raw.startswith("```"):
-        lines = raw.splitlines()
-        if lines and lines[0].startswith("```"):
-            lines = lines[1:]
-        if lines and lines[-1].strip().startswith("```"):
-            lines = lines[:-1]
-        stripped = "\n".join(lines).strip()
+
+    # Models often wrap JSON in fenced blocks or add a short preamble first.
+    for m in re.finditer(r"```(?:json)?\s*(.*?)```", raw, flags=re.IGNORECASE | re.DOTALL):
+        stripped = m.group(1).strip()
         if stripped:
             candidates.insert(0, stripped)
+
+    # Fall back to the first balanced JSON object embedded anywhere in the text.
+    starts = [i for i, ch in enumerate(raw) if ch == "{"][:8]
+    for start in starts:
+        depth = 0
+        in_str = False
+        escaped = False
+        for idx in range(start, len(raw)):
+            ch = raw[idx]
+            if in_str:
+                if escaped:
+                    escaped = False
+                elif ch == "\\":
+                    escaped = True
+                elif ch == '"':
+                    in_str = False
+                continue
+            if ch == '"':
+                in_str = True
+            elif ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    stripped = raw[start : idx + 1].strip()
+                    if stripped:
+                        candidates.insert(0, stripped)
+                    break
 
     for cand in candidates:
         try:
@@ -153,34 +180,175 @@ def parse_json_relaxed(text: str):
     return None
 
 
+def _extract_json_string_field(text: str, field_name: str):
+    key = f'"{field_name}"'
+    start = 0
+    while True:
+        idx = text.find(key, start)
+        if idx == -1:
+            return ""
+        colon = text.find(":", idx + len(key))
+        if colon == -1:
+            return ""
+        quote = text.find('"', colon + 1)
+        if quote == -1:
+            return ""
+
+        buf = []
+        i = quote + 1
+        while i < len(text):
+            ch = text[i]
+            if ch == '"':
+                tail = text[i + 1 :].lstrip()
+                if tail.startswith(",") or tail.startswith("}"):
+                    return "".join(buf).strip()
+                buf.append(ch)
+                i += 1
+                continue
+            if ch == "\\" and i + 1 < len(text):
+                buf.append(ch)
+                buf.append(text[i + 1])
+                i += 2
+                continue
+            buf.append(ch)
+            i += 1
+        start = idx + len(key)
+
+
+def _extract_schema_fields_relaxed(text: str):
+    if not text:
+        return None
+    raw = text.strip()
+    candidates = [raw]
+    for m in re.finditer(r"```(?:json)?\s*(.*?)```", raw, flags=re.IGNORECASE | re.DOTALL):
+        stripped = m.group(1).strip()
+        if stripped:
+            candidates.insert(0, stripped)
+
+    for cand in candidates:
+        future_story = _extract_json_string_field(cand, "future_story")
+        changes_summary = _extract_json_string_field(cand, "changes_summary")
+        if future_story or changes_summary:
+            return {"future_story": future_story, "changes_summary": changes_summary}
+    return None
+
+
+def _normalize_section_tag(text: str, label: str):
+    patterns = [
+        rf"(?im)^\s*\*\*{label}\*\*\s*:?\s*$",
+        rf"(?im)^\s*{label}\s*:?\s*$",
+        rf"(?im)^\s*\"{label}\"\s*:?\s*$",
+        rf"(?im)^\s*{label}\"\s*:?\s*$",
+        rf"(?im)^\s*\"?{label}\"?\s*:\s*",
+    ]
+    out = text
+    for pat in patterns:
+        out = re.sub(pat, f"{label}:\n", out)
+    return out
+
+
+def _collapse_tag_repeats(text: str):
+    out = text
+    for label in ["ASSESSMENT", "BEHAVIOR", "RATIONALE"]:
+        out = re.sub(rf"(?im)(?:{label}:\s*)+", f"{label}:\n", out)
+    return out
+
+
+def _render_section_value(value):
+    if isinstance(value, list):
+        parts = []
+        for item in value:
+            s = str(item).strip()
+            if s:
+                parts.append(s if s.startswith("*") else f"* {s}")
+        return "\n".join(parts).strip()
+    if isinstance(value, dict):
+        parts = []
+        for k, v in value.items():
+            sv = str(v).strip()
+            if sv:
+                parts.append(f"* {k}: {sv}")
+        return "\n".join(parts).strip()
+    return str(value or "").strip()
+
+
+def _coerce_story_text(value):
+    if isinstance(value, dict):
+        section_keys = ["ASSESSMENT", "BEHAVIOR", "RATIONALE"]
+        if any(k in value for k in section_keys):
+            parts = []
+            for key in section_keys:
+                if key in value:
+                    rendered = _render_section_value(value.get(key))
+                    if rendered:
+                        parts.append(f"{key}:\n{rendered}")
+            return "\n\n".join(parts).strip()
+        return json.dumps(value, ensure_ascii=True)
+    return str(value or "").strip()
+
+
+def _normalize_story_format(story: str):
+    s = str(story or "").strip()
+    if not s:
+        return ""
+    s = s.replace("\r\n", "\n")
+    s = _normalize_section_tag(s, "ASSESSMENT")
+    s = _normalize_section_tag(s, "BEHAVIOR")
+    s = _normalize_section_tag(s, "RATIONALE")
+    s = _collapse_tag_repeats(s)
+    s = re.sub(r"\n{3,}", "\n\n", s).strip()
+    return s
+
+
+def _archive_failed_outputs(attempt_tag: str):
+    archive_root = os.path.join(OUT_DIR, "failed_quality_runs")
+    os.makedirs(archive_root, exist_ok=True)
+    stamp = time.strftime("%Y%m%d_%H%M%S")
+    archive_dir = os.path.join(archive_root, f"{stamp}_{attempt_tag}")
+    os.makedirs(archive_dir, exist_ok=True)
+    for path in [OUT_JSONL, OUT_QUARANTINE, OUT_QUALITY, OUT_RESEARCH, OUT_MANIFEST, OUT_README]:
+        if os.path.isfile(path):
+            dest = os.path.join(archive_dir, os.path.basename(path))
+            with open(path, "rb") as src_f, open(dest, "wb") as dst_f:
+                dst_f.write(src_f.read())
+    return archive_dir
+
+
 def build_prompt(rec):
     years_str = ", ".join(str(y) for y in TARGET_YEARS)
     story = rec.get("story", "")
     return f"""
-You are projecting an Android sample behavior into a future period ({years_str}).
+You are rewriting an Android app telemetry summary for a later analysis period ({years_str}).
 
 Original analysis story:
 {story}
 
 Task:
-Produce ONE future-facing story (single combined forecast, not year-split) describing how this sample would likely present in that period.
+Produce ONE story for that later period using the same style as the original year stories.
 
 Rules:
-- Forensic, neutral language; no operational guidance.
-- Keep wording factual and non-dramatic.
-- Focus on plausible observable shifts only (API usage, permission mix, infrastructure pattern, execution timing, packaging style).
+- Match the original year-story structure exactly inside `future_story`:
+  ASSESSMENT:
+  BEHAVIOR:
+  RATIONALE:
+- Write it as a direct evidence-style summary of how the sample presents in that later period.
+- Do not narrate temporal change explicitly.
+- Do not say things like "in the future", "would likely", "may continue", "could shift", "changed to", or "evolved".
+- Do not include a forecast framing or compare against the source story.
+- Keep wording factual, neutral, and non-dramatic.
+- Focus on observable app behavior only (permissions, API usage, network patterns, execution style, data handling).
 - Do not infer motive, attacker intent, victim impact, or campaign attribution.
-- Mark uncertainty explicitly with neutral phrasing such as "may" or "could".
+- If uncertainty is necessary, state it sparingly and neutrally without discussing change over time.
 - Keep class labels hidden; do not use direct class terms (forbidden: malicious, benign).
 - Avoid loaded security terms unless directly supported by the source story
   (forbidden by default: attacker, payload, compromise, weaponize, trojan, ransomware, spyware).
-- Do not include markdown/code fences.
+- Do not output markdown.
 - Output ONLY valid JSON.
 
 JSON schema:
 {{
-  "future_story": "string",
-  "changes_summary": "string"
+  "future_story": "Plain text only. Must contain ASSESSMENT:, BEHAVIOR:, and RATIONALE: sections.",
+  "changes_summary": ""
 }}
 """.strip()
 
@@ -201,12 +369,122 @@ def _write_jsonl(path, rows):
             f.write(json.dumps(r, ensure_ascii=True) + "\n")
 
 
+def _normalize_output_row(row, min_chars: int):
+    out = dict(row)
+    future_story = _normalize_story_format(_coerce_story_text(out.get("future_story", "")))
+    changes_summary = str(out.get("changes_summary", "")).strip()
+    if not future_story or not changes_summary:
+        parsed = parse_json_relaxed(str(out.get("raw_model_output", "")))
+        if not isinstance(parsed, dict):
+            parsed = _extract_schema_fields_relaxed(str(out.get("raw_model_output", "")))
+        if isinstance(parsed, dict):
+            if not future_story:
+                parsed_story = parsed.get("future_story", "")
+                if not parsed_story and any(k in parsed for k in ["ASSESSMENT", "BEHAVIOR", "RATIONALE"]):
+                    parsed_story = {k: parsed.get(k) for k in ["ASSESSMENT", "BEHAVIOR", "RATIONALE"] if k in parsed}
+                future_story = _normalize_story_format(_coerce_story_text(parsed_story))
+            if not changes_summary:
+                changes_summary = str(parsed.get("changes_summary", "")).strip()
+    out["future_story"] = _normalize_story_format(future_story)
+    out["changes_summary"] = changes_summary
+    out["quality_flag"] = _qflag(future_story, min_chars)
+    return out
+
+
+def _build_quarantine(rows):
+    quarantine = []
+    for out in rows:
+        qf = out.get("quality_flag", "ok")
+        if qf != "ok" or out.get("error") is not None:
+            quarantine.append(
+                {
+                    "year": out.get("year"),
+                    "row_index": out.get("row_index"),
+                    "label": out.get("label"),
+                    "reason": qf if qf != "ok" else "generation_error",
+                    "record": out,
+                }
+            )
+    return quarantine
+
+
+def _generate_future_job(job):
+    rec = job["rec"]
+    args = job["args"]
+    prompt = build_prompt(rec)
+    prompt_hash = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+    parsed = None
+    raw = ""
+    error = None
+    attempts = 0
+    pchars = 0
+    rchars = 0
+    backoff_s = 0.0
+
+    for a in range(1, args.max_retries + 1):
+        attempts = a
+        pchars += len(prompt)
+        try:
+            raw = ollama_generate(prompt, args)
+            parsed = parse_json_relaxed(raw)
+            if not isinstance(parsed, dict):
+                parsed = _extract_schema_fields_relaxed(raw)
+            error = None
+        except Exception as exc:
+            error = str(exc)
+        rchars += len(raw)
+        if isinstance(parsed, dict) and str(parsed.get("future_story", "")).strip():
+            break
+        if a < args.max_retries:
+            delay = args.retry_backoff_base * (args.retry_backoff_factor ** (a - 1))
+            time.sleep(delay)
+            backoff_s += delay
+
+    future_story = ""
+    changes_summary = ""
+    if isinstance(parsed, dict):
+        parsed_story = parsed.get("future_story", "")
+        if not parsed_story and any(k in parsed for k in ["ASSESSMENT", "BEHAVIOR", "RATIONALE"]):
+            parsed_story = {k: parsed.get(k) for k in ["ASSESSMENT", "BEHAVIOR", "RATIONALE"] if k in parsed}
+        future_story = _normalize_story_format(_coerce_story_text(parsed_story))
+        changes_summary = str(parsed.get("changes_summary", "")).strip()
+
+    qf = _qflag(future_story, args.min_story_chars)
+    out = {
+        "year": rec.get("year"),
+        "row_index": rec.get("row_index"),
+        "label": rec.get("label"),
+        "label_name": rec.get("label_name"),
+        "target_years": TARGET_YEARS,
+        "source_story": rec.get("story", ""),
+        "future_story": future_story,
+        "changes_summary": changes_summary,
+        "raw_model_output": raw,
+        "error": error,
+        "generation_attempts": attempts,
+        "quality_flag": qf,
+        "generation_meta": {
+            "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "prompt_sha256": prompt_hash,
+            "raw_sha256": hashlib.sha256(raw.encode("utf-8")).hexdigest() if raw else None,
+            "prompt_chars": pchars,
+            "response_chars": rchars,
+            "retry_backoff_seconds": round(backoff_s, 4),
+            "model": OLLAMA_MODEL,
+        },
+    }
+    event = {"attempts": attempts, "prompt_chars": pchars, "response_chars": rchars}
+    return {"out": out, "event": event}
+
+
 def _qflag(future_story: str, min_chars: int):
     s = (future_story or "").strip()
     if not s:
         return "empty_story"
     if len(s) < min_chars:
         return "short_story"
+    if "ASSESSMENT:" not in s or "BEHAVIOR:" not in s or "RATIONALE:" not in s:
+        return "missing_required_tags"
     if re.search(r"\b(malicious|benign)\b", s, flags=re.IGNORECASE):
         return "label_leak_terms"
     if re.search(r"\b(attacker|payload|compromise|weaponize|trojan|ransomware|spyware)\b", s, flags=re.IGNORECASE):
@@ -230,96 +508,53 @@ def main():
             raise FileNotFoundError(f"Missing input: {p}")
         source.extend(read_jsonl(p))
 
-    start = count_rows(OUT_JSONL) if args.resume else 0
+    existing_rows = []
+    if args.resume and os.path.isfile(OUT_JSONL):
+        existing_rows = [_normalize_output_row(r, args.min_story_chars) for r in read_jsonl(OUT_JSONL)]
+        _write_jsonl(OUT_JSONL, existing_rows)
+
+    start = len(existing_rows) if args.resume else 0
     mode = "a" if args.resume else "w"
 
     total = len(source)
     events = []
-    quarantine = []
     t0 = time.time()
+    pending_jobs = [{"rec": rec, "args": args} for rec in source[start:]]
 
     with open(OUT_JSONL, mode, encoding="utf-8") as f:
-        for i, rec in enumerate(source[start:], start=start):
-            prompt = build_prompt(rec)
-            prompt_hash = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
-            parsed = None
-            raw = ""
-            error = None
-            attempts = 0
-            pchars = 0
-            rchars = 0
-            backoff_s = 0.0
+        workers = max(1, args.concurrency)
+        if workers == 1:
+            iterator = map(_generate_future_job, pending_jobs)
+        else:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
+                iterator = ex.map(_generate_future_job, pending_jobs)
+                for i, result in enumerate(iterator, start=start):
+                    out = result["out"]
+                    f.write(json.dumps(out, ensure_ascii=True) + "\n")
+                    events.append(result["event"])
+                    n = i + 1
+                    if n % 5 == 0 or n == total:
+                        _progress(n, total, time.time() - t0)
+                    if args.sleep_between_requests:
+                        time.sleep(args.sleep_between_requests)
+            iterator = None
 
-            for a in range(1, args.max_retries + 1):
-                attempts = a
-                pchars += len(prompt)
-                try:
-                    raw = ollama_generate(prompt, args)
-                    parsed = parse_json_relaxed(raw)
-                except Exception as exc:
-                    error = str(exc)
-                rchars += len(raw)
-                if isinstance(parsed, dict) and str(parsed.get("future_story", "")).strip():
-                    break
-                if a < args.max_retries:
-                    delay = args.retry_backoff_base * (args.retry_backoff_factor ** (a - 1))
-                    time.sleep(delay)
-                    backoff_s += delay
-
-            future_story = ""
-            changes_summary = ""
-            if isinstance(parsed, dict):
-                future_story = str(parsed.get("future_story", "")).strip()
-                changes_summary = str(parsed.get("changes_summary", "")).strip()
-
-            qf = _qflag(future_story, args.min_story_chars)
-            out = {
-                "year": rec.get("year"),
-                "row_index": rec.get("row_index"),
-                "label": rec.get("label"),
-                "label_name": rec.get("label_name"),
-                "target_years": TARGET_YEARS,
-                "source_story": rec.get("story", ""),
-                "future_story": future_story,
-                "changes_summary": changes_summary,
-                "raw_model_output": raw,
-                "error": error,
-                "generation_attempts": attempts,
-                "quality_flag": qf,
-                "generation_meta": {
-                    "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-                    "prompt_sha256": prompt_hash,
-                    "raw_sha256": hashlib.sha256(raw.encode("utf-8")).hexdigest() if raw else None,
-                    "prompt_chars": pchars,
-                    "response_chars": rchars,
-                    "retry_backoff_seconds": round(backoff_s, 4),
-                    "model": OLLAMA_MODEL,
-                },
-            }
-            f.write(json.dumps(out, ensure_ascii=True) + "\n")
-
-            events.append({"attempts": attempts, "prompt_chars": pchars, "response_chars": rchars})
-            if qf != "ok" or error is not None:
-                quarantine.append(
-                    {
-                        "year": out.get("year"),
-                        "row_index": out.get("row_index"),
-                        "label": out.get("label"),
-                        "reason": qf if qf != "ok" else "generation_error",
-                        "record": out,
-                    }
-                )
-
-            n = i + 1
-            if n % 5 == 0 or n == total:
-                _progress(n, total, time.time() - t0)
-            if args.sleep_between_requests:
-                time.sleep(args.sleep_between_requests)
+        if iterator is not None:
+            for i, result in enumerate(iterator, start=start):
+                out = result["out"]
+                f.write(json.dumps(out, ensure_ascii=True) + "\n")
+                events.append(result["event"])
+                n = i + 1
+                if n % 5 == 0 or n == total:
+                    _progress(n, total, time.time() - t0)
+                if args.sleep_between_requests:
+                    time.sleep(args.sleep_between_requests)
 
     if total > 0:
         sys.stdout.write("\n")
 
     all_rows = list(read_jsonl(OUT_JSONL)) if os.path.isfile(OUT_JSONL) else []
+    quarantine = _build_quarantine(all_rows)
     _write_jsonl(OUT_QUARANTINE, quarantine)
 
     n = len(all_rows)
@@ -455,6 +690,8 @@ def main():
     print(f"Wrote {OUT_README}")
 
     if args.strict_gate and not quality.get("passed", False):
+        archive_dir = _archive_failed_outputs("strict_gate_failed")
+        print(f"Archived failed-quality outputs to {archive_dir}")
         raise RuntimeError(
             f"Quality gate failed. See {OUT_QUALITY}. Violations: {', '.join(quality.get('violations', []))}"
         )

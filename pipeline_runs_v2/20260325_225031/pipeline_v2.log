@@ -1,0 +1,48 @@
+Run ID: 20260325_225031
+Log file: /home/t/Downloads/Code/pipeline_runs_v2/20260325_225031/pipeline_v2.log
+State file: /home/t/Downloads/Code/pipeline_runs_v2/20260325_225031/completed_steps.txt
+To resume later: RUN_ID=20260325_225031 bash run_full_pipeline_v2.sh
+PIPELINE [------------------------------] 0/5
+
+==================================================================
+[2026-03-25 22:50:31] START: V2 Stage 1: year stories (attempt 1/3)
+CMD: python generate_year_stories_v2.py
+==================================================================
+[------------------------------] 5/6000 ETA 435:15[------------------------------] 10/6000 ETA 526:48[------------------------------] 15/6000 ETA 833:02[------------------------------] 20/6000 ETA 998:06[------------------------------] 25/6000 ETA 1010:50[------------------------------] 30/6000 ETA 1132:55[------------------------------] 35/6000 ETA 1088:12Traceback (most recent call last):
+  File "/home/t/Downloads/Code/generate_year_stories_v2.py", line 515, in <module>
+    }
+    
+  File "/home/t/Downloads/Code/generate_year_stories_v2.py", line 356, in main
+    out_path = os.path.join(OUT_DIR, f"stories_{year}.jsonl")
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t/Downloads/Code/generate_year_stories_v2.py", line 143, in ollama_generate
+    with urllib.request.urlopen(req, timeout=args.timeout_seconds) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/usr/lib64/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/usr/lib64/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib64/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/usr/lib64/python3.14/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib64/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib64/python3.14/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+KeyboardInterrupt

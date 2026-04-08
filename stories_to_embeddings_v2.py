@@ -37,6 +37,8 @@ OUT_QUALITY = os.path.join(OUT_DIR, "embeddings_quality_report.json")
 OUT_RESEARCH = os.path.join(OUT_DIR, "embeddings_research_report.json")
 OUT_MANIFEST = os.path.join(OUT_DIR, "embeddings_run_manifest.json")
 OUT_README = os.path.join(OUT_DIR, "README_embeddings_v2.md")
+OUT_FUTURE_PRED = os.path.join(OUT_DIR, "data_future", "y_story_pred.npy")
+OUT_FUTURE_PRED_REPORT = os.path.join(OUT_DIR, "future_story_prediction_report.json")
 QUALITY_PROFILE = "research_v1"
 
 
@@ -104,6 +106,96 @@ def _progress(n, total, elapsed, prefix=""):
     lead = f"{prefix} " if prefix else ""
     sys.stdout.write(f"\r{lead}[{bar}] {n}/{total} ETA {int(eta//60):02d}:{int(eta%60):02d}")
     sys.stdout.flush()
+
+
+def _normalize_rows(x: np.ndarray):
+    n = np.linalg.norm(x, axis=1, keepdims=True)
+    n[n == 0.0] = 1.0
+    return x / n
+
+
+def _binary_metrics(y_true: np.ndarray, y_pred: np.ndarray):
+    y_true = np.asarray(y_true, dtype=np.int64).ravel()
+    y_pred = np.asarray(y_pred, dtype=np.int64).ravel()
+    if y_true.size == 0:
+        return {"accuracy": None, "macro_f1": None, "n_samples": 0}
+
+    acc = float((y_true == y_pred).mean())
+
+    def _f1_for(label: int):
+        tp = int(np.sum((y_true == label) & (y_pred == label)))
+        fp = int(np.sum((y_true != label) & (y_pred == label)))
+        fn = int(np.sum((y_true == label) & (y_pred != label)))
+        denom = (2 * tp) + fp + fn
+        if denom == 0:
+            return 0.0
+        return float((2 * tp) / denom)
+
+    macro_f1 = (_f1_for(0) + _f1_for(1)) / 2.0
+    return {"accuracy": acc, "macro_f1": macro_f1, "n_samples": int(y_true.size)}
+
+
+def _predict_future_labels_from_story_embeddings(outputs):
+    hist_x = []
+    hist_y = []
+    future_dir = None
+
+    for name, out_path, _shape in outputs:
+        if name == "data_future":
+            future_dir = out_path
+            continue
+        x_path = os.path.join(out_path, "X.npy")
+        y_path = os.path.join(out_path, "y.npy")
+        if os.path.isfile(x_path) and os.path.isfile(y_path):
+            hist_x.append(np.load(x_path, allow_pickle=True).astype(np.float32))
+            hist_y.append(np.load(y_path, allow_pickle=True).astype(np.int64).ravel())
+
+    if future_dir is None:
+        raise RuntimeError("data_future output missing; cannot compute story-based predictions.")
+
+    x_future = np.load(os.path.join(future_dir, "X.npy"), allow_pickle=True).astype(np.float32)
+    y_future = np.load(os.path.join(future_dir, "y.npy"), allow_pickle=True).astype(np.int64).ravel()
+    if not hist_x:
+        raise RuntimeError("No historical embeddings found to build story-based classifier.")
+
+    xh = np.vstack(hist_x)
+    yh = np.concatenate(hist_y)
+    if yh.ndim > 1:
+        yh = yh.ravel()
+
+    classes, counts = np.unique(yh, return_counts=True)
+    class_count = {int(c): int(n) for c, n in zip(classes.tolist(), counts.tolist())}
+    method = "cosine_centroid"
+    if 0 in class_count and 1 in class_count:
+        xh_n = _normalize_rows(xh)
+        c0 = xh_n[yh == 0].mean(axis=0)
+        c1 = xh_n[yh == 1].mean(axis=0)
+        c0 = c0 / max(float(np.linalg.norm(c0)), 1e-12)
+        c1 = c1 / max(float(np.linalg.norm(c1)), 1e-12)
+        xf_n = _normalize_rows(x_future)
+        s0 = xf_n @ c0
+        s1 = xf_n @ c1
+        y_pred = (s1 >= s0).astype(np.int64)
+        score_margin = (s1 - s0).astype(np.float32)
+    else:
+        majority = int(classes[np.argmax(counts)]) if classes.size else 0
+        y_pred = np.full(shape=(len(y_future),), fill_value=majority, dtype=np.int64)
+        score_margin = np.zeros(shape=(len(y_future),), dtype=np.float32)
+        method = "majority_fallback"
+
+    np.save(OUT_FUTURE_PRED, y_pred)
+    metrics = _binary_metrics(y_future, y_pred)
+    return {
+        "path": OUT_FUTURE_PRED,
+        "method": method,
+        "class_counts_reference": class_count,
+        "metrics_full_data_future": metrics,
+        "score_margin_summary": {
+            "min": float(np.min(score_margin)) if score_margin.size else 0.0,
+            "max": float(np.max(score_margin)) if score_margin.size else 0.0,
+            "mean": float(np.mean(score_margin)) if score_margin.size else 0.0,
+        },
+    }
 
 
 def _encode_records(records, text_key, out_subdir, model, batch_size, normalize, resume):
@@ -197,7 +289,7 @@ def main():
         ) from exc
 
     if not args.resume:
-        for p in [OUT_QUARANTINE, OUT_QUALITY, OUT_RESEARCH, OUT_MANIFEST, OUT_README]:
+        for p in [OUT_QUARANTINE, OUT_QUALITY, OUT_RESEARCH, OUT_MANIFEST, OUT_README, OUT_FUTURE_PRED_REPORT]:
             if os.path.isfile(p):
                 os.remove(p)
 
@@ -231,6 +323,10 @@ def main():
     all_events.extend(r["events"])
     all_quarantine.extend(r["quarantine"])
     rows_processed_this_run += r["rows_processed_this_run"]
+
+    future_pred = _predict_future_labels_from_story_embeddings(outputs)
+    with open(OUT_FUTURE_PRED_REPORT, "w", encoding="utf-8") as f:
+        json.dump(future_pred, f, indent=2)
 
     _write_jsonl(OUT_QUARANTINE, all_quarantine)
 
@@ -322,6 +418,8 @@ def main():
         },
         "outputs": {
             **{n: {"path": os.path.join(p, "X.npy"), "sha256": _sha256_of_file(os.path.join(p, "X.npy"))} for n, p, _ in outputs},
+            "data_future_story_pred_y": {"path": OUT_FUTURE_PRED, "sha256": _sha256_of_file(OUT_FUTURE_PRED)},
+            "data_future_story_pred_report": {"path": OUT_FUTURE_PRED_REPORT, "sha256": _sha256_of_file(OUT_FUTURE_PRED_REPORT)},
             "quarantine": {"path": OUT_QUARANTINE, "sha256": _sha256_of_file(OUT_QUARANTINE)},
             "quality": {"path": OUT_QUALITY, "sha256": _sha256_of_file(OUT_QUALITY)},
             "research": {"path": OUT_RESEARCH, "sha256": _sha256_of_file(OUT_RESEARCH)},
@@ -343,14 +441,24 @@ def main():
         f.write(f"- Quarantine: {OUT_QUARANTINE}\n")
         f.write(f"- Quality report: {OUT_QUALITY}\n")
         f.write(f"- Research report: {OUT_RESEARCH}\n")
+        f.write(f"- Future story predicted labels: {OUT_FUTURE_PRED}\n")
+        f.write(f"- Future story prediction report: {OUT_FUTURE_PRED_REPORT}\n")
         f.write(f"- Run manifest: {OUT_MANIFEST}\n")
         f.write(f"- Elapsed seconds: {elapsed:.2f}\n")
+        pred_metrics = future_pred.get("metrics_full_data_future", {})
+        if pred_metrics.get("accuracy") is not None:
+            f.write(
+                f"- Future story prediction metrics (full data_future): "
+                f"accuracy={pred_metrics['accuracy']:.4f}, macro_f1={pred_metrics['macro_f1']:.4f}\n"
+            )
         for name, path, shape in outputs:
             f.write(f"- {name}: {path}, shape={shape}\n")
 
     print(f"Wrote {OUT_QUARANTINE}")
     print(f"Wrote {OUT_QUALITY}")
     print(f"Wrote {OUT_RESEARCH}")
+    print(f"Wrote {OUT_FUTURE_PRED}")
+    print(f"Wrote {OUT_FUTURE_PRED_REPORT}")
     print(f"Wrote {OUT_MANIFEST}")
     print(f"Wrote {OUT_README}")
 

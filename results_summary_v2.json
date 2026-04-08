@@ -1,0 +1,165 @@
+{
+  "same_year": {
+    "2012": {
+      "rf": {
+        "accuracy": 0.86,
+        "macro_f1": 0.86
+      },
+      "mlp": {
+        "accuracy": 0.9217,
+        "macro_f1": 0.9217
+      }
+    },
+    "2014": {
+      "rf": {
+        "accuracy": 0.8542,
+        "macro_f1": 0.8542
+      },
+      "mlp": {
+        "accuracy": 0.9008,
+        "macro_f1": 0.9008
+      }
+    },
+    "2016": {
+      "rf": {
+        "accuracy": 0.9117,
+        "macro_f1": 0.9116
+      },
+      "mlp": {
+        "accuracy": 0.93,
+        "macro_f1": 0.93
+      }
+    },
+    "2018": {
+      "rf": {
+        "accuracy": 0.9267,
+        "macro_f1": 0.9264
+      },
+      "mlp": {
+        "accuracy": 0.9533,
+        "macro_f1": 0.9533
+      }
+    }
+  },
+  "cross_year_2012_model": {
+    "2012": {
+      "rf": {
+        "accuracy": 0.86,
+        "macro_f1": 0.86
+      },
+      "mlp": {
+        "accuracy": 0.9217,
+        "macro_f1": 0.9217
+      }
+    },
+    "2014": {
+      "rf": {
+        "accuracy": 0.7508,
+        "macro_f1": 0.7478
+      },
+      "mlp": {
+        "accuracy": 0.7825,
+        "macro_f1": 0.7795
+      }
+    },
+    "2016": {
+      "rf": {
+        "accuracy": 0.7342,
+        "macro_f1": 0.7322
+      },
+      "mlp": {
+        "accuracy": 0.7633,
+        "macro_f1": 0.7575
+      }
+    },
+    "2018": {
+      "rf": {
+        "accuracy": 0.725,
+        "macro_f1": 0.7245
+      },
+      "mlp": {
+        "accuracy": 0.805,
+        "macro_f1": 0.8037
+      }
+    }
+  },
+  "cross_year_custom_model": {
+    "_label": "trained on data_future (inherited labels)",
+    "_train_source": "data_future",
+    "_train_labels": "inherited from source rows",
+    "2012": {
+      "rf": {
+        "accuracy": 0.8533,
+        "macro_f1": 0.8531
+      },
+      "mlp": {
+        "accuracy": 0.9175,
+        "macro_f1": 0.9174
+      }
+    },
+    "2014": {
+      "rf": {
+        "accuracy": 0.8325,
+        "macro_f1": 0.8325
+      },
+      "mlp": {
+        "accuracy": 0.9242,
+        "macro_f1": 0.9241
+      }
+    },
+    "2016": {
+      "rf": {
+        "accuracy": 0.8025,
+        "macro_f1": 0.8025
+      },
+      "mlp": {
+        "accuracy": 0.8842,
+        "macro_f1": 0.8842
+      }
+    },
+    "2018": {
+      "rf": {
+        "accuracy": 0.8,
+        "macro_f1": 0.7996
+      },
+      "mlp": {
+        "accuracy": 0.89,
+        "macro_f1": 0.8897
+      }
+    }
+  },
+  "future_story_embedding_label_baseline": {
+    "source": "/home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_story_embeddings_v2/data_future/y_story_pred.npy",
+    "split": "data_future held-out test split",
+    "n_samples": 2400,
+    "accuracy": 0.7242,
+    "macro_f1": 0.7235
+  },
+  "future_train_target_year_eval": {
+    "_label": "trained on data_future (inherited labels)",
+    "_eval_years": [
+      2016,
+      2018
+    ],
+    "2016": {
+      "rf": {
+        "accuracy": 0.8025,
+        "macro_f1": 0.8025
+      },
+      "mlp": {
+        "accuracy": 0.8842,
+        "macro_f1": 0.8842
+      }
+    },
+    "2018": {
+      "rf": {
+        "accuracy": 0.8,
+        "macro_f1": 0.7996
+      },
+      "mlp": {
+        "accuracy": 0.89,
+        "macro_f1": 0.8897
+      }
+    }
+  }
+}

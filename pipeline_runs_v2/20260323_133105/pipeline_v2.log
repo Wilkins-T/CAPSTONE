@@ -1,0 +1,6 @@
+Run ID: 20260323_133105
+Log file: /home/t/Downloads/Code/pipeline_runs_v2/20260323_133105/pipeline_v2.log
+State file: /home/t/Downloads/Code/pipeline_runs_v2/20260323_133105/completed_steps.txt
+To resume later: RUN_ID=20260323_133105 bash run_full_pipeline_v2.sh
+PIPELINE [------------------------------] 0/5
+ERROR: Ollama not reachable at http://127.0.0.1:11434

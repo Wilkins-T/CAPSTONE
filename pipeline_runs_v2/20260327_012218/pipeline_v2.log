@@ -1,0 +1,61 @@
+Run ID: 20260327_012218
+Log file: /home/t/Downloads/Code/pipeline_runs_v2/20260327_012218/pipeline_v2.log
+State file: /home/t/Downloads/Code/pipeline_runs_v2/20260327_012218/completed_steps.txt
+To resume later: RUN_ID=20260327_012218 bash run_full_pipeline_v2.sh
+Existing stage 1 outputs detected; stage 1 will auto-resume on first attempt.
+PIPELINE [------------------------------] 0/5
+
+==================================================================
+[2026-03-27 01:22:18] START: V2 Stage 1: year stories (attempt 1/3)
+CMD: python generate_year_stories_v2.py --resume
+==================================================================
+
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_v2/stories_2012.jsonl (6000 rows, start_at=6000)
+[------------------------------] 5/2926 ETA 467:18[------------------------------] 10/2926 ETA 508:44[------------------------------] 15/2926 ETA 587:22Traceback (most recent call last):
+  File "/home/t/Downloads/Code/generate_year_stories_v2.py", line 472, in main
+    )
+    
+  File "/usr/lib64/python3.14/concurrent/futures/_base.py", line 639, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib64/python3.14/concurrent/futures/_base.py", line 311, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib64/python3.14/concurrent/futures/_base.py", line 445, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib64/python3.14/threading.py", line 369, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/t/Downloads/Code/generate_year_stories_v2.py", line 678, in <module>
+    print(f"Wrote {OUT_RESEARCH}")
+    ^^^^^^
+  File "/home/t/Downloads/Code/generate_year_stories_v2.py", line 469, in main
+    print(
+    
+  File "/usr/lib64/python3.14/concurrent/futures/_base.py", line 667, in __exit__
+    self.shutdown(wait=True)
+    ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib64/python3.14/concurrent/futures/thread.py", line 273, in shutdown
+    t.join()
+    ~~~~~~^^
+  File "/usr/lib64/python3.14/threading.py", line 1133, in join
+    self._os_thread_handle.join(timeout)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyboardInterrupt
+Exception ignored on threading shutdown:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.14/threading.py", line 1577, in _shutdown
+    atexit_call()
+  File "/usr/lib64/python3.14/threading.py", line 1548, in <lambda>
+    _threading_atexits.append(lambda: func(*arg, **kwargs))
+  File "/usr/lib64/python3.14/concurrent/futures/thread.py", line 31, in _python_exit
+    t.join()
+  File "/usr/lib64/python3.14/threading.py", line 1133, in join
+    self._os_thread_handle.join(timeout)
+KeyboardInterrupt: 

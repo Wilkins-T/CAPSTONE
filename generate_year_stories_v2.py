@@ -14,6 +14,7 @@ Outputs:
 """
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import os
@@ -37,6 +38,7 @@ OUT_QUALITY = os.path.join(OUT_DIR, "stories_quality_report.json")
 OUT_RESEARCH = os.path.join(OUT_DIR, "stories_research_report.json")
 OUT_MANIFEST = os.path.join(OUT_DIR, "stories_run_manifest.json")
 OUT_README = os.path.join(OUT_DIR, "README_stories_v2.md")
+OUT_PROMPT_CACHE = os.path.join(OUT_DIR, "prompt_cache.jsonl")
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/generate")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3.1:8b")
@@ -59,6 +61,7 @@ def parse_args():
     p.add_argument("--max-error-rate", type=float, default=0.01)
     p.add_argument("--max-quarantine-rate", type=float, default=0.10)
     p.add_argument("--max-duplicate-rate", type=float, default=0.10)
+    p.add_argument("--concurrency", type=int, default=2)
     p.add_argument("--strict-gate", action=argparse.BooleanOptionalAction, default=True)
     return p.parse_args()
 
@@ -194,6 +197,101 @@ def _quality_flag(story: str, min_chars: int):
     return "ok"
 
 
+def _prompt_cache_key(prompt_hash: str):
+    return f"{OLLAMA_MODEL}:{prompt_hash}"
+
+
+def _load_prompt_cache():
+    prompt_cache = {}
+    if not os.path.isfile(OUT_PROMPT_CACHE):
+        return prompt_cache
+    for rec in iter_jsonl(OUT_PROMPT_CACHE):
+        if str(rec.get("model", "")).strip() != OLLAMA_MODEL:
+            continue
+        prompt_hash = str(rec.get("prompt_sha256", "")).strip()
+        story = str(rec.get("story", "")).strip()
+        if prompt_hash and story:
+            prompt_cache[_prompt_cache_key(prompt_hash)] = story
+    return prompt_cache
+
+
+def _append_prompt_cache(prompt_hash: str, story: str):
+    entry = {
+        "cached_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "model": OLLAMA_MODEL,
+        "prompt_sha256": prompt_hash,
+        "story": story,
+    }
+    with open(OUT_PROMPT_CACHE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=True) + "\n")
+
+
+def _prime_resume_state(prompt_cache):
+    seen_norm_to_prompts = {}
+    for year in YEARS:
+        p = os.path.join(OUT_DIR, f"stories_{year}.jsonl")
+        if not os.path.isfile(p):
+            continue
+        for rec in iter_jsonl(p):
+            story = str(rec.get("story", "")).strip()
+            norm = _normalize_story(story)
+            prompt_hash = str(rec.get("generation_meta", {}).get("prompt_sha256", "")).strip()
+            if norm:
+                seen_norm_to_prompts.setdefault(norm, set())
+                if prompt_hash:
+                    seen_norm_to_prompts[norm].add(prompt_hash)
+
+            if (
+                prompt_hash
+                and story
+                and rec.get("error") is None
+                and rec.get("quality_flag") == "ok"
+            ):
+                prompt_cache[_prompt_cache_key(prompt_hash)] = story
+    return seen_norm_to_prompts, prompt_cache
+
+
+def _generate_prompt_job(job):
+    prompt = job["prompt"]
+    prompt_hash = job["prompt_hash"]
+    args = job["args"]
+
+    story = ""
+    error = None
+    attempts = 0
+    pchars = 0
+    rchars = 0
+    backoff_s = 0.0
+
+    for a in range(1, args.max_retries + 1):
+        attempts = a
+        pchars += len(prompt)
+        try:
+            story = ollama_generate(prompt, args)
+            error = None
+        except Exception as exc:
+            error = str(exc)
+            story = ""
+        rchars += len(story)
+        qf = _quality_flag(story, args.min_story_chars)
+        if error is None and qf == "ok":
+            break
+        if a < args.max_retries:
+            delay = args.retry_backoff_base * (args.retry_backoff_factor ** (a - 1))
+            time.sleep(delay)
+            backoff_s += delay
+
+    return {
+        "prompt_hash": prompt_hash,
+        "story": story,
+        "error": error,
+        "attempts": attempts,
+        "prompt_chars": pchars,
+        "response_chars": rchars,
+        "retry_backoff_seconds": round(backoff_s, 4),
+    }
+
+
 def _progress(n, total, elapsed):
     width = 30
     frac = 1.0 if total == 0 else n / total
@@ -322,7 +420,11 @@ def main():
     outputs = []
     quarantine_rows = []
     events = []
-    seen_norm = {}
+    prompt_cache = _load_prompt_cache()
+    if args.resume:
+        seen_norm_to_prompts, prompt_cache = _prime_resume_state(prompt_cache)
+    else:
+        seen_norm_to_prompts = {}
 
     for year in YEARS:
         data_dir = os.path.join(BASE_DIR, f"data_{year}")
@@ -332,45 +434,119 @@ def main():
         start = count_rows(out_path) if args.resume else 0
         mode = "a" if args.resume else "w"
 
-        t0 = time.time()
-        with open(out_path, mode, encoding="utf-8") as f:
-            for row_idx in range(start, n):
-                row = X[row_idx]
-                label = int(y[row_idx])
-                active_idx = np.where(row == 1)[0]
-                active_pairs = [(int(i), idx_to_name[int(i)]) for i in active_idx]
+        print(f"Year {year}: total_rows={n}, start_at={start}")
+        if args.resume and start >= n:
+            outputs.append((year, out_path, n, start))
+            print(f"Year {year} already complete; skipping generation.")
+            continue
 
-                prompt = build_prompt(label, active_pairs)
-                prompt_hash = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+        # Materialize the year output file as soon as the year starts so resume state
+        # is visible on disk even while generation jobs are still running.
+        if not os.path.isfile(out_path):
+            open(out_path, "a", encoding="utf-8").close()
+
+        t0 = time.time()
+        pending_rows = []
+        unique_jobs = []
+        unique_job_keys = set()
+        for row_idx in range(start, n):
+            row = X[row_idx]
+            label = int(y[row_idx])
+            active_idx = np.where(row == 1)[0]
+            active_pairs = [(int(i), idx_to_name[int(i)]) for i in active_idx]
+            prompt = build_prompt(label, active_pairs)
+            prompt_hash = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+            cache_key = _prompt_cache_key(prompt_hash)
+            pending_rows.append(
+                {
+                    "year": year,
+                    "row_index": int(row_idx),
+                    "label": label,
+                    "prompt": prompt,
+                    "prompt_hash": prompt_hash,
+                    "cache_key": cache_key,
+                }
+            )
+            if cache_key not in prompt_cache and cache_key not in unique_job_keys:
+                unique_jobs.append({"prompt": prompt, "prompt_hash": prompt_hash, "args": args})
+                unique_job_keys.add(cache_key)
+
+        print(
+            f"Year {year}: pending_rows={len(pending_rows)}, "
+            f"unique_generation_jobs={len(unique_jobs)}"
+        )
+
+        prompt_results = {}
+        if unique_jobs:
+            workers = max(1, args.concurrency)
+            if workers == 1:
+                iterator = map(_generate_prompt_job, unique_jobs)
+            else:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
+                    iterator = ex.map(_generate_prompt_job, unique_jobs)
+                    gen_done = 0
+                    for result in iterator:
+                        gen_done += 1
+                        prompt_results[result["prompt_hash"]] = result
+                        if result["error"] is None and _quality_flag(result["story"], args.min_story_chars) == "ok":
+                            cache_key = _prompt_cache_key(result["prompt_hash"])
+                            if cache_key not in prompt_cache:
+                                prompt_cache[cache_key] = result["story"]
+                                _append_prompt_cache(result["prompt_hash"], result["story"])
+                        if gen_done % 5 == 0 or gen_done == len(unique_jobs):
+                            _progress(gen_done, len(unique_jobs), time.time() - t0)
+                if unique_jobs:
+                    sys.stdout.write("\n")
+            if workers == 1:
+                gen_done = 0
+                for result in iterator:
+                    gen_done += 1
+                    prompt_results[result["prompt_hash"]] = result
+                    if result["error"] is None and _quality_flag(result["story"], args.min_story_chars) == "ok":
+                        cache_key = _prompt_cache_key(result["prompt_hash"])
+                        if cache_key not in prompt_cache:
+                            prompt_cache[cache_key] = result["story"]
+                            _append_prompt_cache(result["prompt_hash"], result["story"])
+                    if gen_done % 5 == 0 or gen_done == len(unique_jobs):
+                        _progress(gen_done, len(unique_jobs), time.time() - t0)
+                if unique_jobs:
+                    sys.stdout.write("\n")
+
+        with open(out_path, mode, encoding="utf-8") as f:
+            for offset, row_info in enumerate(pending_rows, start=1):
+                row_idx = row_info["row_index"]
+                label = row_info["label"]
+                prompt_hash = row_info["prompt_hash"]
+                cache_key = row_info["cache_key"]
+
                 story = ""
                 error = None
                 attempts = 0
                 pchars = 0
                 rchars = 0
                 backoff_s = 0.0
+                cache_hit = False
 
-                for a in range(1, args.max_retries + 1):
-                    attempts = a
-                    pchars += len(prompt)
-                    try:
-                        story = ollama_generate(prompt, args)
-                    except Exception as exc:
-                        error = str(exc)
-                    rchars += len(story)
-                    qf = _quality_flag(story, args.min_story_chars)
-                    if error is None and qf == "ok":
-                        break
-                    if a < args.max_retries:
-                        delay = args.retry_backoff_base * (args.retry_backoff_factor ** (a - 1))
-                        time.sleep(delay)
-                        backoff_s += delay
+                cached_story = prompt_cache.get(cache_key)
+                if cached_story:
+                    story = cached_story
+                    cache_hit = True
+                else:
+                    result = prompt_results.get(prompt_hash, {})
+                    story = result.get("story", "")
+                    error = result.get("error")
+                    attempts = int(result.get("attempts", 0))
+                    pchars = int(result.get("prompt_chars", 0))
+                    rchars = int(result.get("response_chars", 0))
+                    backoff_s = float(result.get("retry_backoff_seconds", 0.0))
 
                 qf = _quality_flag(story, args.min_story_chars)
                 norm = _normalize_story(story)
-                if norm and seen_norm.get(norm, 0) > 0:
+                known_prompts = seen_norm_to_prompts.get(norm, set())
+                if norm and known_prompts and prompt_hash not in known_prompts:
                     qf = "duplicate_story"
                 if norm:
-                    seen_norm[norm] = seen_norm.get(norm, 0) + 1
+                    seen_norm_to_prompts.setdefault(norm, set()).add(prompt_hash)
 
                 rec = {
                     "year": year,
@@ -388,6 +564,7 @@ def main():
                         "response_chars": rchars,
                         "retry_backoff_seconds": round(backoff_s, 4),
                         "model": OLLAMA_MODEL,
+                        "cache_hit": cache_hit,
                     },
                 }
                 f.write(json.dumps(rec, ensure_ascii=True) + "\n")
@@ -404,7 +581,7 @@ def main():
                         }
                     )
 
-                done = row_idx + 1
+                done = start + offset
                 if done % 5 == 0 or done == n:
                     _progress(done, n, time.time() - t0)
                 if args.sleep_between_requests:
@@ -439,6 +616,7 @@ def main():
             "ollama_model": OLLAMA_MODEL,
             "temperature": args.temperature,
             "num_ctx": args.num_ctx,
+            "concurrency": args.concurrency,
             "timeout_seconds": args.timeout_seconds,
         },
         "quality_config": {
@@ -447,6 +625,7 @@ def main():
             "retry_backoff_base": args.retry_backoff_base,
             "retry_backoff_factor": args.retry_backoff_factor,
             "strict_gate": args.strict_gate,
+            "prompt_cache_path": OUT_PROMPT_CACHE,
             "max_empty_story_rate": args.max_empty_story_rate,
             "max_short_story_rate": args.max_short_story_rate,
             "max_error_rate": args.max_error_rate,

@@ -31,6 +31,10 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 EMB_DIR = os.path.join(BASE_DIR, "drive-download-20260219T230708Z-1-001", "data_story_embeddings_v2")
 YEARS = [2012, 2014, 2016, 2018]
 CUSTOM_DATA_DIR = os.path.join(EMB_DIR, "data_future")
+TARGET_DRIFT_EVAL_YEARS = [2016, 2018]
+OLLAMA_STORY_EVAL_REPORT = os.path.join(
+    BASE_DIR, "drive-download-20260219T230708Z-1-001", "data_story_label_eval_v2", "story_label_eval_report.json"
+)
 
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
@@ -288,7 +292,18 @@ def _plot_results(results):
         return
 
     has_custom = any(str(y) in results.get("cross_year_custom_model", {}) for y in years)
-    w = 0.13 if has_custom else 0.2
+    ollama_story_eval = {}
+    if os.path.isfile(OLLAMA_STORY_EVAL_REPORT):
+        with open(OLLAMA_STORY_EVAL_REPORT, "r", encoding="utf-8") as f:
+            ollama_story_eval = json.load(f)
+    has_ollama_story_eval = bool(ollama_story_eval.get("per_year"))
+
+    if has_custom and has_ollama_story_eval:
+        w = 0.11
+    elif has_custom:
+        w = 0.13
+    else:
+        w = 0.2
     x = np.arange(len(years))
     fig, axes = plt.subplots(1, 2, figsize=(14 if has_custom else 12, 5))
 
@@ -302,6 +317,9 @@ def _plot_results(results):
     custom_label = custom.get("_label", "Custom")
     cu_rf = [custom.get(y, {}).get("rf", {}).get("accuracy", 0.0) for y in years]
     cu_mlp = [custom.get(y, {}).get("mlp", {}).get("accuracy", 0.0) for y in years]
+    ollama_acc_years = [y for y in years if ollama_story_eval.get("per_year", {}).get(y, {}).get("accuracy") is not None]
+    ollama_acc_x = np.array([years.index(y) for y in ollama_acc_years], dtype=float) if ollama_acc_years else np.array([], dtype=float)
+    ollama_acc = [ollama_story_eval.get("per_year", {}).get(y, {}).get("accuracy") for y in ollama_acc_years]
 
     ax = axes[0]
     ax.bar(x - 2.5 * w, same_rf, w, label="Same-year RF", color="steelblue")
@@ -311,11 +329,12 @@ def _plot_results(results):
     if has_custom:
         ax.bar(x + 1.5 * w, cu_rf, w, label=f"{custom_label} (RF)", color="plum")
         ax.bar(x + 2.5 * w, cu_mlp, w, label=f"{custom_label} (MLP)", color="lightgreen")
+    if has_ollama_story_eval and len(ollama_acc_x):
+        ax.bar(ollama_acc_x + 3.5 * w, ollama_acc, w, label="Ollama story eval", color="slategray")
     ax.set_title("Accuracy by test year (V2)")
     ax.set_xticks(x)
     ax.set_xticklabels(years)
     ax.set_ylim(0, 1.05)
-    ax.legend(fontsize=7)
     ax.grid(axis="y", alpha=0.3)
 
     same_rf_f1 = [results["same_year"][y]["rf"]["macro_f1"] for y in years]
@@ -333,15 +352,21 @@ def _plot_results(results):
     if has_custom:
         ax.bar(x + 1.5 * w, cu_rf_f1, w, label=f"{custom_label} (RF)", color="plum")
         ax.bar(x + 2.5 * w, cu_mlp_f1, w, label=f"{custom_label} (MLP)", color="lightgreen")
+    ollama_f1_years = [y for y in years if ollama_story_eval.get("per_year", {}).get(y, {}).get("macro_f1") is not None]
+    ollama_f1_x = np.array([years.index(y) for y in ollama_f1_years], dtype=float) if ollama_f1_years else np.array([], dtype=float)
+    ollama_f1 = [ollama_story_eval.get("per_year", {}).get(y, {}).get("macro_f1") for y in ollama_f1_years]
+    if has_ollama_story_eval and len(ollama_f1_x):
+        ax.bar(ollama_f1_x + 3.5 * w, ollama_f1, w, label="Ollama story eval", color="slategray")
     ax.set_title("Macro F1 by test year (V2)")
     ax.set_xticks(x)
     ax.set_xticklabels(years)
     ax.set_ylim(0, 1.05)
-    ax.legend(fontsize=7)
     ax.grid(axis="y", alpha=0.3)
 
     out = os.path.join(BASE_DIR, "results_comparison_v2.png")
-    plt.tight_layout()
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=8, bbox_to_anchor=(0.5, -0.02))
+    plt.tight_layout(rect=(0, 0.08, 1, 1))
     plt.savefig(out, dpi=150, bbox_inches="tight")
     plt.close()
 
@@ -399,6 +424,8 @@ def main():
         },
         "cross_year_2012_model": {},
         "cross_year_custom_model": {},
+        "future_story_embedding_label_baseline": {},
+        "future_train_target_year_eval": {},
     }
 
     if 2012 in year_data:
@@ -422,6 +449,30 @@ def main():
     if os.path.isdir(CUSTOM_DATA_DIR):
         Xc, yc = load_xy(CUSTOM_DATA_DIR)
         tr, te = train_test_split(np.arange(len(yc)), test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=yc)
+
+        y_story_pred_path = os.path.join(CUSTOM_DATA_DIR, "y_story_pred.npy")
+        if os.path.isfile(y_story_pred_path):
+            y_story_pred = np.load(y_story_pred_path, allow_pickle=True).astype(np.int64).ravel()
+            if len(y_story_pred) == len(yc):
+                acc_story = accuracy_score(yc[te], y_story_pred[te])
+                f1_story = f1_score(yc[te], y_story_pred[te], average="macro", zero_division=0)
+                results["future_story_embedding_label_baseline"] = {
+                    "source": y_story_pred_path,
+                    "split": "data_future held-out test split",
+                    "n_samples": int(len(te)),
+                    "accuracy": _f(acc_story),
+                    "macro_f1": _f(f1_story),
+                }
+                print(
+                    f"Future-story baseline on held-out data_future: "
+                    f"acc={acc_story:.4f}, macro_f1={f1_story:.4f}"
+                )
+            else:
+                warnings.warn(
+                    f"Skipping future_story_embedding_label_baseline: length mismatch "
+                    f"(y_story_pred={len(y_story_pred)} vs y={len(yc)})."
+                )
+
         rf_c, _, _ = run_rf(Xc[tr], yc[tr], Xc[te], yc[te])
         mlp_c, scaler_c, _, _ = run_mlp(
             Xc[tr], yc[tr], Xc[te], yc[te], n_classes=len(np.unique(yc)), progress_label="MLP custom"
@@ -430,7 +481,15 @@ def main():
         imp.sort(key=lambda t: t[1], reverse=True)
         importance_by_model["custom (data_future)"] = imp
 
-        results["cross_year_custom_model"] = {"_label": "custom (data_future)"}
+        results["cross_year_custom_model"] = {
+            "_label": "trained on data_future (inherited labels)",
+            "_train_source": "data_future",
+            "_train_labels": "inherited from source rows",
+        }
+        results["future_train_target_year_eval"] = {
+            "_label": "trained on data_future (inherited labels)",
+            "_eval_years": TARGET_DRIFT_EVAL_YEARS,
+        }
         t_cross_custom = time.time()
         n_eval = len(year_data)
         for i, y in enumerate(year_data, start=1):
@@ -441,6 +500,11 @@ def main():
                 "rf": {"accuracy": _f(ra), "macro_f1": _f(rf1)},
                 "mlp": {"accuracy": _f(ma), "macro_f1": _f(mf1)},
             }
+            if y in TARGET_DRIFT_EVAL_YEARS:
+                results["future_train_target_year_eval"][str(y)] = {
+                    "rf": {"accuracy": _f(ra), "macro_f1": _f(rf1)},
+                    "mlp": {"accuracy": _f(ma), "macro_f1": _f(mf1)},
+                }
             _progress(i, n_eval, time.time() - t_cross_custom, prefix="cross-custom")
         if n_eval:
             sys.stdout.write("\n")

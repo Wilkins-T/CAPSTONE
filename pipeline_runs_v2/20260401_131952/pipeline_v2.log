@@ -1,0 +1,51 @@
+Run ID: 20260401_131952
+Log file: /home/t/Downloads/Code/pipeline_runs_v2/20260401_131952/pipeline_v2.log
+State file: /home/t/Downloads/Code/pipeline_runs_v2/20260401_131952/completed_steps.txt
+To resume later: RUN_ID=20260401_131952 bash run_full_pipeline_v2.sh
+Existing stage 1 outputs detected; stage 1 will auto-resume on first attempt.
+Existing stage 2 outputs detected; stage 2 will auto-resume on first attempt.
+PIPELINE [------------------------------] 0/5
+
+==================================================================
+[2026-04-01 13:19:52] START: V2 Stage 1: year stories (attempt 1/3)
+CMD: python generate_year_stories_v2.py --resume
+==================================================================
+Year 2012: total_rows=6000, start_at=6000
+Year 2012 already complete; skipping generation.
+Year 2014: total_rows=6000, start_at=6000
+Year 2014 already complete; skipping generation.
+Year 2016: total_rows=6000, start_at=6000
+Year 2016 already complete; skipping generation.
+Year 2018: total_rows=6000, start_at=6000
+Year 2018 already complete; skipping generation.
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_v2/stories_quarantine.jsonl
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_v2/stories_quality_report.json
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_v2/stories_research_report.json
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_v2/stories_run_manifest.json
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_v2/README_stories_v2.md
+[2026-04-01 13:19:53] DONE: V2 Stage 1: year stories
+PIPELINE [######------------------------] 1/5
+
+==================================================================
+[2026-04-01 13:19:53] START: V2 Stage 2: future stories (attempt 1/3)
+CMD: python generate_future_stories_v2.py --concurrency 4 --resume --concurrency 4
+==================================================================
+<unknown>:2: SyntaxWarning: "\+" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\+"? A raw string is also an option.
+
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/future_stories.jsonl
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/future_stories_quarantine.jsonl
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/future_stories_quality_report.json
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/future_stories_research_report.json
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/future_stories_run_manifest.json
+Wrote /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/README_future_v2.md
+Traceback (most recent call last):
+  File "/home/t/Downloads/Code/generate_future_stories_v2.py", line 612, in <module>
+    main()
+    ~~~~^^
+  File "/home/t/Downloads/Code/generate_future_stories_v2.py", line 606, in main
+    raise RuntimeError(
+        f"Quality gate failed. See {OUT_QUALITY}. Violations: {', '.join(quality.get('violations', []))}"
+    )
+RuntimeError: Quality gate failed. See /home/t/Downloads/Code/drive-download-20260219T230708Z-1-001/data_stories_future_v2/future_stories_quality_report.json. Violations: empty_story_rate_above_threshold, quarantine_rate_above_threshold
+[2026-04-01 13:19:57] FAIL: V2 Stage 2: future stories (attempt 1/3)
+Retrying in 60s...
